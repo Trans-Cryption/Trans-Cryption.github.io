@@ -1,0 +1,86 @@
+*{
+    text-decoration: none;
+    list-style: none;
+}
+
+body{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(227, 242, 255);
+    color: rgb(9, 9, 9);
+    margin-inline: 12%;
+    /* background-image: url("assets/fondsite.svg");
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat; */
+
+    
+}
+header{
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    background-size: cover;
+}
+img {
+    border-radius: 4px;
+    max-width: 100%;
+    float:left;
+    margin: 1.7%;
+  }
+h1{
+    padding-left: 2%;
+    display: flex;
+}
+/*commentaire*/
+h2{
+    padding-left: 1.7%;
+}
+h3{
+    padding-left: 1.5%;
+}
+ul{
+    padding-left: 1.7%;
+}
+a{
+    color:rgb(255, 0, 212);    
+    text-decoration: none;
+    transition: all 0.5s;
+}
+li.normal{
+    list-style-type: square;
+    margin-left: 5%;
+}
+a:hover{
+    color:rgb(0, 162, 255); 
+}
+.menu{
+    display:flex;
+    padding:0;
+}
+.menu li{
+    list-style-type: none;
+    background-color: aliceblue;
+}
+.menu a{
+    display:block;
+    min-width: 130px;
+
+    text-align: center;
+    border-left: 2px solid rgb(162, 212, 255);
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.5s;
+}
+.menu a:hover,.menu a:hover.actif{
+    border-color: rgb(255, 193, 236);
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+}
+.menu a.actif{
+    border-color: rgb(122, 121, 121);
+}
+img:hover.menu{
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+    transition: all 0.5s;
+}
