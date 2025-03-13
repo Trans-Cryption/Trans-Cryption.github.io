@@ -32,8 +32,5 @@
         <?php
         include("temoignage.php");
         ?>
-        <?php
-        echo "test";
-        ?>
     </body>
 </html>
