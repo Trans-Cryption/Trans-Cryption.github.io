@@ -2,8 +2,9 @@
 <html lang="fr">
     <head>
         <meta charset="utf-8">
-        <title>Contact</title>
+        <title>Accueil</title>
         <link rel="stylesheet" href="site.css">
+        <!-- Page d'accueil pour expliquer le but du site -->
     </head>
     <body>
         <a href="index.html">
@@ -11,7 +12,7 @@
         </a>
         <ul class="menu">
             <li>
-                <a href="temoignages.php">
+                <a href="temoignages.html" class="actif">
                     <ind>Témoignages</ind>
                 </a>
             </li>
@@ -21,14 +22,18 @@
                 </a>
             </li>
             <li>
-                <a href="contact.html" class="actif">
+                <a href="contact.html">
                     <ind>Contact</ind>
                 </a>
             </li>
         </ul>
-        <h1>Contact</h1>
-        <p>
-            gmail : <a href="mailto:sous.les.paillettes@gmail.com">sous.les.paillettes@gmail.com</a>
-        </p>
+        <h1>Témoignages</h1>
+
+        <?php
+        include("temoignage.php");
+        ?>
+        <?php
+        echo "test";
+        ?>
     </body>
 </html>
