@@ -1,8 +1,8 @@
-const DATA_URL = 'assets/temoignage.json';
-let nb=0;
-let taille;
-const NB_CHARG = 3;
-const STORE_T = "t";
+const DATA_URL = 'assets/temoignage.json'
+let nb=0
+let taille
+const NB_CHARG = 3
+const STORE_T = "t"
 
 async function LoadTem(){
     try {
@@ -26,6 +26,8 @@ function rendertem(tem){
     for(let i=nb;i<min(nb+NB_CHARG,tem.length);i+=1){
         let donnee = tem[i]["date"];
         donnee += "<br>";
+        donnee = tem[i]["titre"];
+        donnee += "<br>";
         donnee += tem[i]["texte"];
         donnee += "<br><br>";
         text.insertAdjacentHTML("beforeend",donnee);
@@ -47,7 +49,7 @@ function down(){
         LoadTem();
 
     }
-};
+}
 function up(){
     if(nb-taille<NB_CHARG){
         nb+=NB_CHARG;
@@ -64,4 +66,4 @@ function handleerror(error){
 }
 
 /* Initialization */
-document.addEventListener('DOMContentLoaded', LoadTem());
+document.addEventListener('DOMContentLoaded', LoadTem())

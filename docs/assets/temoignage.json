@@ -1,34 +1,42 @@
 [
     {
         "date":"01/01/2025",
+        "titre":"test1",
         "texte":"test"
     },
     {
         "date":"01/01/2025",
+        "titre":"test2",
         "texte":"test"
     },
     {
         "date":"01/01/2025",
+        "titre":"test3",
         "texte":"test"
     },
     {
         "date":"01/01/2025",
+        "titre":"test4",
         "texte":"test"
     },
     {
         "date":"01/01/2025",
+        "titre":"test5",
         "texte":"test2"
     },
     {
         "date":"01/01/2025",
+        "titre":"test6",
         "texte":"test2"
     },
     {
         "date":"01/01/2025",
+        "titre":"test7",
         "texte":"test2"
     },
     {
         "date":"01/01/2025",
+        "titre":"test8",
         "texte":"test2"
     }
 ]
