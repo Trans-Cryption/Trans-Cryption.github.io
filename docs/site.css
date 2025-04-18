@@ -1,3 +1,5 @@
+
+/*Ctr+Shift+R pour rafraichir le cache*/
 *{
     text-decoration: none;
     list-style: none;
@@ -29,6 +31,7 @@ img {
   }
 h1{
     padding-left: 2%;
+    margin: 30px;
     display: flex;
 }
 /*commentaire*/
@@ -83,4 +86,47 @@ img:hover.menu{
     transform: scale(1.1);
     -webkit-transform: scale(1.1);
     transition: all 0.5s;
+}
+.load{
+    position: fixed;
+    border:none;
+    bottom: 5%;
+    border-radius: 4px;
+    padding:4px;
+    background-color:  rgb(162, 212, 255);
+    transition: all 0.5s;
+    font-size: 16px;
+}
+#up{
+    right: 15%;
+}
+#down{
+    right: 7%;
+}
+button:hover.load{
+    background-color: rgb(255, 193, 236);
+    transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+}
+.tem-fond{
+    background-color: aliceblue; 
+    padding: 30px;
+    border-radius: 10px;
+}
+.tem{
+    font-size: 16px;
+    border:none;
+    display: flex;
+    padding: 5px;
+    border-radius: 4px;
+    background-color: rgb(255, 193, 236);
+    transition: all 0.3s;
+    min-width: 150px;  /* Largeur minimale */
+    width: 90%;
+    margin: 15px;
+}
+button:hover.tem{
+    background-color:  rgb(162, 212, 255);
+    transform: scale(1.01);
+    -webkit-transform: scale(1.01);
 }

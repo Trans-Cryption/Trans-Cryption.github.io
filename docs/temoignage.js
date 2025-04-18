@@ -1,8 +1,9 @@
-const DATA_URL = 'assets/temoignage.json'
-let nb=0
-let taille
-const NB_CHARG = 3
-const STORE_T = "t"
+const DATA_URL = 'assets/temoignage.json';
+let nb=0;
+let taille;
+const NB_CHARG = 10;
+const STORE_T = "t";
+test = true;
 
 async function LoadTem(){
     try {
@@ -24,14 +25,42 @@ function rendertem(tem){
     const text = document.getElementById(STORE_T);
     text.innerHTML = ''; //clear tem
     for(let i=nb;i<min(nb+NB_CHARG,tem.length);i+=1){
-        let donnee = tem[i]["date"];
+        let donnee = tem[i]["titre"];
         donnee += "<br>";
-        donnee = tem[i]["titre"];
-        donnee += "<br>";
-        donnee += tem[i]["texte"];
-        donnee += "<br><br>";
-        text.insertAdjacentHTML("beforeend",donnee);
+        donnee += tem[i]["date"];
+        createbutton(text,donnee,i)
     }
+}
+
+function createbutton(text,donnee,i){
+    button = document.createElement('button');
+    button.innerHTML = donnee;
+    button.classList.add('tem');
+    button.id = i;
+    button.addEventListener("click", () =>tem(i));
+    text.appendChild(button);
+}
+
+async function tem(i){
+    try {
+        const tem = await fetchtem();
+        createtem(tem,i)
+        test = false;
+
+    } catch (error) {
+        handleerror(error);
+    }
+}
+
+function createtem(tem,i){
+    const text = document.getElementById(STORE_T);
+    text.innerHTML = "";
+    titre = document.createElement('h2');
+    titre.innerHTML = tem[i]["titre"];
+    contenu = document.createElement('p');
+    contenu.innerHTML = tem[i]["date"]+"<br><br>"+tem[i]["texte"];
+    text.appendChild(titre);
+    text.appendChild(contenu);
 }
 
 function min(a,b){
@@ -43,7 +72,7 @@ function min(a,b){
 }
 
 function down(){
-    if(nb>0){
+    if(nb>0 && test){
         nb-=NB_CHARG;    
         console.log(nb);
         LoadTem();
@@ -51,11 +80,16 @@ function down(){
     }
 }
 function up(){
-    if(nb-taille<NB_CHARG){
+    if(nb+NB_CHARG<=taille && test){
         nb+=NB_CHARG;
         console.log(nb);
         LoadTem();
     }
+}
+
+function retour(){
+    test = true;
+    LoadTem();
 }
 
 function handleerror(error){
@@ -66,4 +100,4 @@ function handleerror(error){
 }
 
 /* Initialization */
-document.addEventListener('DOMContentLoaded', LoadTem())
+document.addEventListener('DOMContentLoaded', LoadTem);

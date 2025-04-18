@@ -12,7 +12,7 @@
         </a>
         <ul class="menu">
             <li>
-                <a href="temoignages.html" class="actif">
+                <a href="temoignage.html" class="actif">
                     <ind>Témoignages</ind>
                 </a>
             </li>
@@ -33,9 +33,11 @@
             </li>
         </ul>
         <h1>Témoignages</h1>
-        <script href="temoignage.js"></script>
-        <p id="t"></p>
-        <button  class="load" type="button" onclick="up();" id="up">up</button>
-        <button  class="load" type="button" onclick="down();" id="down">down</button>
+        <div class="tem-fond" id="t">
+        </div>
+        <button  class="load" type="button" onclick="up();" id="up">suivant</button>
+        <button  class="load" type="button" onclick="down();" id="down">précédent</button>
+        <button class="load" type="button" onclick="retour();" id="retour">retour</button>
+        <script src="temoignage.js" defer></script>
     </body>
 </html>
