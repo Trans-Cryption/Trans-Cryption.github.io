@@ -1,4 +1,5 @@
 const DATA_URL = 'assets/temoignage.json';
+const PODCAST_URL = "assets/podcast/"
 let nb=0;
 let taille;
 const NB_CHARG = 10;
@@ -25,9 +26,13 @@ function rendertem(tem){
     const text = document.getElementById(STORE_T);
     text.innerHTML = ''; //clear tem
     for(let i=nb;i<min(nb+NB_CHARG,tem.length);i+=1){
-        let donnee = tem[i]["titre"];
-        donnee += "<br>";
+        let donnee = "<p><strong>"+tem[i]["titre"]+" : </strong>";
         donnee += tem[i]["date"];
+        if(tem[i]["podcast"]=="no"){
+            donnee += ", texte</p>";
+        }else{
+            donnee += ", podcast</p>";
+        }
         createbutton(text,donnee,i)
     }
 }
@@ -57,10 +62,31 @@ function createtem(tem,i){
     text.innerHTML = "";
     titre = document.createElement('h2');
     titre.innerHTML = tem[i]["titre"];
-    contenu = document.createElement('p');
-    contenu.innerHTML = tem[i]["date"]+"<br><br>"+tem[i]["texte"];
     text.appendChild(titre);
+    if(tem[i]["podcast"]=="no"){
+        createtext(text,tem,i);
+    }
+    else{
+        createpodcast(text,tem,i);
+    }
+    date = document.createElement('p');
+    date.innerHTML = tem[i]["date"];
+    text.appendChild(date);
+}
+
+function createtext(text,tem,i){
+    contenu = document.createElement('p');
+    contenu.innerHTML = tem[i]["texte"];
     text.appendChild(contenu);
+}
+
+function createpodcast(text,tem,i){
+    audio = document.createElement('audio');
+    audio.classList.add('audio');
+    audio.controls = 'controls';
+    audio.src = PODCAST_URL+tem[i]["texte"];
+    audio.type = 'audio/mpeg';
+    text.appendChild(audio);
 }
 
 function min(a,b){
@@ -101,3 +127,11 @@ function handleerror(error){
 
 /* Initialization */
 document.addEventListener('DOMContentLoaded', LoadTem);
+
+// pour le format des données :
+// {
+//     "date":"19/04/2025",
+//     "titre":"Lost on you",
+//     "texte":"LP.mp3",
+//     "podcast":"yes"
+// }
