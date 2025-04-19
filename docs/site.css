@@ -130,3 +130,30 @@ button:hover.tem{
     transform: scale(1.01);
     -webkit-transform: scale(1.01);
 }
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1c1c1e;
+        color: #fefefe;
+    }
+    a {
+        color: #ee5fe2;
+    }
+    a:hover{
+        color: #5fa9ee;
+    }
+    img {
+        filter: grayscale(20%);
+    }
+    .menu li{
+        background-color: #39393b;
+    }
+    .tem-fond{
+        background-color: #39393b;
+    }
+}
+
+@media screen and (max-width : 1050px){
+    #up{
+        right: 170px;
+    }
+}
