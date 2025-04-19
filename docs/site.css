@@ -32,7 +32,7 @@ img {
 h1{
     padding-left: 2%;
     margin: 30px;
-    display: flex;
+    /* display: flex; */
 }
 /*commentaire*/
 h2{
