@@ -1,0 +1,15 @@
+[
+  {
+    "date": "19/04/2025",
+    "titre": "Témoignage d'Émilie",
+    "texte": "Contenu du témoignage d'Émilie...",
+    "podcast": "no"
+  },
+  {
+    "date": "17/03/2025",
+    "titre": "Histoire de Marc",
+    "texte": "Contenu du témoignage de Marc...",
+    "podcast": "yes",
+    "url": "marc-temoignage.mp3"
+  }
+]

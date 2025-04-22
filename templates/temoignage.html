@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Témoignages</h1>
+<div class="tem-fond">
+    {% if testimonials %}
+        {% for testimonial in testimonials %}
+        <div class="testimonial-card">
+            <h2>{{ testimonial.titre }}</h2>
+            <div class="date">{{ testimonial.date }}</div>
+            
+            {% if testimonial.podcast == "yes" %}
+            <div class="podcast-player">
+                <audio controls>
+                    <source src="static/assets/podcast/{{ testimonial.url }}" type="audio/mpeg">
+                    Votre navigateur ne supporte pas l'élément audio.
+                </audio>
+            </div>
+            {% endif %}
+            
+            <div class="testimonial-content">
+                {{ testimonial.texte }}
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>Aucun témoignage n'est disponible pour le moment.</p>
+    {% endif %}
+</div>
+{% endblock %}
