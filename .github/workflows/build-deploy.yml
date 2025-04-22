@@ -23,14 +23,6 @@ jobs:
           python-version: '3.13'
           cache: 'pip'
 
-      # Install dependencies
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install jinja2 markdown
-          # Add any other dependencies your build script needs
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-
       # Build the site
       - name: Build site
         run: |
