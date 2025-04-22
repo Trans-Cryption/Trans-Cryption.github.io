@@ -38,19 +38,25 @@ pages = [
     {"template": "index.html", "output": "index.html", "title": "Accueil"},
     {
         "template": "temoignage.html",
-        "output": "temoignage.html",
+        "output": "temoignage/index.html",
         "title": "Témoignages",
         "testimonials": testimonials,
     },
-    {"template": "historique.html", "output": "historique.html", "title": "Historique"},
-    {"template": "aides.html", "output": "aides.html", "title": "Aides"},
-    {"template": "contact.html", "output": "contact.html", "title": "Contact"},
+    {
+        "template": "historique.html",
+        "output": "historique/index.html",
+        "title": "Historique",
+    },
+    {"template": "aides.html", "output": "aides/index.html", "title": "Aides"},
+    {"template": "contact.html", "output": "contact/index.html", "title": "Contact"},
 ]
 
 # Generate each page
 for page in pages:
     template = env.get_template(page["template"])
     output_path = os.path.join(OUTPUT_DIR, page["output"])
+
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)  # Add this line
 
     # Remove template from context
     context = {k: v for k, v in page.items() if k != "template" and k != "output"}
