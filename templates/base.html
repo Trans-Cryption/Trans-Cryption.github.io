@@ -9,8 +9,16 @@
     </head>
     <body>
         <a href="index.html" id="index">
-            <img src="static/assets/logo.svg" height="80pt" width="80pt" alt="Logo" class="menu">
+            <img src="static/assets/logo.svg" height="80pt" width="80pt" alt="Logo" class="menu-logo">
         </a>
+        
+        <!-- Burger button for mobile -->
+        <button class="burger-menu" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
         <ul class="menu">
             <li id="menu-tem">
                 <a href="temoignage.html" {% if title == 'Témoignages' %}class="actif"{% endif %}>
@@ -37,6 +45,13 @@
         <div class="content">
             {% block content %}{% endblock %}
         </div>
+        
+        <script>
+            document.querySelector('.burger-menu').addEventListener('click', function() {
+                this.classList.toggle('active');
+                document.querySelector('.menu').classList.toggle('active');
+            });
+        </script>
         
         {% block scripts %}{% endblock %}
     </body>

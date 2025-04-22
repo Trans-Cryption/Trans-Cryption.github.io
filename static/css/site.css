@@ -2,6 +2,8 @@
     text-decoration: none;
     list-style: none;
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 /* Base viewport setting to ensure proper scaling */
@@ -69,35 +71,131 @@ a:hover {
     color: rgb(0, 162, 255);
 }
 
+
 .menu {
     display: flex;
     padding: 0;
+    transition: transform 0.3s ease;
 }
 
 .menu li {
     list-style-type: none;
     background-color: aliceblue;
+    transition: all 0.3s ease;
+    margin: 0 2px;
 }
 
 .menu a {
     display: block;
     min-width: 130px;
+    padding: 15px 20px;
     text-align: center;
     border-left: 2px solid rgb(162, 212, 255);
     border-radius: 4px;
-    text-decoration: none;
-    transition: all 0.5s;
+    transition: all 0.3s ease;
 }
 
-.menu a:hover, .menu a:hover.actif {
-    border-color: rgb(255, 193, 236);
-    transform: scale(1.1);
-    -webkit-transform: scale(1.1);
+/* Improved hover effect for desktop */
+.menu li:hover {
+    transform: scale(1.05);
+    z-index: 1;
+}
+
+.menu li:hover a {
+    color: rgb(0, 162, 255);
+    background-color: rgba(255, 193, 236, 0.1);
 }
 
 .menu a.actif {
     border-color: rgb(122, 121, 121);
+    background-color: rgba(255, 193, 236, 0.2);
 }
+
+/* Burger menu styles */
+.burger-menu {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.burger-menu span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: rgb(255, 0, 212);
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+/* Burger menu animation */
+.burger-menu.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.burger-menu.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger-menu.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .burger-menu {
+        display: block;
+    }
+    
+    .menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        background-color: transparent;
+        flex-direction: column;
+        width: 250px;
+        padding-top: 60px;
+        transition: right 0.3s ease;
+    }
+    
+    .menu.active {
+        right: 0;
+    }
+    
+    .menu li {
+        width: 100%;
+        margin: 0;
+        background-color: transparent;
+    }
+    
+    .menu a {
+        width: 100%;
+        border-left: none;
+        border-bottom: 2px solid rgb(162, 212, 255);
+        padding: 20px;
+        margin: 0;
+        border-radius: 0;
+    }
+    
+    .menu li:hover {
+        transform: none;
+    }
+    
+    .menu a:hover {
+        background-color: rgba(162, 212, 255, 0.1);
+    }
+    
+    .dark-mode .menu {
+        background-color: transparent;
+    }
+}
+
 
 img:hover.menu {
     transform: scale(1.1);
