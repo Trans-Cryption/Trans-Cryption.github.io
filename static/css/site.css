@@ -82,13 +82,13 @@ a:hover {
     list-style-type: none;
     background-color: aliceblue;
     transition: all 0.3s ease;
-    margin: 0 2px;
+    margin: 10px 2px;
 }
 
 .menu a {
     display: block;
     min-width: 130px;
-    padding: 15px 20px;
+    padding: 3px 20px;
     text-align: center;
     border-left: 2px solid rgb(162, 212, 255);
     border-radius: 4px;
