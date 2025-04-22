@@ -4,31 +4,39 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>{{ title }}</title>
-        <link rel="stylesheet" href="static/css/site.css">
+        <link rel="stylesheet" href="/static/css/site.css">
         {% block head %}{% endblock %}
     </head>
     <body>
-        <a href="index.html" id="index">
-            <img src="static/assets/logo.svg" height="80pt" width="80pt" alt="Logo" class="menu">
+        <a href="/" id="index">
+            <img src="/static/assets/logo.svg" height="80pt" width="80pt" alt="Logo" class="menu-logo">
         </a>
+        
+        <!-- Burger button for mobile -->
+        <button class="burger-menu" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
         <ul class="menu">
             <li id="menu-tem">
-                <a href="temoignage.html" {% if title == 'Témoignages' %}class="actif"{% endif %}>
+                <a href="/temoignage" {% if title == 'Témoignages' %}class="actif"{% endif %}>
                     <ind>Témoignages</ind>
                 </a>
             </li>
             <li id="menu-histo">
-                <a href="historique.html" {% if title == 'Historique' %}class="actif"{% endif %}>
+                <a href="/historique" {% if title == 'Historique' %}class="actif"{% endif %}>
                     <ind>Historique</ind>
                 </a>
             </li>
             <li id="menu-aide">
-                <a href="aides.html" {% if title == 'Aides' %}class="actif"{% endif %}>
+                <a href="/aides" {% if title == 'Aides' %}class="actif"{% endif %}>
                     <ind>Aides</ind>
                 </a>
             </li>
             <li id="menu-contact">
-                <a href="contact.html" {% if title == 'Contact' %}class="actif"{% endif %}>
+                <a href="/contact" {% if title == 'Contact' %}class="actif"{% endif %}>
                     <ind>Contact</ind>
                 </a>
             </li>
@@ -37,6 +45,13 @@
         <div class="content">
             {% block content %}{% endblock %}
         </div>
+        
+        <script>
+            document.querySelector('.burger-menu').addEventListener('click', function() {
+                this.classList.toggle('active');
+                document.querySelector('.menu').classList.toggle('active');
+            });
+        </script>
         
         {% block scripts %}{% endblock %}
     </body>
