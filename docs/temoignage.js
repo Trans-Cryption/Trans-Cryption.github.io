@@ -33,58 +33,46 @@ function rendertem(tem){
         }else{
             donnee += ", podcast</p>";
         }
-        createbutton(text,donnee,i)
+        createbutton(text,donnee,i,tem[i])
     }
 }
 
-function createbutton(text,donnee,i){
+function createbutton(text,donnee,i,uni_tem){
     button = document.createElement('button');
     button.innerHTML = donnee;
     button.classList.add('tem');
     button.id = i;
-    button.addEventListener("click", () =>tem(i));
+    button.addEventListener("click", () =>createtem(uni_tem));
     text.appendChild(button);
 }
 
-async function tem(i){
-    try {
-        const tem = await fetchtem();
-        createtem(tem,i)
-        test = false;
-
-    } catch (error) {
-        handleerror(error);
-    }
-}
-
-function createtem(tem,i){
+function createtem(uni_tem){
+    test=false
     const text = document.getElementById(STORE_T);
     text.innerHTML = "";
     titre = document.createElement('h2');
-    titre.innerHTML = tem[i]["titre"];
+    titre.innerHTML = uni_tem["titre"];
     text.appendChild(titre);
-    if(tem[i]["podcast"]=="no"){
-        createtext(text,tem,i);
+    if(uni_tem["podcast"]=="yes"){
+        createpodcast(text,uni_tem);
     }
-    else{
-        createpodcast(text,tem,i);
-    }
+    createtext(text,uni_tem);
     date = document.createElement('p');
-    date.innerHTML = tem[i]["date"];
+    date.innerHTML = uni_tem["date"];
     text.appendChild(date);
 }
 
-function createtext(text,tem,i){
+function createtext(text,uni_tem){
     contenu = document.createElement('p');
-    contenu.innerHTML = tem[i]["texte"];
+    contenu.innerHTML = uni_tem["texte"];
     text.appendChild(contenu);
 }
 
-function createpodcast(text,tem,i){
+function createpodcast(text,uni_tem){
     audio = document.createElement('audio');
     audio.classList.add('audio');
     audio.controls = 'controls';
-    audio.src = PODCAST_URL+tem[i]["texte"];
+    audio.src = PODCAST_URL+uni_tem["url"];
     audio.type = 'audio/mpeg';
     text.appendChild(audio);
 }
