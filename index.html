@@ -4,31 +4,39 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Accueil</title>
-        <link rel="stylesheet" href="static/css/site.css">
+        <link rel="stylesheet" href="/static/css/site.css">
         
     </head>
     <body>
-        <a href="index.html" id="index">
-            <img src="static/assets/logo.svg" height="80pt" width="80pt" alt="Logo" class="menu">
+        <a href="/" id="index">
+            <img src="/static/assets/logo.svg" height="80pt" width="80pt" alt="Logo" class="menu-logo">
         </a>
+        
+        <!-- Burger button for mobile -->
+        <button class="burger-menu" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
         <ul class="menu">
             <li id="menu-tem">
-                <a href="temoignage.html" >
+                <a href="/temoignage" >
                     <ind>Témoignages</ind>
                 </a>
             </li>
             <li id="menu-histo">
-                <a href="historique.html" >
+                <a href="/historique" >
                     <ind>Historique</ind>
                 </a>
             </li>
             <li id="menu-aide">
-                <a href="aides.html" >
+                <a href="/aides" >
                     <ind>Aides</ind>
                 </a>
             </li>
             <li id="menu-contact">
-                <a href="contact.html" >
+                <a href="/contact" >
                     <ind>Contact</ind>
                 </a>
             </li>
@@ -44,7 +52,7 @@
     Ce site internet cherche à donner accès à des témoignages de personnes transgenres sur les violences qu'ils ont du subir à cause de leur identité de genre. <br>
     En proposant ce contenue, ce site cherche à montrer que le côté "paillette" du débat et de la trend "subie par la société" cache un côté beaucoup plus sombre de minorité qui 
     continue de subir des violences malgré les nombreuses actions déjà prises. <br>
-    Si vous êtes trans et que vous voulez témoignez, contactez-nous via mail disponible sur <a href="contact.html">cette page</a>. 
+    Si vous êtes trans et que vous voulez témoignez, contactez-nous via mail disponible sur <a href="/contact">cette page</a>. 
 </p>
 <h2>Fonctionnement du site</h2>
 <p>
@@ -59,6 +67,13 @@
 </p>
 
         </div>
+        
+        <script>
+            document.querySelector('.burger-menu').addEventListener('click', function() {
+                this.classList.toggle('active');
+                document.querySelector('.menu').classList.toggle('active');
+            });
+        </script>
         
         
     </body>
