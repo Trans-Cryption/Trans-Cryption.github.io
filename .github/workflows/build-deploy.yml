@@ -1,0 +1,50 @@
+name: Build and Deploy Static Site
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  # Allow manual triggering
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # Check out your repository
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # Set up Python environment
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.13'
+          cache: 'pip'
+
+      # Install dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install jinja2 markdown
+          # Add any other dependencies your build script needs
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      # Build the site
+      - name: Build site
+        run: |
+          python build.py
+          # Check if the site folder was created
+          if [ ! -d "site" ]; then
+            echo "Error: The 'site' directory was not created!"
+            exit 1
+          fi
+
+      # Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: site
+          branch: gh-pages
+          clean: true
