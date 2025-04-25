@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (navigator.share) {
                 navigator.share({
                     title: 'Témoignage: ' + title,
-                    text: 'Découvre ce témoignage sur Trans_cryption',
+                    text: 'Découvre ce témoignage sur Trans-cryption',
                     url: window.location.href.split('#')[0] + '#' + testimonialId
                 })
                 .catch(error => console.log('Erreur de partage:', error));
