@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/css/pages/aides.css">
+{% endblock %}
+
+{% block content %}
+<section id="intro-aides">
+    <h1>Ressources d'aide</h1>
+    <p>Cette page regroupe diverses associations et ressources d'aide et de soutien aux personnes transgenres. La liste n'est pas exhaustive et sera mise à jour régulièrement.</p>
+</section>
+
+<section id="forums" class="resource-section">
+    <h2><i class="fa-solid fa-comments"></i> Forums et communautés en ligne</h2>
+    <ul class="resource-list">
+        <li class="resource-item">
+            <h3>Trans District</h3>
+            <p>Un forum pour les personnes trans francophones, offrant un espace d'échange, de soutien et d'information.</p>
+            <a href="https://www.forum-ftm.fr/" class="resource-link" target="_blank">
+                Visiter <i class="fa-solid fa-external-link-alt"></i>
+            </a>
+        </li>
+    </ul>
+</section>
+
+<section id="associations" class="resource-section">
+    <h2><i class="fa-solid fa-hand-holding-heart"></i> Associations</h2>
+    <ul class="resource-list">
+        <li class="resource-item">
+            <h3>OUTrans</h3>
+            <p>Association féministe d'autosupport trans qui organise des rencontres, fournit des informations, de la sensibilisation et de la documentation sur la transidentité.</p>
+            <a href="https://www.outrans.org/" class="resource-link" target="_blank">
+                Visiter <i class="fa-solid fa-external-link-alt"></i>
+            </a>
+        </li>
+        
+        <li class="resource-item">
+            <h3>SOS Homophobie</h3>
+            <p>Permet d'obtenir de l'aide via une écoute anonyme pour les personnes victimes de discriminations liées à l'orientation sexuelle ou l'identité de genre.</p>
+            <a href="https://www.sos-homophobie.org/" class="resource-link" target="_blank">
+                Visiter <i class="fa-solid fa-external-link-alt"></i>
+            </a>
+        </li>
+        
+        <li class="resource-item">
+            <h3>Fransgenre</h3>
+            <p>Association nationale reconnue d'intérêt général avec pour objectifs l'information et l'entraide principalement autour des aspects médicaux, juridiques et administratifs des transitions, et la défense des droits des personnes trans.</p>
+            <a href="https://fransgenre.fr/" class="resource-link" target="_blank">
+                Visiter <i class="fa-solid fa-external-link-alt"></i>
+            </a>
+        </li>
+        
+        <li class="resource-item">
+            <h3>Contact</h3>
+            <p>Offre un accueil individualisé et des groupes de parole entre personnes LGBT+ et proches de personnes LGBT+.</p>
+            <a href="https://www.asso-contact.org/" class="resource-link" target="_blank">
+                Visiter <i class="fa-solid fa-external-link-alt"></i>
+            </a>
+        </li>
+    </ul>
+</section>
+
+<section id="crises" class="resource-section">
+    <h2><i class="fa-solid fa-phone"></i> Lignes d'urgence</h2>
+    <ul class="resource-list">
+        <li class="resource-item urgent">
+            <h3>SOS Homophobie - Ligne d'écoute</h3>
+            <p>Ligne téléphonique pour signaler des discriminations ou actes LGBTphobes.</p>
+            <p class="phone">01 48 06 42 41</p>
+            <p class="hours">Du lundi au vendredi : 18h-22h<br>Samedi : 14h-16h<br>Dimanche : 18h-20h</p>
+        </li>
+    </ul>
+</section>
+
+<div class="contribution-note">
+    <p>
+        <i class="fa-solid fa-circle-info"></i> Tu connais d'autres ressources qui pourraient être utiles ? N'hésite pas à nous les partager via notre <a href="/contact">page de contact</a>.
+    </p>
+</div>
+{% endblock %}
