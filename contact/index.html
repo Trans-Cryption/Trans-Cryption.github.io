@@ -113,6 +113,7 @@
                     <li><i class="fa-solid fa-envelope"></i> Envoyer un email anonyme depuis <a href="https://proton.me" target="_blank" rel="noopener">ProtonMail</a></li>
                     <li><i class="fa-solid fa-edit"></i> Utiliser un document partagé anonyme via <a href="https://cryptpad.fr" target="_blank" rel="noopener">CryptPad</a></li>
                 </ul>
+                <p class="collab-tip"><i class="fa-solid fa-lightbulb"></i> Tu peux également créer un document partagé sur CryptPad que tu nous transmettras via notre formulaire de contact pour que nous puissions éditer ensemble et échanger directement à travers ce document.</p>
             </div>
         </div>
     </div>
@@ -153,9 +154,22 @@
 
             <div id="form-feedback" class="feedback" role="alert" aria-live="assertive"></div>
             
-            <div class="encryption-note">
-                <p><i class="fa-solid fa-lock"></i> Tous les messages sont chiffrés de bout en bout pour protéger ta vie privée.</p>
-            </div>
+            <details class="encryption-info">
+                <summary class="encryption-summary">
+                    <i class="fa-solid fa-lock"></i>
+                    <span>Ton message est protégé par un chiffrement de bout en bout</span>
+                    <i class="fa-solid fa-chevron-down expand-icon"></i>
+                </summary>
+                <div class="encryption-details">
+                    <p>Comment ça fonctionne :</p>
+                    <ol>
+                        <li>Le chiffrement se fait directement dans ton navigateur, avant tout envoi</li>
+                        <li>Une clé de chiffrement unique est générée pour chaque message</li>
+                        <li>Seul notre système peut déchiffrer ton message, pas même le service d'hébergement du formulaire</li>
+                    </ol>
+                    <p class="encryption-note"><i class="fa-solid fa-info-circle"></i> Cette méthode assure la confidentialité de tes données tout au long de la transmission.</p>
+                </div>
+            </details>
         </div>
     </div>
 </div>
@@ -193,7 +207,7 @@
             
             <div class="footer-bottom">
                 <p>&copy; Trans-cryption - 2025</p>
-                <p>Site généré avec Python et Jinja2.</p>
+                <p>Site généré avec <a href="https://github.com/trans-cryption/trans-cryption.github.io" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i> Python et Jinja2</a>.</p>
             </div>
         </div>
     </footer>
