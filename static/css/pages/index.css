@@ -1,0 +1,60 @@
+/* 
+ * index.css
+ * Styles spécifiques à la page d'accueil
+*/
+
+/* Sections */
+section {
+  margin-bottom: var(--spacing-xl);
+}
+
+#intro p {
+  margin-bottom: var(--spacing-md);
+  line-height: 1.6;
+}
+
+/* Liste des fonctionnalités */
+#site-presentation ul {
+  margin: var(--spacing-md) 0;
+  padding-left: var(--spacing-xl);
+}
+
+#site-presentation li {
+  margin-bottom: var(--spacing-md);
+}
+
+#site-presentation li a {
+  font-weight: 500;
+}
+
+/* Avertissement */
+.warning {
+  background-color: rgba(255, 240, 200, 0.3);
+  border-left: 4px solid #f5c76a;
+  padding: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+  border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+
+.warning p {
+  margin: 0;
+}
+
+/* Mode sombre */
+@media (prefers-color-scheme: dark) {
+  .warning {
+    background-color: rgba(255, 240, 200, 0.1);
+    border-left-color: #d4a84d;
+  }
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  #intro h1 {
+    font-size: var(--font-size-xl);
+  }
+  
+  #site-presentation ul {
+    padding-left: var(--spacing-lg);
+  }
+}

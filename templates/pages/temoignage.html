@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/css/components/testimonial-card.css">
+<link rel="stylesheet" href="/static/css/pages/temoignage.css">
+{% endblock %}
+
+{% block content %}
+<section id="testimonials-intro">
+    <h1>Témoignages</h1>
+    <p>Cette page regroupe des témoignages de personnes transgenres qui partagent leurs expériences personnelles. Chaque récit est unique et important.</p>
+    <p class="content-warning">
+        <i class="fa-solid fa-triangle-exclamation"></i> Certains témoignages peuvent évoquer des situations difficiles comme le rejet, la discrimination ou la violence.
+    </p>
+</section>
+
+<div class="tem-fond">
+    {% if testimonials %}
+        {% for testimonial in testimonials %}
+        <article class="testimonial-card">
+            <h2>{{ testimonial.titre }}</h2>
+            <div class="date">{{ testimonial.date }}</div>
+            
+            {% if testimonial.podcast == "yes" %}
+            <div class="podcast-player">
+                <audio controls>
+                    <source src="/static/assets/podcast/{{ testimonial.url }}" type="audio/mpeg">
+                    Votre navigateur ne supporte pas l'élément audio.
+                </audio>
+            </div>
+            {% endif %}
+            
+            <div class="testimonial-content">
+                {{ testimonial.texte }}
+            </div>
+        </article>
+        {% endfor %}
+    {% else %}
+        <div class="no-testimonials">
+            <p>Aucun témoignage n'est disponible pour le moment.</p>
+            <p>Tu souhaites partager ton expérience ? <a href="/contact">Contacte-nous</a>.</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

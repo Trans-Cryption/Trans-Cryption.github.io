@@ -1,0 +1,38 @@
+<!-- Menu de navigation -->
+<nav class="main-nav">
+    <!-- Logo -->
+    <a href="/" id="index" class="logo-container">
+        <img src="/static/assets/logo.svg" height="80" width="80" alt="Logo" class="menu-logo">
+    </a>
+    
+    <!-- Bouton menu burger pour mobile -->
+    <button class="burger-menu" aria-label="Ouvrir le menu de navigation" type="button">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Menu principal -->
+    <ul class="menu" id="main-menu">
+        <li id="menu-tem">
+            <a href="/temoignage" {% if title == 'Témoignages' %}class="actif"{% endif %}>
+                <span>Témoignages</span>
+            </a>
+        </li>
+        <li id="menu-histo">
+            <a href="/historique" {% if title == 'Historique' %}class="actif"{% endif %}>
+                <span>Historique</span>
+            </a>
+        </li>
+        <li id="menu-aide">
+            <a href="/aides" {% if title == 'Aides' %}class="actif"{% endif %}>
+                <span>Aides</span>
+            </a>
+        </li>
+        <li id="menu-contact">
+            <a href="/contact" {% if title == 'Contact' %}class="actif"{% endif %}>
+                <span>Contact</span>
+            </a>
+        </li>
+    </ul>
+</nav>
