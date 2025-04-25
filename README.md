@@ -1,4 +1,4 @@
-# Site Web Trans_cryption
+# Site Web Trans-cryption
 
 Ce dépôt contient un site web statique généré avec Python et Jinja2, qui partage des témoignages, des ressources, et des informations historiques sur les personnes transgenres.
 
