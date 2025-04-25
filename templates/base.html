@@ -1,59 +1,76 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>{{ title }}</title>
-        <link rel="stylesheet" href="/static/css/site.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-        {% block head %}{% endblock %}
-    </head>
-    <body>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Témoignages et ressources pour les personnes transgenres">
+    
+    <title>{{ title }} - Trans_cryption</title>
+    
+    <!-- Styles de base -->
+    <link rel="stylesheet" href="/static/css/global/reset.css">
+    <link rel="stylesheet" href="/static/css/global/base.css">
+    <link rel="stylesheet" href="/static/css/components/menu.css">
+    
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- Styles spécifiques à chaque page -->
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <header>
+        <!-- Logo -->
         <a href="/" id="index">
-            <img src="/static/assets/logo.svg" height="80pt" width="80pt" alt="Logo" class="menu-logo">
+            <img src="/static/assets/logo.svg" height="80" width="80" alt="Logo" class="menu-logo">
         </a>
         
-        <!-- Burger button for mobile -->
+        <!-- Bouton menu burger pour mobile -->
         <button class="burger-menu" aria-label="Toggle navigation">
             <span></span>
             <span></span>
             <span></span>
         </button>
 
-        <ul class="menu">
-            <li id="menu-tem">
-                <a href="/temoignage" {% if title == 'Témoignages' %}class="actif"{% endif %}>
-                    <ind>Témoignages</ind>
-                </a>
-            </li>
-            <li id="menu-histo">
-                <a href="/historique" {% if title == 'Historique' %}class="actif"{% endif %}>
-                    <ind>Historique</ind>
-                </a>
-            </li>
-            <li id="menu-aide">
-                <a href="/aides" {% if title == 'Aides' %}class="actif"{% endif %}>
-                    <ind>Aides</ind>
-                </a>
-            </li>
-            <li id="menu-contact">
-                <a href="/contact" {% if title == 'Contact' %}class="actif"{% endif %}>
-                    <ind>Contact</ind>
-                </a>
-            </li>
-        </ul>
-        
-        <div class="content">
-            {% block content %}{% endblock %}
-        </div>
-        
-        <script>
-            document.querySelector('.burger-menu').addEventListener('click', function() {
-                this.classList.toggle('active');
-                document.querySelector('.menu').classList.toggle('active');
-            });
-        </script>
-        
-        {% block scripts %}{% endblock %}
-    </body>
+        <!-- Menu de navigation -->
+        <nav>
+            <ul class="menu">
+                <li id="menu-tem">
+                    <a href="/temoignage" {% if title == 'Témoignages' %}class="actif"{% endif %}>
+                        <span>Témoignages</span>
+                    </a>
+                </li>
+                <li id="menu-histo">
+                    <a href="/historique" {% if title == 'Historique' %}class="actif"{% endif %}>
+                        <span>Historique</span>
+                    </a>
+                </li>
+                <li id="menu-aide">
+                    <a href="/aides" {% if title == 'Aides' %}class="actif"{% endif %}>
+                        <span>Aides</span>
+                    </a>
+                </li>
+                <li id="menu-contact">
+                    <a href="/contact" {% if title == 'Contact' %}class="actif"{% endif %}>
+                        <span>Contact</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main class="content">
+        {% block content %}{% endblock %}
+    </main>
+    
+    <footer>
+        <p>© Trans_cryption - 2025</p>
+    </footer>
+    
+    <!-- JavaScript global -->
+    <script src="/static/js/global/navigation.js" defer></script>
+    
+    <!-- JavaScript spécifique à chaque page -->
+    {% block scripts %}{% endblock %}
+</body>
 </html>
