@@ -114,7 +114,7 @@
 .alt-methods ul {
   list-style: none;
   padding: 0;
-  margin: var(--spacing-md) 0 0;
+  margin: var(--spacing-md) 0;
 }
 
 .alt-methods li {
@@ -126,6 +126,24 @@
 
 .alt-methods i {
   color: var(--color-secondary);
+}
+
+.collab-tip {
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-md);
+  background-color: rgba(255, 193, 7, 0.1);
+  border-radius: var(--border-radius);
+  border-left: 3px solid #ffc107;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+}
+
+.collab-tip i {
+  color: #ffc107;
+  margin-top: 3px;
 }
 
 /* Formulaire */
@@ -237,18 +255,82 @@ button[type="submit"]:hover {
   color: #5f0000;
 }
 
-/* Note de chiffrement */
-.encryption-note {
-  margin: 0 var(--spacing-lg);
-  font-size: var(--font-size-sm);
-  color: rgba(100, 100, 100, 0.8);
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-sm);
+/* Section d'information sur le chiffrement */
+.encryption-info {
+  margin: var(--spacing-lg);
+  background-color: rgba(0, 162, 255, 0.05);
+  border-radius: var(--border-radius);
+  border-left: 3px solid var(--color-secondary);
 }
 
-.encryption-note i {
+.encryption-summary {
+  padding: var(--spacing-md) var(--spacing-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
   color: var(--color-secondary);
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color var(--transition-speed);
+  user-select: none;
+  list-style: none;
+}
+
+.encryption-summary:hover {
+  background-color: rgba(0, 162, 255, 0.1);
+}
+
+.encryption-summary i.fa-lock {
+  font-size: 1.1rem;
+}
+
+.encryption-summary .expand-icon {
+  margin-left: auto;
+  font-size: 0.8rem;
+  transition: transform var(--transition-speed);
+}
+
+/* Supprime l'icône triangle par défaut des éléments details */
+.encryption-info summary {
+  list-style: none;
+}
+.encryption-info summary::-webkit-details-marker {
+  display: none;
+}
+
+/* Rotation de l'icône quand la section est ouverte */
+.encryption-info[open] .expand-icon {
+  transform: rotate(180deg);
+}
+
+.encryption-details {
+  padding: 0 var(--spacing-lg) var(--spacing-lg);
+}
+
+.encryption-details p {
+  margin-top: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
+}
+
+.encryption-details ol {
+  padding-left: var(--spacing-xl);
+  margin: var(--spacing-sm) 0;
+}
+
+.encryption-details li {
+  margin-bottom: var(--spacing-xs);
+  line-height: 1.6;
+}
+
+.encryption-note {
+  font-size: var(--font-size-sm);
+  color: rgba(100, 100, 100, 0.8);
+  margin-top: var(--spacing-md);
+  margin-bottom: 0;
+  font-style: italic;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
 }
 
 /* Mode sombre */
@@ -265,6 +347,10 @@ button[type="submit"]:hover {
   
   .encryption-note {
     color: rgba(200, 200, 200, 0.7);
+  }
+
+  .encryption-info {
+    background-color: rgba(0, 162, 255, 0.08);
   }
   
   .feedback.success {
@@ -307,5 +393,10 @@ button[type="submit"]:hover {
   
   .contact-icon {
     margin-bottom: var(--spacing-sm);
+  }
+
+  .encryption-info {
+    margin: var(--spacing-md);
+    padding: var(--spacing-sm) var(--spacing-md);
   }
 }
