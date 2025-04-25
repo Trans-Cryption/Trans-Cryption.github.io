@@ -2,7 +2,7 @@
 <nav class="main-nav">
     <!-- Logo -->
     <a href="/" id="index" class="logo-container">
-        <img src="/static/assets/logo.svg" height="80" width="80" alt="Logo" class="menu-logo">
+        <img src="/static/assets/logo.svg" height="80" width="80" alt="Logo Trans_cryption" class="menu-logo">
     </a>
     
     <!-- Bouton menu burger pour mobile -->
@@ -12,26 +12,29 @@
         <span></span>
     </button>
 
+    <!-- Overlay pour le menu mobile -->
+    <div class="menu-overlay"></div>
+
     <!-- Menu principal -->
     <ul class="menu" id="main-menu">
         <li id="menu-tem">
-            <a href="/temoignage" {% if title == 'Témoignages' %}class="actif"{% endif %}>
-                <span>Témoignages</span>
+            <a href="/temoignage" {% if title == 'Témoignages' %}class="actif"{% endif %} tabindex="0">
+                Témoignages
             </a>
         </li>
         <li id="menu-histo">
-            <a href="/historique" {% if title == 'Historique' %}class="actif"{% endif %}>
-                <span>Historique</span>
+            <a href="/historique" {% if title == 'Historique' %}class="actif"{% endif %} tabindex="0">
+                Historique
             </a>
         </li>
         <li id="menu-aide">
-            <a href="/aides" {% if title == 'Aides' %}class="actif"{% endif %}>
-                <span>Aides</span>
+            <a href="/aides" {% if title == 'Aides' %}class="actif"{% endif %} tabindex="0">
+                Aides
             </a>
         </li>
         <li id="menu-contact">
-            <a href="/contact" {% if title == 'Contact' %}class="actif"{% endif %}>
-                <span>Contact</span>
+            <a href="/contact" {% if title == 'Contact' %}class="actif"{% endif %} tabindex="0">
+                Contact
             </a>
         </li>
     </ul>

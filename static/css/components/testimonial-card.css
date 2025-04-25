@@ -1,58 +1,336 @@
 /* 
  * testimonial-card.css
- * Styles pour les cartes de témoignages
+ * Styles améliorés pour les cartes de témoignages
  */
-
-/* Conteneur des témoignages */
-.tem-fond {
-    background-color: var(--color-card);
-    padding: var(--spacing-xl);
-    border-radius: var(--border-radius);
-    margin-bottom: var(--spacing-xl);
-}
 
 /* Carte de témoignage */
 .testimonial-card {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: var(--color-card);
     border-radius: var(--border-radius);
-    padding: var(--spacing-lg);
-    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-xl);
     box-shadow: var(--box-shadow);
-    transition: transform var(--transition-speed);
+    transition: all var(--transition-speed);
+    position: relative;
+    overflow: hidden;
+    scroll-margin-top: 100px; /* Pour le défilement automatique */
+}
+
+.testimonial-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--color-primary), var(--color-secondary));
+    border-radius: 2px 0 0 2px;
 }
 
 .testimonial-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Mettre en évidence le témoignage actif */
+.testimonial-card:target {
+    box-shadow: 0 0 0 3px var(--color-primary), var(--box-shadow);
+    animation: highlight 2s ease-in-out;
+}
+
+@keyframes highlight {
+    0%, 100% { box-shadow: 0 0 0 3px var(--color-primary), var(--box-shadow); }
+    50% { box-shadow: 0 0 0 6px var(--color-primary), var(--box-shadow); }
+}
+
+/* En-tête du témoignage */
+.testimonial-header {
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-md);
+    border-bottom: 1px solid rgba(125, 125, 125, 0.2);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-sm);
 }
 
 /* Titre du témoignage */
 .testimonial-card h2 {
-    margin-top: 0;
+    margin: 0;
     color: var(--color-primary);
+    font-size: var(--font-size-lg);
+    flex: 1;
+    min-width: 200px;
 }
+
 /* Date du témoignage */
 .testimonial-card .date {
     font-style: italic;
-    margin-bottom: var(--spacing-md);
     font-size: var(--font-size-sm);
     color: rgba(125, 125, 125, 0.8);
+    display: flex;
+    align-items: center;
+    padding: 4px var(--spacing-sm);
+    background-color: rgba(0, 0, 0, 0.03);
+    border-radius: 30px;
+}
+
+.testimonial-card .date::before {
+    content: '\f073'; /* icône de calendrier Font Awesome */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    margin-right: 5px;
+    font-size: 0.9em;
+    color: var(--color-secondary);
 }
 
 /* Contenu du témoignage */
 .testimonial-content {
-    line-height: 1.6;
+    line-height: 1.7;
     white-space: pre-line; /* Conserve les sauts de ligne du texte */
+    font-size: var(--font-size-md);
+    display: flex;
+    flex-direction: column;
+}
+
+/* Mise en forme des paragraphes */
+.testimonial-content p {
+    margin-bottom: var(--spacing-md);
+    text-align: justify;
+}
+
+/* Structure de prévisualisation */
+.content-preview {
+    position: relative;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    flex: 1;
+}
+
+.content-preview p:last-of-type {
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Animation pour l'alternance des paragraphes */
+.testimonial-content p:nth-child(even) {
+    background-color: rgba(0, 162, 255, 0.03);
+    padding: var(--spacing-md);
+    border-radius: var(--border-radius);
+    margin-left: var(--spacing-md);
+    transition: background-color var(--transition-speed);
+}
+
+.testimonial-content p:nth-child(even):hover {
+    background-color: rgba(0, 162, 255, 0.06);
+}
+
+/* Mise en évidence des mots clés et citations */
+.testimonial-content strong {
+    color: var(--color-secondary);
+    font-weight: 600;
+    background-color: rgba(0, 162, 255, 0.05);
+    padding: 0 4px;
+    border-radius: 3px;
+    display: inline-block;
+    transition: all var(--transition-speed);
+}
+
+.testimonial-content strong:hover {
+    background-color: rgba(0, 162, 255, 0.1);
+    transform: translateY(-1px);
+}
+
+/* Mise en évidence des citations importantes */
+.testimonial-content p:has(strong) {
+    border-left: 2px solid var(--color-secondary);
+    padding-left: var(--spacing-md);
 }
 
 /* Lecteur de podcast */
 .podcast-player {
-    margin: var(--spacing-md) 0;
+    margin: var(--spacing-md) 0 var(--spacing-lg);
+    padding: var(--spacing-md);
+    background-color: rgba(0, 162, 255, 0.05);
+    border-radius: var(--border-radius);
+    transition: background-color var(--transition-speed);
+}
+
+.podcast-player:hover {
+    background-color: rgba(0, 162, 255, 0.08);
+}
+
+.player-label {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-secondary);
+    font-weight: 500;
+}
+
+.player-label i {
+    font-size: 1.2em;
 }
 
 .podcast-player audio {
     width: 100%;
     border-radius: var(--border-radius);
+    height: 40px;
+}
+
+/* Personnalisation de l'audio player */
+.podcast-player audio::-webkit-media-controls-panel {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.podcast-player audio::-webkit-media-controls-play-button,
+.podcast-player audio::-webkit-media-controls-volume-slider,
+.podcast-player audio::-webkit-media-controls-mute-button {
+    cursor: pointer;
+}
+
+/* Effet de lecture */
+.read-more, .read-less {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    color: var(--color-secondary);
+    background: rgba(0, 162, 255, 0.05);
+    border: none;
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all var(--transition-speed);
+    white-space: nowrap;
+    line-height: 1.5;
+    margin-top: var(--spacing-md);
+    align-self: flex-start;
+}
+
+.read-more:hover, .read-less:hover {
+    color: var(--color-primary);
+    background-color: rgba(0, 162, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.read-more i, .read-less i {
+    font-size: 0.8em;
+    display: inline-block;
+    vertical-align: middle;
+    line-height: 1;
+    margin-top: 1px;
+}
+
+/* Animation du contenu complet */
+.full-content {
+    animation: fadeIn 0.4s ease-in-out;
+    padding-top: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.hidden {
+    display: none;
+}
+
+/* Ajustement de la hauteur pour les témoignages tronqués */
+.testimonial-card:not(:has(.full-content:not(.hidden))) .testimonial-footer {
+    margin-top: var(--spacing-md);
+}
+
+/* Actions du témoignage */
+.testimonial-footer {
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-md);
+    border-top: 1px solid rgba(125, 125, 125, 0.1);
+    display: flex;
+    justify-content: flex-end;
+}
+
+.testimonial-actions {
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.action-button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-md);
+    background-color: rgba(0, 162, 255, 0.05);
+    border: none;
+    border-radius: 30px;
+    color: var(--color-secondary);
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+    transition: all var(--transition-speed);
+}
+
+.action-button:hover {
+    background-color: rgba(0, 162, 255, 0.1);
+    color: var(--color-primary);
+    transform: translateY(-2px);
+}
+
+.action-button i {
+    font-size: 0.9em;
+}
+
+/* Info-bulle de soutien */
+.support-info {
+    position: relative;
+}
+
+.support-tooltip {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    right: 0;
+    width: 250px;
+    background-color: var(--color-card);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-md);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-speed);
+    z-index: 10;
+    transform: translateY(10px);
+    pointer-events: none;
+}
+
+.support-tooltip:after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    right: 20px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 8px solid var(--color-card);
+}
+
+.support-info:hover .support-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+.support-tooltip p {
+    margin: 0;
+    font-size: var(--font-size-sm);
+    text-align: left;
+}
+
+.support-tooltip a {
+    color: var(--color-primary);
+    font-weight: 500;
 }
 
 /* Mode sombre */
@@ -63,16 +341,77 @@
     
     .testimonial-card .date {
         color: rgba(200, 200, 200, 0.8);
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+    
+    .testimonial-content p:nth-child(even) {
+        background-color: rgba(0, 162, 255, 0.05);
+    }
+    
+    .testimonial-content p:nth-child(even):hover {
+        background-color: rgba(0, 162, 255, 0.08);
+    }
+    
+    .podcast-player {
+        background-color: rgba(0, 162, 255, 0.08);
+    }
+    
+    .podcast-player:hover {
+        background-color: rgba(0, 162, 255, 0.12);
+    }
+    
+    .read-more, .read-less, .action-button {
+        background-color: rgba(0, 162, 255, 0.08);
+    }
+    
+    .read-more:hover, .read-less:hover, .action-button:hover {
+        background-color: rgba(0, 162, 255, 0.15);
+    }
+    
+    .podcast-player audio::-webkit-media-controls-panel {
+        background-color: rgba(50, 50, 50, 0.8);
+    }
+    
+    .testimonial-footer {
+        border-top-color: rgba(255, 255, 255, 0.1);
     }
 }
 
 /* Responsive */
 @media screen and (max-width: 768px) {
-    .tem-fond {
-        padding: var(--spacing-md);
+    .testimonial-card {
+        padding: var(--spacing-lg);
     }
     
-    .testimonial-card {
-        padding: var(--spacing-md);
+    .testimonial-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-bottom: var(--spacing-sm);
+    }
+    
+    .testimonial-content p:nth-child(even) {
+        padding: var(--spacing-sm);
+        margin-left: var(--spacing-sm);
+    }
+    
+    .testimonial-actions {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .support-tooltip {
+        width: 200px;
+        left: 50%;
+        transform: translateX(-50%) translateY(10px);
+    }
+    
+    .support-info:hover .support-tooltip {
+        transform: translateX(-50%) translateY(0);
+    }
+    
+    .support-tooltip:after {
+        left: 50%;
+        transform: translateX(-50%);
+        right: auto;
     }
 }

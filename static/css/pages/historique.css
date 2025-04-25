@@ -5,91 +5,268 @@
 
 /* Introduction */
 #historique-intro {
-  margin-bottom: var(--spacing-xl);
+  padding: var(--spacing-xl) 0 var(--spacing-lg);
 }
 
-#historique-intro p {
-  max-width: 800px;
+.intro-text {
+  font-size: var(--font-size-lg);
   line-height: 1.6;
+  max-width: 800px;
+  margin: 0 auto var(--spacing-xl);
+}
+
+/* Timeline container */
+.timeline-container {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--spacing-xl) 0;
+}
+
+/* Ligne verticale de la timeline */
+.timeline-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 4px;
+  background: linear-gradient(to bottom, var(--color-primary), var(--color-secondary));
+  transform: translateX(-50%);
+  z-index: 1;
 }
 
 /* Période historique */
 .historical-period {
-  margin-bottom: var(--spacing-xl);
+  position: relative;
+  margin-bottom: var(--spacing-xxl);
+  z-index: 2;
 }
 
-.historical-period h2 {
+/* En-tête de période */
+.period-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--spacing-xl);
+  position: relative;
+}
+
+.period-header h2 {
+  background-color: var(--color-background);
   color: var(--color-primary);
-  margin-bottom: var(--spacing-lg);
-  padding-bottom: var(--spacing-xs);
-  border-bottom: 2px solid var(--color-primary);
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: 50px;
   display: inline-block;
+  font-size: var(--font-size-xl);
+  margin: 0;
+  position: relative;
+  z-index: 2;
+  box-shadow: var(--box-shadow);
+}
+
+.period-icon {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background-color: var(--color-card);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  font-size: 1.5rem;
+  right: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: var(--box-shadow);
+  z-index: 3;
+}
+
+/* Conteneur des articles historiques */
+.historical-items {
+  position: relative;
 }
 
 /* Article historique */
 .historical-item {
+  background-color: var(--color-card);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-lg);
   margin-bottom: var(--spacing-lg);
-  padding-left: var(--spacing-lg);
-  border-left: 3px solid var(--color-light);
+  box-shadow: var(--box-shadow);
+  max-width: 80%;
+  position: relative;
+  z-index: 2;
+  transition: transform var(--transition-speed);
+}
+
+.historical-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Disposition alternée des articles */
+.historical-item:nth-child(odd) {
+  margin-right: auto;
+  margin-left: 0;
+  border-left: 4px solid var(--color-primary);
+}
+
+.historical-item:nth-child(even) {
+  margin-left: auto;
+  margin-right: 0;
+  border-right: 4px solid var(--color-secondary);
 }
 
 .historical-item h3 {
-  color: var(--color-secondary);
-  margin-bottom: var(--spacing-sm);
+  margin-top: 0;
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-md);
+  border-bottom: 1px solid rgba(125, 125, 125, 0.2);
+  padding-bottom: var(--spacing-xs);
 }
 
-.historical-item p {
+.historical-item:nth-child(even) h3 {
+  color: var(--color-secondary);
+  text-align: right;
+}
+
+.item-content {
   line-height: 1.6;
 }
 
 /* Sources */
 .source {
   display: block;
-  margin-top: var(--spacing-xs);
+  margin-top: var(--spacing-md);
   font-size: var(--font-size-sm);
   font-style: italic;
+  text-align: right;
 }
 
 .source a {
   display: inline-flex;
   align-items: center;
   gap: 4px;
+  color: var(--color-secondary);
+  transition: color var(--transition-speed);
 }
 
-.source i {
-  font-size: 0.8em;
+.source a:hover {
+  color: var(--color-primary);
 }
 
 /* Note */
 .historical-note {
-  background-color: rgba(162, 212, 255, 0.2);
+  background-color: rgba(0, 162, 255, 0.05);
   border-radius: var(--border-radius);
-  padding: var(--spacing-md);
+  padding: var(--spacing-lg);
   margin-top: var(--spacing-xl);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  gap: var(--spacing-md);
 }
 
-.historical-note i {
+.note-icon {
   color: var(--color-secondary);
-  margin-right: var(--spacing-sm);
-  font-size: 1.2em;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.note-content p {
+  margin: 0;
+}
+
+/* Section de contribution */
+.contribute-section {
+  margin-top: var(--spacing-xxl);
+  text-align: center;
+  padding: var(--spacing-xl);
+  background-color: rgba(255, 0, 212, 0.05);
+  border-radius: var(--border-radius);
+}
+
+.contribute-section h3 {
+  margin-top: 0;
+}
+
+.contribute-section p {
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Bouton d'appel à l'action */
+.cta-button {
+  display: inline-block;
+  background-color: var(--color-primary);
+  color: white;
+  padding: var(--spacing-sm) var(--spacing-xl);
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all var(--transition-speed);
+  text-decoration: none;
+  border: none;
+}
+
+.cta-button:hover {
+  background-color: var(--color-secondary);
+  transform: translateY(-2px);
+  color: white;
+  border-bottom: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 /* Mode sombre */
 @media (prefers-color-scheme: dark) {
-  .historical-item {
-    border-left-color: rgba(162, 212, 255, 0.5);
+  .period-header h2 {
+    background-color: var(--color-card);
   }
   
   .historical-note {
-    background-color: rgba(162, 212, 255, 0.1);
+    background-color: rgba(0, 162, 255, 0.1);
+  }
+  
+  .contribute-section {
+    background-color: rgba(255, 0, 212, 0.1);
   }
 }
 
 /* Responsive */
+@media screen and (max-width: 992px) {
+  .timeline-line {
+    left: 30px;
+  }
+  
+  .period-header {
+    justify-content: flex-start;
+    padding-left: 60px;
+  }
+  
+  .period-icon {
+    left: 0;
+    right: auto;
+  }
+  
+  .historical-item {
+    max-width: 85%;
+    margin-left: 60px !important;
+    margin-right: 0 !important;
+  }
+  
+  .historical-item:nth-child(even) h3 {
+    text-align: left;
+  }
+  
+  .historical-item:nth-child(even) {
+    border-right: none;
+    border-left: 4px solid var(--color-secondary);
+  }
+}
+
 @media screen and (max-width: 768px) {
   .historical-item {
-    padding-left: var(--spacing-md);
+    max-width: calc(100% - 60px);
   }
 }

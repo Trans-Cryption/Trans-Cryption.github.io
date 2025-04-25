@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/static/css/global/reset.css">
     <link rel="stylesheet" href="/static/css/global/base.css">
     <link rel="stylesheet" href="/static/css/components/menu.css">
+    <link rel="stylesheet" href="/static/css/components/footer.css">
     
     <!-- Font Awesome pour les icônes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -28,8 +29,45 @@
     </main>
     
     <footer>
-        <p>© Trans_cryption - 2025</p>
+        <div class="footer-container">
+            <div class="footer-main">
+                <div class="footer-logo">
+                    <img src="/static/assets/logo.svg" alt="Logo Trans_cryption" width="60" height="60">
+                    <p>Trans_cryption</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-nav">
+                        <h3>Navigation</h3>
+                        <ul>
+                            <li><a href="/">Accueil</a></li>
+                            <li><a href="/temoignage">Témoignages</a></li>
+                            <li><a href="/historique">Historique</a></li>
+                            <li><a href="/aides">Ressources</a></li>
+                            <li><a href="/contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-social">
+                        <h3>Nous suivre</h3>
+                        <ul>
+                            <li><a href="https://www.instagram.com/trans_cryption" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; Trans_cryption - 2025</p>
+                <p>Site généré avec Python et Jinja2.</p>
+            </div>
+        </div>
     </footer>
+    
+    <!-- Bouton de retour en haut -->
+    <a href="#" id="back-to-top" class="back-to-top" aria-label="Retour en haut">
+        <i class="fa-solid fa-chevron-up"></i>
+    </a>
     
     <!-- JavaScript global -->
     <script src="/static/js/global/navigation.js" defer></script>

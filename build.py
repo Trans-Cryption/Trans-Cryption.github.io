@@ -11,6 +11,7 @@ Ce script génère le site web en utilisant les templates Jinja2 et les données
 # Configuration
 TEMPLATE_DIR = "templates"
 CONTENT_DIR = "content"
+PODCAST_DIR = "content/podcast"
 STATIC_DIR = "static"
 OUTPUT_DIR = "site"
 
@@ -23,6 +24,7 @@ os.makedirs(OUTPUT_DIR)
 # Copier les fichiers statiques
 print("📁 Copie des fichiers statiques...")
 shutil.copytree(STATIC_DIR, os.path.join(OUTPUT_DIR, "static"))
+shutil.copytree(PODCAST_DIR, os.path.join(OUTPUT_DIR, "static/assets/podcast"))
 
 # Configurer l'environnement Jinja2
 print("⚙️ Configuration de Jinja2...")

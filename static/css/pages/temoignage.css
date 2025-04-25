@@ -1,0 +1,204 @@
+/* 
+ * temoignage.css
+ * Styles spécifiques à la page de témoignages
+ */
+
+/* Introduction */
+#testimonials-intro {
+  padding: var(--spacing-xl) 0 var(--spacing-lg);
+}
+
+#testimonials-intro p {
+  margin-bottom: var(--spacing-lg);
+  line-height: 1.7;
+}
+
+/* Avertissement de contenu */
+.content-warning {
+  background-color: rgba(255, 95, 132, 0.1);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-lg);
+  margin: var(--spacing-lg) 0 var(--spacing-xl);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.warning-icon {
+  font-size: 2rem;
+  color: var(--color-primary);
+}
+
+.warning-text p {
+  margin: 0;
+}
+
+/* Grille de témoignages */
+.testimonials-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--spacing-xl);
+  margin-bottom: var(--spacing-xxl);
+}
+
+/* Message quand pas de témoignages */
+.no-testimonials {
+  text-align: center;
+  padding: var(--spacing-xxl) var(--spacing-xl);
+  background-color: var(--color-card);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+.no-content-icon {
+  font-size: 4rem;
+  color: var(--color-light);
+  margin-bottom: var(--spacing-lg);
+}
+
+.no-testimonials p {
+  margin: 0 auto var(--spacing-lg);
+  max-width: 500px;
+}
+
+/* Section de partage */
+#share-testimony {
+  padding: var(--spacing-xl) 0;
+  margin-top: var(--spacing-xxl);
+}
+
+.share-container {
+  background: linear-gradient(to right, rgba(255, 0, 212, 0.05), rgba(0, 162, 255, 0.05));
+  border-radius: var(--border-radius);
+  padding: var(--spacing-xl);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xl);
+}
+
+.share-text {
+  flex: 2;
+}
+
+.share-text h2 {
+  margin-top: 0;
+}
+
+.share-text p {
+  margin-bottom: 0;
+}
+
+.share-action {
+  flex: 1;
+  text-align: center;
+}
+
+/* Bouton CTA */
+.cta-button {
+  display: inline-block;
+  background-color: var(--color-primary);
+  color: white;
+  padding: var(--spacing-md) var(--spacing-xl);
+  border-radius: 50px;
+  font-weight: 600;
+  transition: all var(--transition-speed);
+  text-decoration: none;
+  border: none;
+  box-shadow: var(--box-shadow);
+}
+
+.cta-button:hover {
+  background-color: var(--color-secondary);
+  transform: translateY(-2px);
+  color: white;
+  border-bottom: none;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Notification de partage */
+.share-notification {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--color-secondary);
+  color: white;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  border-radius: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  animation: slideUp 0.3s ease forwards;
+}
+
+.share-notification.fade-out {
+  animation: fadeOut 0.5s ease forwards;
+}
+
+@keyframes slideUp {
+  from { transform: translate(-50%, 20px); opacity: 0; }
+  to { transform: translate(-50%, 0); opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* Message de recherche sans résultats */
+.no-results-message {
+  text-align: center;
+  padding: var(--spacing-lg);
+  background-color: rgba(0, 162, 255, 0.05);
+  border-radius: var(--border-radius);
+  margin: var(--spacing-lg) 0;
+}
+
+.reset-button {
+  background-color: var(--color-secondary);
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: var(--spacing-xs) var(--spacing-md);
+  margin-top: var(--spacing-sm);
+  cursor: pointer;
+  transition: all var(--transition-speed);
+}
+
+.reset-button:hover {
+  background-color: var(--color-primary);
+  transform: translateY(-2px);
+}
+
+/* Effet de surbrillance pour les témoignages ciblés */
+.highlight-testimony {
+  animation: highlight-pulse 3s ease;
+}
+
+@keyframes highlight-pulse {
+  0%, 100% { box-shadow: var(--box-shadow); }
+  50% { box-shadow: 0 0 0 3px var(--color-primary), var(--box-shadow); }
+}
+
+/* Mode sombre */
+@media (prefers-color-scheme: dark) {
+  .content-warning {
+    background-color: rgba(255, 95, 132, 0.05);
+  }
+  
+  .share-container {
+    background: linear-gradient(to right, rgba(255, 0, 212, 0.1), rgba(0, 162, 255, 0.1));
+  }
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .share-container {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--spacing-lg);
+  }
+  
+  .share-text {
+    text-align: center;
+  }
+}
