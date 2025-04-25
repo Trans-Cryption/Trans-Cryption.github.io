@@ -1,0 +1,218 @@
+/* 
+ * menu.css
+ * Styles pour la navigation principale du site
+*/
+
+/* Navigation principale */
+.main-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: var(--spacing-md) 0;
+    position: relative;
+    flex-wrap: wrap;
+}
+
+/* Conteneur du logo */
+.logo-container {
+    margin-right: var(--spacing-lg);
+    display: block;
+    z-index: 100;
+}
+
+/* Logo du menu */
+.menu-logo {
+    height: 80px;
+    width: 80px;
+    transition: transform var(--transition-speed);
+}
+
+.menu-logo:hover {
+    transform: scale(1.1);
+}
+
+/* Menu principal */
+.menu {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    transition: transform var(--transition-speed) ease;
+    flex-grow: 1;
+}
+
+.menu li {
+    transition: all var(--transition-speed) ease;
+    margin: var(--spacing-sm) 2px;
+}
+
+.menu a {
+    display: block;
+    min-width: 130px;
+    padding: 3px 20px;
+    text-align: center;
+    border-left: 2px solid var(--color-light);
+    border-radius: var(--border-radius);
+    transition: all var(--transition-speed) ease;
+    background-color: var(--color-card);
+}
+
+/* Effet de survol */
+.menu li:hover {
+    transform: scale(1.05);
+    z-index: 1;
+}
+
+.menu li:hover a {
+    color: var(--color-secondary);
+    background-color: rgba(255, 193, 236, 0.1);
+}
+
+/* Lien actif */
+.menu a.actif {
+    border-color: rgb(122, 121, 121);
+    background-color: rgba(255, 193, 236, 0.2);
+}
+
+/* Menu burger pour mobile */
+.burger-menu {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--spacing-sm);
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1001; /* Doit être au-dessus de tout */
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: var(--color-card);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color var(--transition-speed), transform var(--transition-speed);
+}
+
+.burger-menu:hover {
+    transform: scale(1.05);
+}
+
+.burger-menu span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background-color: var(--color-primary);
+    margin: 5px auto;
+    transition: transform 0.3s ease, opacity 0.3s ease, background-color var(--transition-speed);
+    border-radius: 1px;
+}
+
+/* Animation du menu burger */
+.burger-menu.active {
+    background-color: var(--color-card);
+}
+
+.burger-menu.active span {
+    background-color: var(--color-secondary);
+}
+
+.burger-menu.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.burger-menu.active span:nth-child(2) {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+.burger-menu.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Mode sombre */
+@media (prefers-color-scheme: dark) {
+    .burger-menu {
+        background-color: var(--color-card);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    /* Afficher le bouton burger */
+    .burger-menu {
+        display: block;
+        z-index: 1001; /* S'assurer qu'il reste au-dessus du menu */
+    }
+    
+    /* Styles du menu mobile */
+    .menu {
+        position: fixed;
+        top: 0;
+        right: -100%; /* Caché par défaut */
+        height: 100vh;
+        background-color: var(--color-background);
+        flex-direction: column;
+        width: 80%; /* Plus large pour mieux s'adapter aux contenus */
+        max-width: 300px;
+        padding-top: 70px; /* Espace pour le bouton burger */
+        transition: right var(--transition-speed) ease;
+        z-index: 1000;
+        box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    /* Menu visible quand actif */
+    .menu.active {
+        right: 0;
+    }
+    
+    /* Éléments de liste en pleine largeur */
+    .menu li {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    
+    /* Liens adaptés au mobile */
+    .menu a {
+        width: 100%;
+        border-left: none;
+        border-bottom: 2px solid var(--color-light);
+        padding: 15px 20px;
+        margin: 0;
+        border-radius: 0;
+        background-color: var(--color-card);
+        display: block;
+        text-align: left;
+    }
+    
+    /* Désactiver l'effet de survol d'agrandissement */
+    .menu li:hover {
+        transform: none;
+    }
+    
+    /* Garder un effet de survol subtil */
+    .menu a:hover {
+        background-color: rgba(162, 212, 255, 0.1);
+    }
+    
+    /* Overlay semi-transparent quand le menu est ouvert */
+    body::after {
+        content: '';
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity var(--transition-speed), visibility var(--transition-speed);
+    }
+    
+    body:has(.menu.active)::after {
+        opacity: 1;
+        visibility: visible;
+    }
+}
