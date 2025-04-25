@@ -1,0 +1,125 @@
+/* 
+ * base.css
+ * Styles de base pour l'ensemble du site
+ * Définitions des variables CSS et styles généraux
+*/
+
+:root {
+    /* Palette de couleurs */
+    --color-primary: rgb(255, 0, 212);       /* Rose vif */
+    --color-secondary: rgb(0, 162, 255);     /* Bleu clair */
+    --color-background: rgb(227, 242, 255);  /* Bleu très pâle */
+    --color-text: rgb(9, 9, 9);              /* Presque noir */
+    --color-light: rgb(162, 212, 255);       /* Bleu ciel */
+    --color-card: rgb(240, 248, 255);        /* Bleu très pâle, presque blanc */
+    
+    /* Espacements */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 16px;
+    --spacing-lg: 24px;
+    --spacing-xl: 32px;
+    
+    /* Typographie */
+    --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --font-size-sm: 0.875rem;
+    --font-size-md: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.5rem;
+    --font-size-xxl: 2rem;
+    
+    /* Effets */
+    --transition-speed: 0.3s;
+    --border-radius: 4px;
+    --box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Mode sombre */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-background: #1c1c1e;
+        --color-text: #fefefe;
+        --color-primary: #ee5fe2;
+        --color-secondary: #5fa9ee;
+        --color-card: #2a2a2c;
+    }
+}
+
+/* Styles de base */
+body {
+    font-family: var(--font-family);
+    background-color: var(--color-background);
+    color: var(--color-text);
+    line-height: 1.6;
+    margin-inline: 12%;
+    transition: background-color var(--transition-speed), color var(--transition-speed);
+}
+
+/* Typographie */
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: var(--spacing-md);
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: var(--font-size-xxl);
+    margin-top: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
+}
+
+h2 {
+    font-size: var(--font-size-xl);
+    margin-top: var(--spacing-lg);
+}
+
+h3 {
+    font-size: var(--font-size-lg);
+    margin-top: var(--spacing-md);
+}
+
+p {
+    margin-bottom: var(--spacing-md);
+}
+
+/* Liens */
+a {
+    color: var(--color-primary);
+    transition: color var(--transition-speed);
+}
+
+a:hover, a:focus {
+    color: var(--color-secondary);
+}
+
+/* Listes */
+ul.normal {
+    list-style-type: square;
+    margin-left: 5%;
+    margin-bottom: var(--spacing-md);
+}
+
+/* Images */
+img {
+    border-radius: var(--border-radius);
+    max-width: 100%;
+}
+
+/* Espacement des sections */
+section {
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    body {
+        margin-inline: 5%;
+    }
+    
+    h1 {
+        font-size: var(--font-size-xl);
+    }
+    
+    h2 {
+        font-size: var(--font-size-lg);
+    }
+}

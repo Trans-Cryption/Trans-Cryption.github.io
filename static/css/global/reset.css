@@ -1,0 +1,49 @@
+/* 
+ * reset.css
+ * Réinitialisation des styles par défaut du navigateur
+ * pour une base cohérente entre différents navigateurs
+*/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fixe la taille du viewport pour le scaling mobile */
+@viewport {
+    width: device-width;
+    zoom: 1.0;
+}
+
+/* Supprime tous les styles de liste par défaut */
+ul, ol {
+    list-style: none;
+}
+
+/* Supprime tous les styles de lien par défaut */
+a {
+    text-decoration: none;
+}
+
+/* Supprime les bordures des images */
+img {
+    border: none;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Normalisation des formulaires */
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+    font-size: 100%;
+    margin: 0;
+}
+
+/* Supprime les attributs de focus par défaut */
+:focus {
+    outline: 0;
+}
