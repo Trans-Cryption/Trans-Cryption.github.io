@@ -9,6 +9,9 @@
         
   <link rel="stylesheet" href="/static/css/contact.css">
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/3.3.2/jsencrypt.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
     </head>
     <body>
         <a href="/" id="index">
@@ -70,7 +73,7 @@
 
   <section id="anon-testimony">
     <h2 aria-label="Témoignage anonyme"><i class="fa-solid fa-user-secret"></i> Témoignage anonyme</h2>
-    <p>Tu préfères rester anonyme ? Envoie ton message via ce formulaire :</p>
+    <p>Tu préfères rester anonyme ? Envoie ton message via ce formulaire sécurisé :</p>
 
     <form id="anon-form" action="https://api.web3forms.com/submit" method="POST" aria-live="polite">
       <input type="hidden" name="access_key" value="422d147d-1a5a-4107-aca5-6b895ed14756">
@@ -88,6 +91,9 @@
     </form>
 
     <div id="form-feedback" class="feedback" role="alert" aria-live="assertive"></div>
+    <div class="encryption-note">
+      <small><i class="fa-solid fa-lock"></i> Tous les messages sont chiffrés de bout en bout pour protéger ta vie privée.</small>
+    </div>
   </section>
 
         </div>
@@ -100,7 +106,7 @@
         </script>
         
         
-    <script src="/static/js/contact.js" defer></script>
+    <script src="/static/js/encryption.js" defer></script>
 
     </body>
 </html>
