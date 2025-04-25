@@ -8,11 +8,20 @@ document.addEventListener('DOMContentLoaded', () => {
   const burgerMenu = document.querySelector('.burger-menu');
   const menu = document.querySelector('.menu');
   
+  // Déboggage - vérifier si les éléments sont trouvés
+  console.log('Menu burger trouvé:', burgerMenu !== null);
+  console.log('Menu trouvé:', menu !== null);
+  
   // Ouvrir/fermer le menu burger
-  if (burgerMenu) {
-    burgerMenu.addEventListener('click', () => {
+  if (burgerMenu && menu) {
+    burgerMenu.addEventListener('click', (e) => {
+      e.preventDefault(); // Éviter tout comportement par défaut
+      e.stopPropagation(); // Empêcher la propagation de l'événement
+      
       burgerMenu.classList.toggle('active');
       menu.classList.toggle('active');
+      
+      console.log('Menu burger cliqué - État active:', menu.classList.contains('active'));
     });
     
     // Fermer le menu si on clique ailleurs
@@ -25,6 +34,17 @@ document.addEventListener('DOMContentLoaded', () => {
         menu.classList.remove('active');
       }
     });
+    
+    // Ajouter des événements de fermeture pour les liens du menu
+    const menuLinks = menu.querySelectorAll('a');
+    menuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        burgerMenu.classList.remove('active');
+        menu.classList.remove('active');
+      });
+    });
+  } else {
+    console.error('Menu burger ou menu principal non trouvé dans le DOM');
   }
   
   // Retour en haut de page

@@ -1,18 +1,19 @@
 <!-- Menu de navigation -->
-<nav>
+<nav class="main-nav">
     <!-- Logo -->
-    <a href="/" id="index">
+    <a href="/" id="index" class="logo-container">
         <img src="/static/assets/logo.svg" height="80" width="80" alt="Logo" class="menu-logo">
     </a>
     
     <!-- Bouton menu burger pour mobile -->
-    <button class="burger-menu" aria-label="Toggle navigation">
+    <button class="burger-menu" aria-label="Ouvrir le menu de navigation" type="button">
         <span></span>
         <span></span>
         <span></span>
     </button>
 
-    <ul class="menu">
+    <!-- Menu principal -->
+    <ul class="menu" id="main-menu">
         <li id="menu-tem">
             <a href="/temoignage" {% if title == 'Témoignages' %}class="actif"{% endif %}>
                 <span>Témoignages</span>
