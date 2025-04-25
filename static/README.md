@@ -16,9 +16,14 @@ static/
 │   ├── global/        # Scripts JavaScript globaux
 │   └── pages/         # Scripts spécifiques à chaque page
 └── assets/
-    ├── images/        # Images du site
-    └── podcast/       # Fichiers audio pour les témoignages
+    └── images/        # Images du site
 ```
+
+## Note sur les podcasts
+
+Les fichiers audio pour les témoignages (podcasts) ne sont pas stockés dans ce dossier.
+Ils doivent être placés dans le dossier `/content/podcast/` et seront automatiquement 
+copiés vers `site/static/assets/podcast/` lors de la génération du site.
 
 ## Principes de conception CSS
 
@@ -53,6 +58,5 @@ static/
 ## Comment ajouter des ressources
 
 1. **Images**: Placez les nouveaux fichiers dans `assets/images/`
-2. **Podcasts**: Placez les fichiers audio dans `assets/podcast/`
-3. **CSS**: Créez ou modifiez les fichiers dans le dossier approprié selon la portée
-4. **JavaScript**: Créez ou modifiez les fichiers dans le dossier approprié selon la portée
+2. **CSS**: Créez ou modifiez les fichiers dans le dossier approprié selon la portée
+3. **JavaScript**: Créez ou modifiez les fichiers dans le dossier approprié selon la portée
