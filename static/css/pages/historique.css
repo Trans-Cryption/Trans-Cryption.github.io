@@ -1,0 +1,95 @@
+/* 
+ * historique.css
+ * Styles spécifiques à la page historique
+ */
+
+/* Introduction */
+#historique-intro {
+  margin-bottom: var(--spacing-xl);
+}
+
+#historique-intro p {
+  max-width: 800px;
+  line-height: 1.6;
+}
+
+/* Période historique */
+.historical-period {
+  margin-bottom: var(--spacing-xl);
+}
+
+.historical-period h2 {
+  color: var(--color-primary);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-xs);
+  border-bottom: 2px solid var(--color-primary);
+  display: inline-block;
+}
+
+/* Article historique */
+.historical-item {
+  margin-bottom: var(--spacing-lg);
+  padding-left: var(--spacing-lg);
+  border-left: 3px solid var(--color-light);
+}
+
+.historical-item h3 {
+  color: var(--color-secondary);
+  margin-bottom: var(--spacing-sm);
+}
+
+.historical-item p {
+  line-height: 1.6;
+}
+
+/* Sources */
+.source {
+  display: block;
+  margin-top: var(--spacing-xs);
+  font-size: var(--font-size-sm);
+  font-style: italic;
+}
+
+.source a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.source i {
+  font-size: 0.8em;
+}
+
+/* Note */
+.historical-note {
+  background-color: rgba(162, 212, 255, 0.2);
+  border-radius: var(--border-radius);
+  padding: var(--spacing-md);
+  margin-top: var(--spacing-xl);
+  display: flex;
+  align-items: center;
+}
+
+.historical-note i {
+  color: var(--color-secondary);
+  margin-right: var(--spacing-sm);
+  font-size: 1.2em;
+}
+
+/* Mode sombre */
+@media (prefers-color-scheme: dark) {
+  .historical-item {
+    border-left-color: rgba(162, 212, 255, 0.5);
+  }
+  
+  .historical-note {
+    background-color: rgba(162, 212, 255, 0.1);
+  }
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .historical-item {
+    padding-left: var(--spacing-md);
+  }
+}

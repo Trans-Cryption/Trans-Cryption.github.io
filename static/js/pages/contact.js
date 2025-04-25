@@ -1,8 +1,15 @@
+/**
+ * contact.js
+ * Script pour gérer le formulaire de contact avec chiffrement
+*/
+
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('anon-form');
   const feedback = document.getElementById('form-feedback');
 
-  // Your RSA public key (generate a key pair and place the public key here)
+  if (!form || !feedback) return;
+
+  // Clé RSA publique pour le chiffrement
   const publicKey = `-----BEGIN PUBLIC KEY-----
 MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoYl7Lmc60QGEYE0p7utc
 l4m/5wCd1kvRfAVRsb9OynMCU/dvedn30H6G0cEkYhYrGw6m1JI+WU5Bvf3vfphj
@@ -13,15 +20,19 @@ qCkq1pBFb7oL5BsgUK3PnbpDj0wt0Z4xrzjFMbXfiPLNxME3GIvqAQtw9ObMaZ1+
 aQIDAQAB
 -----END PUBLIC KEY-----`;
 
-  // Function to encrypt data using both AES and RSA
+  /**
+   * Fonction pour chiffrer les données
+   * @param {string} data - Données à chiffrer
+   * @returns {Object} - Données et clé chiffrées
+   */
   function encryptData(data) {
-    // Generate a random AES key
+    // Génère une clé AES aléatoire
     const aesKey = CryptoJS.lib.WordArray.random(256/8).toString();
     
-    // Encrypt the data with AES
+    // Chiffre les données avec AES
     const encryptedData = CryptoJS.AES.encrypt(data, aesKey).toString();
     
-    // Encrypt the AES key with RSA
+    // Chiffre la clé AES avec RSA
     const jsEncrypt = new JSEncrypt();
     jsEncrypt.setPublicKey(publicKey);
     const encryptedKey = jsEncrypt.encrypt(aesKey);
@@ -32,35 +43,39 @@ aQIDAQAB
     };
   }
 
+  // Gestion de la soumission du formulaire
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    
+    // Réinitialise le message de retour
     feedback.textContent = '';
     feedback.className = 'feedback';
 
     try {
-      // Get all form data as a JSON object
+      // Récupère toutes les données du formulaire
       const formData = new FormData(form);
       const jsonData = {};
+      
       formData.forEach((value, key) => {
         jsonData[key] = value;
       });
       
-      // Add timestamp for uniqueness
+      // Ajoute un timestamp pour l'unicité
       jsonData.timestamp = new Date().toISOString();
       
-      // Convert to string
+      // Convertit en chaîne JSON
       const jsonString = JSON.stringify(jsonData);
       
-      // Encrypt the data
+      // Chiffre les données
       const encrypted = encryptData(jsonString);
       
-      // Prepare data for sending to web3forms
+      // Prépare les données pour l'envoi
       const sendFormData = new FormData();
       sendFormData.append('access_key', formData.get('access_key'));
       sendFormData.append('encrypted_data', encrypted.data);
       sendFormData.append('encrypted_key', encrypted.key);
       
-      // Send to web3forms
+      // Envoie à Web3Forms
       const response = await fetch(form.action, {
         method: 'POST',
         body: sendFormData
@@ -69,6 +84,7 @@ aQIDAQAB
       if (!response.ok) throw new Error('Erreur réseau');
       
       const data = await response.json();
+      
       if (data.success) {
         feedback.textContent = 'Merci pour ton message ! 🎉 (Message chiffré envoyé avec succès)';
         feedback.classList.add('show', 'success');

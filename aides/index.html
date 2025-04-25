@@ -1,85 +1,152 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Aides</title>
-        <link rel="stylesheet" href="/static/css/site.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-        
-    </head>
-    <body>
-        <a href="/" id="index">
-            <img src="/static/assets/logo.svg" height="80pt" width="80pt" alt="Logo" class="menu-logo">
-        </a>
-        
-        <!-- Burger button for mobile -->
-        <button class="burger-menu" aria-label="Toggle navigation">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Témoignages et ressources pour les personnes transgenres">
+    
+    <title>Aides - Trans_cryption</title>
+    
+    <!-- Styles de base -->
+    <link rel="stylesheet" href="/static/css/global/reset.css">
+    <link rel="stylesheet" href="/static/css/global/base.css">
+    <link rel="stylesheet" href="/static/css/components/menu.css">
+    
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- Styles spécifiques à chaque page -->
+    
+<link rel="stylesheet" href="/static/css/pages/aides.css">
 
-        <ul class="menu">
-            <li id="menu-tem">
-                <a href="/temoignage" >
-                    <ind>Témoignages</ind>
-                </a>
-            </li>
-            <li id="menu-histo">
-                <a href="/historique" >
-                    <ind>Historique</ind>
-                </a>
-            </li>
-            <li id="menu-aide">
-                <a href="/aides" class="actif">
-                    <ind>Aides</ind>
-                </a>
-            </li>
-            <li id="menu-contact">
-                <a href="/contact" >
-                    <ind>Contact</ind>
-                </a>
-            </li>
-        </ul>
-        
-        <div class="content">
-            
-<h1>Aides</h1>
-<p>Dans cette page nous donnons accès à des associations et à un forum d'aide et de soutien aux personnes transgenres. Cette liste est non exhaustive et sera mise à jour plus tard.</p>
+</head>
+<body>
+    <header>
+        <!-- Menu de navigation -->
+<nav class="main-nav">
+    <!-- Logo -->
+    <a href="/" id="index" class="logo-container">
+        <img src="/static/assets/logo.svg" height="80" width="80" alt="Logo" class="menu-logo">
+    </a>
+    
+    <!-- Bouton menu burger pour mobile -->
+    <button class="burger-menu" aria-label="Ouvrir le menu de navigation" type="button">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
 
-<h2>Forum</h2>
-<ul>
-    <li>
-        <a href="https://www.forum-ftm.fr/">Trans Disctrict</a>, un forum pour les personnes trans francophones.
-    </li>
-</ul>
+    <!-- Menu principal -->
+    <ul class="menu" id="main-menu">
+        <li id="menu-tem">
+            <a href="/temoignage" >
+                <span>Témoignages</span>
+            </a>
+        </li>
+        <li id="menu-histo">
+            <a href="/historique" >
+                <span>Historique</span>
+            </a>
+        </li>
+        <li id="menu-aide">
+            <a href="/aides" class="actif">
+                <span>Aides</span>
+            </a>
+        </li>
+        <li id="menu-contact">
+            <a href="/contact" >
+                <span>Contact</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+    </header>
+    
+    <main class="content">
+        
+<section id="intro-aides">
+    <h1>Ressources d'aide</h1>
+    <p>Cette page regroupe diverses associations et ressources d'aide et de soutien aux personnes transgenres. La liste n'est pas exhaustive et sera mise à jour régulièrement.</p>
+</section>
 
-<h2>Association</h2>
-<ul>
-    <li>
-        <a href="https://www.outrans.org/">OUTrans</a> : association féministe d'autosupport trans. Cette association organise des rencontres, fournit des infos, de la sensibilisation et de la documentation sur la transidentité...
-    </li>
-    <li>
-        <a href="https://www.sos-homophobie.org/">SOShomophobie</a> : permet d'obtenir de l'aide via une écoute anonyme.
-    </li>
-    <li>
-        <a href="https://fransgenre.fr/">Fransgenre</a> : dans le site, "Nous sommes une association nationale reconnue d'intérêt général avec pour objectifs l'information et l'entraide principalement autour des aspects médicaux, juridiques et administratifs des transitions, et la défense des droits des personnes trans."
-    </li>
-    <li>
-        <a href="https://www.asso-contact.org/">Contact</a> : accueil individualisé ou groupe de paroles entre personnes LGBT et proches de personnes LGBT 
-    </li>
-</ul>
+<section id="forums" class="resource-section">
+    <h2><i class="fa-solid fa-comments"></i> Forums et communautés en ligne</h2>
+    <ul class="resource-list">
+        <li class="resource-item">
+            <h3>Trans District</h3>
+            <p>Un forum pour les personnes trans francophones, offrant un espace d'échange, de soutien et d'information.</p>
+            <a href="https://www.forum-ftm.fr/" class="resource-link" target="_blank">
+                Visiter <i class="fa-solid fa-external-link-alt"></i>
+            </a>
+        </li>
+    </ul>
+</section>
 
-        </div>
+<section id="associations" class="resource-section">
+    <h2><i class="fa-solid fa-hand-holding-heart"></i> Associations</h2>
+    <ul class="resource-list">
+        <li class="resource-item">
+            <h3>OUTrans</h3>
+            <p>Association féministe d'autosupport trans qui organise des rencontres, fournit des informations, de la sensibilisation et de la documentation sur la transidentité.</p>
+            <a href="https://www.outrans.org/" class="resource-link" target="_blank">
+                Visiter <i class="fa-solid fa-external-link-alt"></i>
+            </a>
+        </li>
         
-        <script>
-            document.querySelector('.burger-menu').addEventListener('click', function() {
-                this.classList.toggle('active');
-                document.querySelector('.menu').classList.toggle('active');
-            });
-        </script>
+        <li class="resource-item">
+            <h3>SOS Homophobie</h3>
+            <p>Permet d'obtenir de l'aide via une écoute anonyme pour les personnes victimes de discriminations liées à l'orientation sexuelle ou l'identité de genre.</p>
+            <a href="https://www.sos-homophobie.org/" class="resource-link" target="_blank">
+                Visiter <i class="fa-solid fa-external-link-alt"></i>
+            </a>
+        </li>
         
+        <li class="resource-item">
+            <h3>Fransgenre</h3>
+            <p>Association nationale reconnue d'intérêt général avec pour objectifs l'information et l'entraide principalement autour des aspects médicaux, juridiques et administratifs des transitions, et la défense des droits des personnes trans.</p>
+            <a href="https://fransgenre.fr/" class="resource-link" target="_blank">
+                Visiter <i class="fa-solid fa-external-link-alt"></i>
+            </a>
+        </li>
         
-    </body>
+        <li class="resource-item">
+            <h3>Contact</h3>
+            <p>Offre un accueil individualisé et des groupes de parole entre personnes LGBT+ et proches de personnes LGBT+.</p>
+            <a href="https://www.asso-contact.org/" class="resource-link" target="_blank">
+                Visiter <i class="fa-solid fa-external-link-alt"></i>
+            </a>
+        </li>
+    </ul>
+</section>
+
+<section id="crises" class="resource-section">
+    <h2><i class="fa-solid fa-phone"></i> Lignes d'urgence</h2>
+    <ul class="resource-list">
+        <li class="resource-item urgent">
+            <h3>SOS Homophobie - Ligne d'écoute</h3>
+            <p>Ligne téléphonique pour signaler des discriminations ou actes LGBTphobes.</p>
+            <p class="phone">01 48 06 42 41</p>
+            <p class="hours">Du lundi au vendredi : 18h-22h<br>Samedi : 14h-16h<br>Dimanche : 18h-20h</p>
+        </li>
+    </ul>
+</section>
+
+<div class="contribution-note">
+    <p>
+        <i class="fa-solid fa-circle-info"></i> Tu connais d'autres ressources qui pourraient être utiles ? N'hésite pas à nous les partager via notre <a href="/contact">page de contact</a>.
+    </p>
+</div>
+
+    </main>
+    
+    <footer>
+        <p>© Trans_cryption - 2025</p>
+    </footer>
+    
+    <!-- JavaScript global -->
+    <script src="/static/js/global/navigation.js" defer></script>
+    
+    <!-- JavaScript spécifique à chaque page -->
+    
+</body>
 </html>

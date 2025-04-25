@@ -1,58 +1,74 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Contact</title>
-        <link rel="stylesheet" href="/static/css/site.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-        
-  <link rel="stylesheet" href="/static/css/contact.css">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Témoignages et ressources pour les personnes transgenres">
+    
+    <title>Contact - Trans_cryption</title>
+    
+    <!-- Styles de base -->
+    <link rel="stylesheet" href="/static/css/global/reset.css">
+    <link rel="stylesheet" href="/static/css/global/base.css">
+    <link rel="stylesheet" href="/static/css/components/menu.css">
+    
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- Styles spécifiques à chaque page -->
+    
+  <link rel="stylesheet" href="/static/css/pages/contact.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/3.3.2/jsencrypt.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" defer></script>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/3.3.2/jsencrypt.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body>
+    <header>
+        <!-- Menu de navigation -->
+<nav class="main-nav">
+    <!-- Logo -->
+    <a href="/" id="index" class="logo-container">
+        <img src="/static/assets/logo.svg" height="80" width="80" alt="Logo" class="menu-logo">
+    </a>
+    
+    <!-- Bouton menu burger pour mobile -->
+    <button class="burger-menu" aria-label="Ouvrir le menu de navigation" type="button">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
 
-    </head>
-    <body>
-        <a href="/" id="index">
-            <img src="/static/assets/logo.svg" height="80pt" width="80pt" alt="Logo" class="menu-logo">
-        </a>
+    <!-- Menu principal -->
+    <ul class="menu" id="main-menu">
+        <li id="menu-tem">
+            <a href="/temoignage" >
+                <span>Témoignages</span>
+            </a>
+        </li>
+        <li id="menu-histo">
+            <a href="/historique" >
+                <span>Historique</span>
+            </a>
+        </li>
+        <li id="menu-aide">
+            <a href="/aides" >
+                <span>Aides</span>
+            </a>
+        </li>
+        <li id="menu-contact">
+            <a href="/contact" class="actif">
+                <span>Contact</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+    </header>
+    
+    <main class="content">
         
-        <!-- Burger button for mobile -->
-        <button class="burger-menu" aria-label="Toggle navigation">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-
-        <ul class="menu">
-            <li id="menu-tem">
-                <a href="/temoignage" >
-                    <ind>Témoignages</ind>
-                </a>
-            </li>
-            <li id="menu-histo">
-                <a href="/historique" >
-                    <ind>Historique</ind>
-                </a>
-            </li>
-            <li id="menu-aide">
-                <a href="/aides" >
-                    <ind>Aides</ind>
-                </a>
-            </li>
-            <li id="menu-contact">
-                <a href="/contact" class="actif">
-                    <ind>Contact</ind>
-                </a>
-            </li>
-        </ul>
-        
-        <div class="content">
-            
   <section id="contact-intro">
     <h1>Contact</h1>
-    <p>Tu veux me contacter, témoigner, ou simplement discuter ? Voici comment faire :</p>
+    <p>Tu veux nous contacter, témoigner, ou simplement discuter ? Voici comment faire :</p>
   </section>
 
   <section id="contact-methods">
@@ -78,35 +94,56 @@
     <form id="anon-form" action="https://api.web3forms.com/submit" method="POST" aria-live="polite">
       <input type="hidden" name="access_key" value="422d147d-1a5a-4107-aca5-6b895ed14756">
 
-      <label for="name">Nom (ou pseudo) :</label>
-      <input type="text" id="name" name="name" required placeholder="Ton prénom ou un pseudo" aria-required="true">
+      <div class="form-group">
+        <label for="name">Nom (ou pseudo) :</label>
+        <input type="text" id="name" name="name" required placeholder="Ton prénom ou un pseudo" aria-required="true">
+      </div>
 
-      <label for="email">Adresse e-mail (optionnel) :</label>
-      <input type="email" id="email" name="email" placeholder="facultatif" aria-required="false">
+      <div class="form-group">
+        <label for="email">Adresse e-mail (optionnel) :</label>
+        <input type="email" id="email" name="email" placeholder="facultatif" aria-required="false">
+      </div>
 
-      <label for="message">Message :</label>
-      <textarea id="message" name="message" required placeholder="Écris ton message ici..." aria-required="true"></textarea>
+      <div class="form-group">
+        <label for="message">Message :</label>
+        <textarea id="message" name="message" required placeholder="Écris ton message ici..." aria-required="true"></textarea>
+      </div>
 
-      <button type="submit" aria-label="Envoyer le témoignage">Envoyer</button>
+      <div class="form-actions">
+        <button type="submit" aria-label="Envoyer le témoignage">
+          <i class="fa-solid fa-paper-plane"></i> Envoyer
+        </button>
+      </div>
     </form>
 
     <div id="form-feedback" class="feedback" role="alert" aria-live="assertive"></div>
+    
     <div class="encryption-note">
-      <small><i class="fa-solid fa-lock"></i> Tous les messages sont chiffrés de bout en bout pour protéger ta vie privée.</small>
+      <p><i class="fa-solid fa-lock"></i> Tous les messages sont chiffrés de bout en bout pour protéger ta vie privée.</p>
     </div>
   </section>
 
-        </div>
-        
-        <script>
-            document.querySelector('.burger-menu').addEventListener('click', function() {
-                this.classList.toggle('active');
-                document.querySelector('.menu').classList.toggle('active');
-            });
-        </script>
-        
-        
-    <script src="/static/js/encryption.js" defer></script>
+  <section id="submit-options">
+    <h2><i class="fa-solid fa-shield-alt"></i> Autres façons de témoigner</h2>
+    <p>Si tu préfères utiliser d'autres méthodes de contact, tu peux :</p>
+    <ul class="options-list">
+      <li><i class="fa-solid fa-envelope"></i> Envoyer un email anonyme depuis un service comme <a href="https://proton.me" target="_blank" rel="noopener">ProtonMail</a></li>
+      <li><i class="fa-solid fa-edit"></i> Utiliser un document partagé anonyme comme <a href="https://cryptpad.fr" target="_blank" rel="noopener">CryptPad</a></li>
+    </ul>
+  </section>
 
-    </body>
+    </main>
+    
+    <footer>
+        <p>© Trans_cryption - 2025</p>
+    </footer>
+    
+    <!-- JavaScript global -->
+    <script src="/static/js/global/navigation.js" defer></script>
+    
+    <!-- JavaScript spécifique à chaque page -->
+    
+  <script src="/static/js/pages/contact.js" defer></script>
+
+</body>
 </html>

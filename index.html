@@ -1,80 +1,114 @@
 <!DOCTYPE html>
 <html lang="fr">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Accueil</title>
-        <link rel="stylesheet" href="/static/css/site.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-        
-    </head>
-    <body>
-        <a href="/" id="index">
-            <img src="/static/assets/logo.svg" height="80pt" width="80pt" alt="Logo" class="menu-logo">
-        </a>
-        
-        <!-- Burger button for mobile -->
-        <button class="burger-menu" aria-label="Toggle navigation">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Témoignages et ressources pour les personnes transgenres">
+    
+    <title>Accueil - Trans_cryption</title>
+    
+    <!-- Styles de base -->
+    <link rel="stylesheet" href="/static/css/global/reset.css">
+    <link rel="stylesheet" href="/static/css/global/base.css">
+    <link rel="stylesheet" href="/static/css/components/menu.css">
+    
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <!-- Styles spécifiques à chaque page -->
+    
+<link rel="stylesheet" href="/static/css/pages/index.css">
 
-        <ul class="menu">
-            <li id="menu-tem">
-                <a href="/temoignage" >
-                    <ind>Témoignages</ind>
-                </a>
-            </li>
-            <li id="menu-histo">
-                <a href="/historique" >
-                    <ind>Historique</ind>
-                </a>
-            </li>
-            <li id="menu-aide">
-                <a href="/aides" >
-                    <ind>Aides</ind>
-                </a>
-            </li>
-            <li id="menu-contact">
-                <a href="/contact" >
-                    <ind>Contact</ind>
-                </a>
-            </li>
-        </ul>
-        
-        <div class="content">
-            
-<h1>Introduction</h1>
-<p>
-    D'après une étude réalisé au Danemark sur 42 ans, le risque de faire une tentative de suicide chez les personnes trans est de huit fois plus probable (article du Monde en 2023). <br>
-    Entre le <strong>rejet familial</strong>, la <strong>transphobie subie</strong> et internalisée, et la dysphorie de genre, les personnes transgenres sont beaucoup plus fragilisées et donc sujet à la dépression.  <br>
-    Ce site internet cherche à donner accès à des témoignages de personnes transgenres sur les violences qu'ils ont du subir à cause de leur identité de genre. <br>
-    En proposant ce contenue, ce site cherche à montrer que le côté "paillette" du débat et de la trend "subie par la société" cache un côté beaucoup plus sombre de minorité qui 
-    continue de subir des violences malgré les nombreuses actions déjà prises. <br>
-    Si vous êtes trans et que vous voulez témoignez, contactez-nous via mail disponible sur <a href="/contact">cette page</a>. 
-</p>
-<h2>Fonctionnement du site</h2>
-<p>
-    Ce site est composé de différentes parties : 
-    <ul>
-        <li class="normal">La partie témoignage donne accès à tout les témoignages sur des violences transphobes subies de manière chronologique.</li>
-        <li class="normal">La page historique donne des anecdotes historiques sur des personalités ou des communautés qui semble correspondre à des personnes transgenres.</li>
-        <li class="normal">Les aides disponibles permet de trouver des associations d'aides, des forums de discussion ainsi que des témoignages plus larges et de la vulgarisation faites sur la transidentité via youtube, instagram ou par blog.</li>
-        <li class="normal">La page Contact donne les contacts nécessaires si vous avez un témoignage à transmettre.</li>
+</head>
+<body>
+    <header>
+        <!-- Menu de navigation -->
+<nav class="main-nav">
+    <!-- Logo -->
+    <a href="/" id="index" class="logo-container">
+        <img src="/static/assets/logo.svg" height="80" width="80" alt="Logo" class="menu-logo">
+    </a>
+    
+    <!-- Bouton menu burger pour mobile -->
+    <button class="burger-menu" aria-label="Ouvrir le menu de navigation" type="button">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Menu principal -->
+    <ul class="menu" id="main-menu">
+        <li id="menu-tem">
+            <a href="/temoignage" >
+                <span>Témoignages</span>
+            </a>
+        </li>
+        <li id="menu-histo">
+            <a href="/historique" >
+                <span>Historique</span>
+            </a>
+        </li>
+        <li id="menu-aide">
+            <a href="/aides" >
+                <span>Aides</span>
+            </a>
+        </li>
+        <li id="menu-contact">
+            <a href="/contact" >
+                <span>Contact</span>
+            </a>
+        </li>
     </ul>
-    Trigger warning : le site a été crée par des non professionnels de ce domaine (s'il y en a), la partie historique et aides ne sont absolument pas exhaustives et permettent juste d'avoir des pistes de recherche pour ce que vous recherchez si ça vous intéresse.
-</p>
+</nav>
+    </header>
+    
+    <main class="content">
+        
+<section id="intro">
+    <h1>Introduction</h1>
+    <p>
+        D'après une étude réalisée au Danemark sur 42 ans, le risque de faire une tentative de suicide chez les personnes trans est huit fois plus élevé (article du Monde en 2023).
+    </p>
+    <p>
+        Entre le <strong>rejet familial</strong>, la <strong>transphobie subie</strong> et intériorisée, et la dysphorie de genre, les personnes transgenres sont beaucoup plus fragilisées et donc sujettes à la dépression.
+    </p>
+    <p>
+        Ce site cherche à donner accès à des témoignages de personnes transgenres sur les violences qu'elles ont dû subir à cause de leur identité de genre.
+    </p>
+    <p>
+        En proposant ce contenu, ce site vise à montrer que derrière le côté "paillettes" du débat et la supposée "tendance" se cache une réalité beaucoup plus sombre : celle d'une minorité qui continue de subir des violences malgré les nombreuses actions déjà entreprises.
+    </p>
+    <p>
+        Si tu es trans et que tu souhaites témoigner, n'hésite pas à nous contacter via la <a href="/contact">page de contact</a>.
+    </p>
+</section>
 
-        </div>
-        
-        <script>
-            document.querySelector('.burger-menu').addEventListener('click', function() {
-                this.classList.toggle('active');
-                document.querySelector('.menu').classList.toggle('active');
-            });
-        </script>
-        
-        
-    </body>
+<section id="site-presentation">
+    <h2>Fonctionnement du site</h2>
+    <p>
+        Ce site est composé de différentes parties :
+    </p>
+    <ul>
+        <li class="normal">La partie <a href="/temoignage">Témoignages</a> donne accès à tous les témoignages sur des violences transphobes subies, présentés de manière chronologique.</li>
+        <li class="normal">La page <a href="/historique">Historique</a> présente des anecdotes historiques sur des personnalités ou des communautés qui semblent correspondre à des personnes transgenres.</li>
+        <li class="normal">La section <a href="/aides">Aides</a> permet de trouver des associations de soutien, des forums de discussion, ainsi que des ressources de vulgarisation sur la transidentité.</li>
+        <li class="normal">La page <a href="/contact">Contact</a> fournit les informations nécessaires si tu souhaites transmettre ton témoignage.</li>
+    </ul>
+    <div class="warning">
+        <p><strong>Note :</strong> Ce site a été créé par des personnes non-professionnelles du domaine. Les sections historiques et aides ne sont pas exhaustives et visent simplement à fournir des pistes de recherche pour celles et ceux qui souhaiteraient approfondir le sujet.</p>
+    </div>
+</section>
+
+    </main>
+    
+    <footer>
+        <p>© Trans_cryption - 2025</p>
+    </footer>
+    
+    <!-- JavaScript global -->
+    <script src="/static/js/global/navigation.js" defer></script>
+    
+    <!-- JavaScript spécifique à chaque page -->
+    
+</body>
 </html>

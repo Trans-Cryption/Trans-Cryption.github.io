@@ -1,0 +1,78 @@
+/* 
+ * testimonial-card.css
+ * Styles pour les cartes de témoignages
+ */
+
+/* Conteneur des témoignages */
+.tem-fond {
+    background-color: var(--color-card);
+    padding: var(--spacing-xl);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-xl);
+}
+
+/* Carte de témoignage */
+.testimonial-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: var(--border-radius);
+    padding: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    box-shadow: var(--box-shadow);
+    transition: transform var(--transition-speed);
+}
+
+.testimonial-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Titre du témoignage */
+.testimonial-card h2 {
+    margin-top: 0;
+    color: var(--color-primary);
+}
+/* Date du témoignage */
+.testimonial-card .date {
+    font-style: italic;
+    margin-bottom: var(--spacing-md);
+    font-size: var(--font-size-sm);
+    color: rgba(125, 125, 125, 0.8);
+}
+
+/* Contenu du témoignage */
+.testimonial-content {
+    line-height: 1.6;
+    white-space: pre-line; /* Conserve les sauts de ligne du texte */
+}
+
+/* Lecteur de podcast */
+.podcast-player {
+    margin: var(--spacing-md) 0;
+}
+
+.podcast-player audio {
+    width: 100%;
+    border-radius: var(--border-radius);
+}
+
+/* Mode sombre */
+@media (prefers-color-scheme: dark) {
+    .testimonial-card {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+    
+    .testimonial-card .date {
+        color: rgba(200, 200, 200, 0.8);
+    }
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .tem-fond {
+        padding: var(--spacing-md);
+    }
+    
+    .testimonial-card {
+        padding: var(--spacing-md);
+    }
+}
