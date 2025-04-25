@@ -3,66 +3,97 @@ import json
 import shutil
 from jinja2 import Environment, FileSystemLoader
 
+"""
+Script de génération du site statique
+Ce script génère le site web en utilisant les templates Jinja2 et les données JSON
+"""
+
 # Configuration
 TEMPLATE_DIR = "templates"
 CONTENT_DIR = "content"
 STATIC_DIR = "static"
 OUTPUT_DIR = "site"
 
-# Ensure output directory exists and is clean
+# Nettoyer et créer le répertoire de sortie
+print("🧹 Nettoyage du répertoire de sortie...")
 if os.path.exists(OUTPUT_DIR):
     shutil.rmtree(OUTPUT_DIR)
 os.makedirs(OUTPUT_DIR)
 
-# Copy static files
+# Copier les fichiers statiques
+print("📁 Copie des fichiers statiques...")
 shutil.copytree(STATIC_DIR, os.path.join(OUTPUT_DIR, "static"))
 
-# Setup Jinja2 environment
+# Configurer l'environnement Jinja2
+print("⚙️ Configuration de Jinja2...")
 env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
 
 
-# Load content
+# Fonction de chargement des données JSON
 def load_json_content(filename):
+    """
+    Charge un fichier JSON depuis le répertoire content/
+
+    Args:
+        filename (str): Nom du fichier JSON à charger
+
+    Returns:
+        dict/list: Contenu du fichier JSON ou un dictionnaire/liste vide en cas d'erreur
+    """
     path = os.path.join(CONTENT_DIR, filename)
     if os.path.exists(path):
-        with open(path, "r", encoding="utf-8") as f:
-            return json.load(f)
-    return {}
+        try:
+            with open(path, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except json.JSONDecodeError:
+            print(f"⚠️ Erreur de décodage JSON dans {filename}")
+            return {} if filename.endswith(".json") else []
+    print(f"⚠️ Fichier {filename} introuvable")
+    return {} if filename.endswith(".json") else []
 
 
-# Load testimonials
+# Charger les témoignages
+print("📝 Chargement des témoignages...")
 testimonials = load_json_content("temoignages.json")
 
-# Pages to generate
+# Pages à générer
 pages = [
-    {"template": "index.html", "output": "index.html", "title": "Accueil"},
+    {"template": "pages/index.html", "output": "index.html", "title": "Accueil"},
     {
-        "template": "temoignage.html",
+        "template": "pages/temoignage.html",
         "output": "temoignage/index.html",
         "title": "Témoignages",
         "testimonials": testimonials,
     },
     {
-        "template": "historique.html",
+        "template": "pages/historique.html",
         "output": "historique/index.html",
         "title": "Historique",
     },
-    {"template": "aides.html", "output": "aides/index.html", "title": "Aides"},
-    {"template": "contact.html", "output": "contact/index.html", "title": "Contact"},
+    {"template": "pages/aides.html", "output": "aides/index.html", "title": "Aides"},
+    {
+        "template": "pages/contact.html",
+        "output": "contact/index.html",
+        "title": "Contact",
+    },
 ]
 
-# Generate each page
+# Générer chaque page
+print("🔨 Génération des pages...")
 for page in pages:
     template = env.get_template(page["template"])
     output_path = os.path.join(OUTPUT_DIR, page["output"])
 
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)  # Add this line
+    # S'assurer que le répertoire de destination existe
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
-    # Remove template from context
+    # Créer le contexte pour le template
     context = {k: v for k, v in page.items() if k != "template" and k != "output"}
 
-    # Render and write to output
+    # Générer et écrire dans le fichier de sortie
     with open(output_path, "w", encoding="utf-8") as f:
         f.write(template.render(**context))
 
-print(f"Site generated in {OUTPUT_DIR}/")
+    print(f"✅ Page générée : {page['title']} -> {page['output']}")
+
+print(f"🎉 Site généré avec succès dans le répertoire {OUTPUT_DIR}/")
