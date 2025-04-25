@@ -1,0 +1,107 @@
+/* ----- Contact Page Styles ----- */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 600px;
+  margin: 20px 0;
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 1em;
+  background-color: white;
+  transition: border-color 0.3s;
+}
+
+form input:focus,
+form textarea:focus {
+  border-color: rgb(0, 162, 255);
+  outline: none;
+}
+
+form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+button[type="submit"] {
+  align-self: flex-start;
+  background-color: rgb(255, 0, 212);
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+button[type="submit"]:hover {
+  background-color: rgb(0, 162, 255);
+  transform: scale(1.05);
+}
+
+/* Feedback message */
+.feedback {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 6px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  font-size: 1em;
+}
+
+.feedback.show {
+  opacity: 1;
+}
+
+.feedback.success {
+  background-color: rgb(206, 245, 200);
+  border: 1px solid rgb(28, 157, 0);
+  color: #0f3d08;
+}
+
+.feedback.error {
+  background-color: rgb(255, 200, 200);
+  border: 1px solid rgb(190, 0, 0);
+  color: #5f0000;
+}
+
+/* Section spacing */
+section { margin-bottom: 40px; }
+
+section h2 {
+  margin-bottom: 10px;
+  color: rgb(255, 0, 212);
+  font-size: 1.5em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.contact-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.contact-list li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  gap: 8px;
+}
+
+.contact-list a {
+  color: rgb(255, 0, 212);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.contact-list a:hover {
+  color: rgb(0, 162, 255);
+}
