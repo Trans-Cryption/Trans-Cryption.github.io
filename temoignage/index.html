@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/static/css/global/reset.css">
     <link rel="stylesheet" href="/static/css/global/base.css">
     <link rel="stylesheet" href="/static/css/components/menu.css">
+    <link rel="stylesheet" href="/static/css/components/footer.css">
     
     <!-- Font Awesome pour les icônes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -19,6 +20,7 @@
     
 <link rel="stylesheet" href="/static/css/components/testimonial-card.css">
 <link rel="stylesheet" href="/static/css/pages/temoignage.css">
+<link rel="stylesheet" href="/static/css/pages/temoignage-search.css">
 
 </head>
 <body>
@@ -27,7 +29,7 @@
 <nav class="main-nav">
     <!-- Logo -->
     <a href="/" id="index" class="logo-container">
-        <img src="/static/assets/logo.svg" height="80" width="80" alt="Logo" class="menu-logo">
+        <img src="/static/assets/logo.svg" height="80" width="80" alt="Logo Trans_cryption" class="menu-logo">
     </a>
     
     <!-- Bouton menu burger pour mobile -->
@@ -37,26 +39,29 @@
         <span></span>
     </button>
 
+    <!-- Overlay pour le menu mobile -->
+    <div class="menu-overlay"></div>
+
     <!-- Menu principal -->
     <ul class="menu" id="main-menu">
         <li id="menu-tem">
-            <a href="/temoignage" class="actif">
-                <span>Témoignages</span>
+            <a href="/temoignage" class="actif" tabindex="0">
+                Témoignages
             </a>
         </li>
         <li id="menu-histo">
-            <a href="/historique" >
-                <span>Historique</span>
+            <a href="/historique"  tabindex="0">
+                Historique
             </a>
         </li>
         <li id="menu-aide">
-            <a href="/aides" >
-                <span>Aides</span>
+            <a href="/aides"  tabindex="0">
+                Aides
             </a>
         </li>
         <li id="menu-contact">
-            <a href="/contact" >
-                <span>Contact</span>
+            <a href="/contact"  tabindex="0">
+                Contact
             </a>
         </li>
     </ul>
@@ -66,24 +71,70 @@
     <main class="content">
         
 <section id="testimonials-intro">
-    <h1>Témoignages</h1>
-    <p>Cette page regroupe des témoignages de personnes transgenres qui partagent leurs expériences personnelles. Chaque récit est unique et important.</p>
-    <p class="content-warning">
-        <i class="fa-solid fa-triangle-exclamation"></i> Certains témoignages peuvent évoquer des situations difficiles comme le rejet, la discrimination ou la violence.
-    </p>
+    <div class="content-container">
+        <h1>Témoignages</h1>
+        <p>Cette page regroupe des témoignages de personnes transgenres qui partagent leurs expériences personnelles. Chaque récit est unique et important.</p>
+        
+        <div class="content-warning">
+            <div class="warning-icon">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <div class="warning-text">
+                <p>Certains témoignages peuvent évoquer des situations difficiles comme le rejet, la discrimination ou la violence.</p>
+            </div>
+        </div>
+    </div>
 </section>
 
-<div class="tem-fond">
-    
+<section id="testimonials-controls">
+    <div class="content-container">
+        <div class="controls-panel">
+            <div class="search-container">
+                <button id="search-button" aria-label="Rechercher">
+                    <i class="fa-solid fa-search"></i>
+                </button>
+                <input type="text" id="testimonial-search" placeholder="Rechercher dans les témoignages..." aria-label="Rechercher dans les témoignages">
+                <span class="search-results-count" id="search-count"></span>
+            </div>
+            
+            <div class="controls-divider"></div>
+            
+            <div class="view-options">
+                <button id="toggle-view" class="view-toggle" aria-label="Changer de vue">
+                    <i class="fa-solid fa-list"></i>
+                    <span>Vue compacte</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="testimonials-container">
+    <div class="content-container">
         
-        <article class="testimonial-card">
-            <h2>Témoignage d'Alex</h2>
-            <div class="date">22/04/2025</div>
-            
-            
-            
-            <div class="testimonial-content">
-                Je m'appelle Alex, j'ai aujourd'hui 22 ans. Depuis mes quatre ans, je sais que je m'identifie en tant que garçon. Après avoir essayé plusieurs fois de dire que je l'étais et avoir reçu des retours négatifs, j'ai intégré que ce fait était un problème. J'ai arrêté d'en parler autour de mes dix ans à mes amis de l'époque.
+            <div class="testimonials-list">
+                
+                <article class="testimonial-card" data-testimonial-id="1" id="testimonial-1">
+                    <div class="testimonial-header">
+                        <h2>Témoignage d'Alex</h2>
+                        <div class="date">22/04/2025</div>
+                    </div>
+                    
+                    
+                    
+                    <div class="testimonial-content">
+                        <div class="content-preview">
+                            Je m'appelle Alex, j'ai aujourd'hui 22 ans. Depuis mes quatre ans, je sais que je m'identifie en tant que garçon. Après avoir essayé plusieurs fois de dire que je l'étais et avoir reçu des retours négatifs, j'ai intégré que ce fait était un problème. J'ai arrêté d'en parler autour de mes dix ans...
+                            
+                                <button class="read-more" aria-expanded="false" aria-controls="full-content-1">
+                                    Lire la suite <i class="fa-solid fa-chevron-down"></i>
+                                </button>
+                            
+                        </div>
+                        
+                        
+                        <div id="full-content-1" class="full-content hidden">
+                            Je m'appelle Alex, j'ai aujourd'hui 22 ans. Depuis mes quatre ans, je sais que je m'identifie en tant que garçon. Après avoir essayé plusieurs fois de dire que je l'étais et avoir reçu des retours négatifs, j'ai intégré que ce fait était un problème. J'ai arrêté d'en parler autour de mes dix ans à mes amis de l'époque.
 
 En fin seconde, j'ai vu sur Instagram de la vulgarisation faite par @aggressively_trans. J'ai commencé par penser que 'j'étais comme ça quand j'étais petit'. Puis quand ma professeur de français en a parlé en cours après avoir visionné un film. J'en ai parlé à une amie de l'époque, puis à ma sœur et à un autre ami. On m'a à ce moment-là dit que 'c'était une phase', que je ne 'l'étais pas vraiment' et que j'étais 'folle'.
 
@@ -104,22 +155,99 @@ En février 2024, j'ai été en couple avec un homme cis, étudiant dans la mêm
 J'en ai parlé à mes amis en commun, je voulais qu'ils me comprennent et me protègent et j'ai compris au final qu'ils ne me comprenaient pas, ou ne voulaient pas comprendre et qu'à aucun moment, ils ne m'auraient 'protégé'. J'ai fini l'année en ayant peur de le croiser dans les couloirs. Je faisais des crises ou je me mettais à hurler, à pleurer et à vomir.
 
 J'ai aujourd'hui peur des autres et ne peux faire confiance qu'à très peu de gens.
+                            <button class="read-less">
+                                Réduire <i class="fa-solid fa-chevron-up"></i>
+                            </button>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="testimonial-footer">
+                        <div class="testimonial-actions">
+                            <button class="action-button share-button" aria-label="Partager ce témoignage">
+                                <i class="fa-solid fa-share-nodes"></i>
+                                <span>Partager</span>
+                            </button>
+                            
+                            <div class="action-button support-info" aria-label="Informations de soutien">
+                                <i class="fa-solid fa-heart"></i>
+                                <span>Soutien</span>
+                                <div class="support-tooltip">
+                                    <p>Si ce témoignage t'a touché et que tu cherches du soutien, tu peux consulter notre <a href="/aides">page d'aides</a>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                
             </div>
-        </article>
         
-    
-</div>
+    </div>
+</section>
+
+<section id="share-testimony">
+    <div class="content-container">
+        <div class="share-container">
+            <div class="share-text">
+                <h2>Ton expérience compte</h2>
+                <p>Chaque témoignage aide à sensibiliser et à éduquer sur les réalités vécues par les personnes transgenres. Ton histoire peut aider d'autres personnes à se sentir moins seules.</p>
+            </div>
+            <div class="share-action">
+                <a href="/contact" class="cta-button">Partager mon témoignage</a>
+            </div>
+        </div>
+    </div>
+</section>
 
     </main>
     
     <footer>
-        <p>© Trans_cryption - 2025</p>
+        <div class="footer-container">
+            <div class="footer-main">
+                <div class="footer-logo">
+                    <img src="/static/assets/logo.svg" alt="Logo Trans_cryption" width="60" height="60">
+                    <p>Trans_cryption</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-nav">
+                        <h3>Navigation</h3>
+                        <ul>
+                            <li><a href="/">Accueil</a></li>
+                            <li><a href="/temoignage">Témoignages</a></li>
+                            <li><a href="/historique">Historique</a></li>
+                            <li><a href="/aides">Ressources</a></li>
+                            <li><a href="/contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-social">
+                        <h3>Nous suivre</h3>
+                        <ul>
+                            <li><a href="https://www.instagram.com/trans_cryption" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; Trans_cryption - 2025</p>
+                <p>Site généré avec Python et Jinja2.</p>
+            </div>
+        </div>
     </footer>
+    
+    <!-- Bouton de retour en haut -->
+    <a href="#" id="back-to-top" class="back-to-top" aria-label="Retour en haut">
+        <i class="fa-solid fa-chevron-up"></i>
+    </a>
     
     <!-- JavaScript global -->
     <script src="/static/js/global/navigation.js" defer></script>
     
     <!-- JavaScript spécifique à chaque page -->
     
+<script src="/static/js/pages/temoignage.js" defer></script>
+
 </body>
 </html>

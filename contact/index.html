@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/static/css/global/reset.css">
     <link rel="stylesheet" href="/static/css/global/base.css">
     <link rel="stylesheet" href="/static/css/components/menu.css">
+    <link rel="stylesheet" href="/static/css/components/footer.css">
     
     <!-- Font Awesome pour les icônes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -28,7 +29,7 @@
 <nav class="main-nav">
     <!-- Logo -->
     <a href="/" id="index" class="logo-container">
-        <img src="/static/assets/logo.svg" height="80" width="80" alt="Logo" class="menu-logo">
+        <img src="/static/assets/logo.svg" height="80" width="80" alt="Logo Trans_cryption" class="menu-logo">
     </a>
     
     <!-- Bouton menu burger pour mobile -->
@@ -38,26 +39,29 @@
         <span></span>
     </button>
 
+    <!-- Overlay pour le menu mobile -->
+    <div class="menu-overlay"></div>
+
     <!-- Menu principal -->
     <ul class="menu" id="main-menu">
         <li id="menu-tem">
-            <a href="/temoignage" >
-                <span>Témoignages</span>
+            <a href="/temoignage"  tabindex="0">
+                Témoignages
             </a>
         </li>
         <li id="menu-histo">
-            <a href="/historique" >
-                <span>Historique</span>
+            <a href="/historique"  tabindex="0">
+                Historique
             </a>
         </li>
         <li id="menu-aide">
-            <a href="/aides" >
-                <span>Aides</span>
+            <a href="/aides"  tabindex="0">
+                Aides
             </a>
         </li>
         <li id="menu-contact">
-            <a href="/contact" class="actif">
-                <span>Contact</span>
+            <a href="/contact" class="actif" tabindex="0">
+                Contact
             </a>
         </li>
     </ul>
@@ -66,77 +70,138 @@
     
     <main class="content">
         
-  <section id="contact-intro">
-    <h1>Contact</h1>
-    <p>Tu veux nous contacter, témoigner, ou simplement discuter ? Voici comment faire :</p>
-  </section>
-
-  <section id="contact-methods">
-    <h2 aria-label="Me contacter"><i class="fa-solid fa-envelope-open-text"></i> Me contacter</h2>
-    <ul class="contact-list">
-      <li>
-        <i class="fa-solid fa-envelope"></i>
-        <span>Email :</span>
-        <a href="mailto:sous.les.paillettes@gmail.com" aria-label="Envoyer un email">sous.les.paillettes@gmail.com</a>
-      </li>
-      <li>
-        <i class="fa-brands fa-instagram"></i>
-        <span>Instagram :</span>
-        <a href="https://www.instagram.com/trans_cryption" target="_blank" rel="noopener" aria-label="Visiter Instagram">@trans_cryption</a>
-      </li>
-    </ul>
-  </section>
-
-  <section id="anon-testimony">
-    <h2 aria-label="Témoignage anonyme"><i class="fa-solid fa-user-secret"></i> Témoignage anonyme</h2>
-    <p>Tu préfères rester anonyme ? Envoie ton message via ce formulaire sécurisé :</p>
-
-    <form id="anon-form" action="https://api.web3forms.com/submit" method="POST" aria-live="polite">
-      <input type="hidden" name="access_key" value="422d147d-1a5a-4107-aca5-6b895ed14756">
-
-      <div class="form-group">
-        <label for="name">Nom (ou pseudo) :</label>
-        <input type="text" id="name" name="name" required placeholder="Ton prénom ou un pseudo" aria-required="true">
-      </div>
-
-      <div class="form-group">
-        <label for="email">Adresse e-mail (optionnel) :</label>
-        <input type="email" id="email" name="email" placeholder="facultatif" aria-required="false">
-      </div>
-
-      <div class="form-group">
-        <label for="message">Message :</label>
-        <textarea id="message" name="message" required placeholder="Écris ton message ici..." aria-required="true"></textarea>
-      </div>
-
-      <div class="form-actions">
-        <button type="submit" aria-label="Envoyer le témoignage">
-          <i class="fa-solid fa-paper-plane"></i> Envoyer
-        </button>
-      </div>
-    </form>
-
-    <div id="form-feedback" class="feedback" role="alert" aria-live="assertive"></div>
-    
-    <div class="encryption-note">
-      <p><i class="fa-solid fa-lock"></i> Tous les messages sont chiffrés de bout en bout pour protéger ta vie privée.</p>
+<section id="contact-intro">
+    <div class="content-container">
+        <h1>Contact</h1>
+        <p class="intro-text">Tu veux nous contacter, témoigner, ou simplement discuter ? Voici comment faire.</p>
     </div>
-  </section>
+</section>
 
-  <section id="submit-options">
-    <h2><i class="fa-solid fa-shield-alt"></i> Autres façons de témoigner</h2>
-    <p>Si tu préfères utiliser d'autres méthodes de contact, tu peux :</p>
-    <ul class="options-list">
-      <li><i class="fa-solid fa-envelope"></i> Envoyer un email anonyme depuis un service comme <a href="https://proton.me" target="_blank" rel="noopener">ProtonMail</a></li>
-      <li><i class="fa-solid fa-edit"></i> Utiliser un document partagé anonyme comme <a href="https://cryptpad.fr" target="_blank" rel="noopener">CryptPad</a></li>
-    </ul>
-  </section>
+<div class="contact-container">
+    <div class="contact-methods">
+        <div class="contact-card">
+            <div class="card-header">
+                <i class="fa-solid fa-envelope-open-text"></i>
+                <h2>Méthodes de contact</h2>
+            </div>
+            
+            <ul class="contact-list">
+                <li>
+                    <div class="contact-icon">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <div class="contact-info">
+                        <h3>Email</h3>
+                        <a href="mailto:sous.les.paillettes@gmail.com" aria-label="Envoyer un email">sous.les.paillettes@gmail.com</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="contact-icon">
+                        <i class="fa-brands fa-instagram"></i>
+                    </div>
+                    <div class="contact-info">
+                        <h3>Instagram</h3>
+                        <a href="https://www.instagram.com/trans_cryption" target="_blank" rel="noopener" aria-label="Visiter Instagram">@trans_cryption</a>
+                    </div>
+                </li>
+            </ul>
+            
+            <div class="alt-methods">
+                <h3>Autres façons de témoigner</h3>
+                <p>Si tu préfères utiliser d'autres méthodes, tu peux :</p>
+                <ul>
+                    <li><i class="fa-solid fa-envelope"></i> Envoyer un email anonyme depuis <a href="https://proton.me" target="_blank" rel="noopener">ProtonMail</a></li>
+                    <li><i class="fa-solid fa-edit"></i> Utiliser un document partagé anonyme via <a href="https://cryptpad.fr" target="_blank" rel="noopener">CryptPad</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact-form">
+        <div class="form-card">
+            <div class="card-header">
+                <i class="fa-solid fa-user-secret"></i>
+                <h2>Témoignage anonyme</h2>
+            </div>
+            
+            <p>Tu préfères rester anonyme ? Envoie ton message via ce formulaire sécurisé :</p>
+
+            <form id="anon-form" action="https://api.web3forms.com/submit" method="POST" aria-live="polite">
+                <input type="hidden" name="access_key" value="422d147d-1a5a-4107-aca5-6b895ed14756">
+
+                <div class="form-group">
+                    <label for="name">Nom ou pseudo</label>
+                    <input type="text" id="name" name="name" required placeholder="Ton prénom ou un pseudo" aria-required="true">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Adresse e-mail <span class="optional">(optionnel)</span></label>
+                    <input type="email" id="email" name="email" placeholder="facultatif" aria-required="false">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required placeholder="Écris ton message ici..." aria-required="true" rows="6"></textarea>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" aria-label="Envoyer le témoignage">
+                        <i class="fa-solid fa-paper-plane"></i> Envoyer
+                    </button>
+                </div>
+            </form>
+
+            <div id="form-feedback" class="feedback" role="alert" aria-live="assertive"></div>
+            
+            <div class="encryption-note">
+                <p><i class="fa-solid fa-lock"></i> Tous les messages sont chiffrés de bout en bout pour protéger ta vie privée.</p>
+            </div>
+        </div>
+    </div>
+</div>
 
     </main>
     
     <footer>
-        <p>© Trans_cryption - 2025</p>
+        <div class="footer-container">
+            <div class="footer-main">
+                <div class="footer-logo">
+                    <img src="/static/assets/logo.svg" alt="Logo Trans_cryption" width="60" height="60">
+                    <p>Trans_cryption</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-nav">
+                        <h3>Navigation</h3>
+                        <ul>
+                            <li><a href="/">Accueil</a></li>
+                            <li><a href="/temoignage">Témoignages</a></li>
+                            <li><a href="/historique">Historique</a></li>
+                            <li><a href="/aides">Ressources</a></li>
+                            <li><a href="/contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-social">
+                        <h3>Nous suivre</h3>
+                        <ul>
+                            <li><a href="https://www.instagram.com/trans_cryption" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; Trans_cryption - 2025</p>
+                <p>Site généré avec Python et Jinja2.</p>
+            </div>
+        </div>
     </footer>
+    
+    <!-- Bouton de retour en haut -->
+    <a href="#" id="back-to-top" class="back-to-top" aria-label="Retour en haut">
+        <i class="fa-solid fa-chevron-up"></i>
+    </a>
     
     <!-- JavaScript global -->
     <script src="/static/js/global/navigation.js" defer></script>

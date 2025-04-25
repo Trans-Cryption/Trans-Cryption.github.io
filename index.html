@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/static/css/global/reset.css">
     <link rel="stylesheet" href="/static/css/global/base.css">
     <link rel="stylesheet" href="/static/css/components/menu.css">
+    <link rel="stylesheet" href="/static/css/components/footer.css">
     
     <!-- Font Awesome pour les icônes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -26,7 +27,7 @@
 <nav class="main-nav">
     <!-- Logo -->
     <a href="/" id="index" class="logo-container">
-        <img src="/static/assets/logo.svg" height="80" width="80" alt="Logo" class="menu-logo">
+        <img src="/static/assets/logo.svg" height="80" width="80" alt="Logo Trans_cryption" class="menu-logo">
     </a>
     
     <!-- Bouton menu burger pour mobile -->
@@ -36,26 +37,29 @@
         <span></span>
     </button>
 
+    <!-- Overlay pour le menu mobile -->
+    <div class="menu-overlay"></div>
+
     <!-- Menu principal -->
     <ul class="menu" id="main-menu">
         <li id="menu-tem">
-            <a href="/temoignage" >
-                <span>Témoignages</span>
+            <a href="/temoignage"  tabindex="0">
+                Témoignages
             </a>
         </li>
         <li id="menu-histo">
-            <a href="/historique" >
-                <span>Historique</span>
+            <a href="/historique"  tabindex="0">
+                Historique
             </a>
         </li>
         <li id="menu-aide">
-            <a href="/aides" >
-                <span>Aides</span>
+            <a href="/aides"  tabindex="0">
+                Aides
             </a>
         </li>
         <li id="menu-contact">
-            <a href="/contact" >
-                <span>Contact</span>
+            <a href="/contact"  tabindex="0">
+                Contact
             </a>
         </li>
     </ul>
@@ -64,46 +68,126 @@
     
     <main class="content">
         
+<div class="hero-section">
+    <h1>Trans_cryption</h1>
+    <p class="tagline">Témoignages, histoire et ressources pour les personnes transgenres</p>
+</div>
+
 <section id="intro">
-    <h1>Introduction</h1>
-    <p>
-        D'après une étude réalisée au Danemark sur 42 ans, le risque de faire une tentative de suicide chez les personnes trans est huit fois plus élevé (article du Monde en 2023).
-    </p>
-    <p>
-        Entre le <strong>rejet familial</strong>, la <strong>transphobie subie</strong> et intériorisée, et la dysphorie de genre, les personnes transgenres sont beaucoup plus fragilisées et donc sujettes à la dépression.
-    </p>
-    <p>
-        Ce site cherche à donner accès à des témoignages de personnes transgenres sur les violences qu'elles ont dû subir à cause de leur identité de genre.
-    </p>
-    <p>
-        En proposant ce contenu, ce site vise à montrer que derrière le côté "paillettes" du débat et la supposée "tendance" se cache une réalité beaucoup plus sombre : celle d'une minorité qui continue de subir des violences malgré les nombreuses actions déjà entreprises.
-    </p>
-    <p>
-        Si tu es trans et que tu souhaites témoigner, n'hésite pas à nous contacter via la <a href="/contact">page de contact</a>.
-    </p>
+    <div class="content-container">
+        <h2>Pourquoi ce site ?</h2>
+        <div class="stat-highlight">
+            <span class="stat-number">8×</span>
+            <p>D'après une étude réalisée au Danemark sur 42 ans, le risque de faire une tentative de suicide chez les personnes trans est <strong>huit fois plus élevé</strong> (article du Monde en 2023).</p>
+        </div>
+        
+        <p>Entre le <strong>rejet familial</strong>, la <strong>transphobie subie</strong> et intériorisée, et la dysphorie de genre, les personnes transgenres sont beaucoup plus fragilisées et donc sujettes à la dépression.</p>
+        
+        <p>Ce site cherche à donner accès à des témoignages de personnes transgenres sur les violences qu'elles ont dû subir à cause de leur identité de genre.</p>
+        
+        <p>En proposant ce contenu, ce site vise à montrer que derrière le côté "paillettes" du débat et la supposée "tendance" se cache une réalité beaucoup plus sombre : celle d'une minorité qui continue de subir des violences malgré les nombreuses actions déjà entreprises.</p>
+        
+        <div class="cta-container">
+            <a href="/contact" class="cta-button">Partage ton expérience</a>
+        </div>
+    </div>
 </section>
 
 <section id="site-presentation">
-    <h2>Fonctionnement du site</h2>
-    <p>
-        Ce site est composé de différentes parties :
-    </p>
-    <ul>
-        <li class="normal">La partie <a href="/temoignage">Témoignages</a> donne accès à tous les témoignages sur des violences transphobes subies, présentés de manière chronologique.</li>
-        <li class="normal">La page <a href="/historique">Historique</a> présente des anecdotes historiques sur des personnalités ou des communautés qui semblent correspondre à des personnes transgenres.</li>
-        <li class="normal">La section <a href="/aides">Aides</a> permet de trouver des associations de soutien, des forums de discussion, ainsi que des ressources de vulgarisation sur la transidentité.</li>
-        <li class="normal">La page <a href="/contact">Contact</a> fournit les informations nécessaires si tu souhaites transmettre ton témoignage.</li>
-    </ul>
+    <div class="content-container">
+        <h2>Fonctionnement du site</h2>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-comment-dots"></i>
+                </div>
+                <h3>Témoignages</h3>
+                <p>Accès à tous les témoignages sur des violences transphobes subies, présentés de manière chronologique.</p>
+                <a href="/temoignage" class="feature-link">Lire les témoignages</a>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-book-open"></i>
+                </div>
+                <h3>Historique</h3>
+                <p>Découvre des anecdotes historiques sur des personnalités ou des communautés qui semblent correspondre à des personnes transgenres.</p>
+                <a href="/historique" class="feature-link">Explorer l'histoire</a>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-hand-holding-heart"></i>
+                </div>
+                <h3>Aides</h3>
+                <p>Trouve des associations de soutien, des forums de discussion, ainsi que des ressources de vulgarisation sur la transidentité.</p>
+                <a href="/aides" class="feature-link">Découvrir les ressources</a>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fa-solid fa-envelope"></i>
+                </div>
+                <h3>Contact</h3>
+                <p>Si tu souhaites transmettre ton témoignage ou nous contacter de manière sécurisée et potentiellement anonyme.</p>
+                <a href="/contact" class="feature-link">Nous contacter</a>
+            </div>
+        </div>
+    </div>
+    
     <div class="warning">
-        <p><strong>Note :</strong> Ce site a été créé par des personnes non-professionnelles du domaine. Les sections historiques et aides ne sont pas exhaustives et visent simplement à fournir des pistes de recherche pour celles et ceux qui souhaiteraient approfondir le sujet.</p>
+        <div class="warning-icon">
+            <i class="fa-solid fa-info-circle"></i>
+        </div>
+        <div class="warning-content">
+            <p><strong>Note :</strong> Ce site a été créé par des personnes non-professionnelles du domaine. Les sections historiques et aides ne sont pas exhaustives et visent simplement à fournir des pistes de recherche pour celles et ceux qui souhaiteraient approfondir le sujet.</p>
+        </div>
     </div>
 </section>
 
     </main>
     
     <footer>
-        <p>© Trans_cryption - 2025</p>
+        <div class="footer-container">
+            <div class="footer-main">
+                <div class="footer-logo">
+                    <img src="/static/assets/logo.svg" alt="Logo Trans_cryption" width="60" height="60">
+                    <p>Trans_cryption</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-nav">
+                        <h3>Navigation</h3>
+                        <ul>
+                            <li><a href="/">Accueil</a></li>
+                            <li><a href="/temoignage">Témoignages</a></li>
+                            <li><a href="/historique">Historique</a></li>
+                            <li><a href="/aides">Ressources</a></li>
+                            <li><a href="/contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-social">
+                        <h3>Nous suivre</h3>
+                        <ul>
+                            <li><a href="https://www.instagram.com/trans_cryption" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; Trans_cryption - 2025</p>
+                <p>Site généré avec Python et Jinja2.</p>
+            </div>
+        </div>
     </footer>
+    
+    <!-- Bouton de retour en haut -->
+    <a href="#" id="back-to-top" class="back-to-top" aria-label="Retour en haut">
+        <i class="fa-solid fa-chevron-up"></i>
+    </a>
     
     <!-- JavaScript global -->
     <script src="/static/js/global/navigation.js" defer></script>

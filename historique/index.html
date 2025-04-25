@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="/static/css/global/reset.css">
     <link rel="stylesheet" href="/static/css/global/base.css">
     <link rel="stylesheet" href="/static/css/components/menu.css">
+    <link rel="stylesheet" href="/static/css/components/footer.css">
     
     <!-- Font Awesome pour les icônes -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -26,7 +27,7 @@
 <nav class="main-nav">
     <!-- Logo -->
     <a href="/" id="index" class="logo-container">
-        <img src="/static/assets/logo.svg" height="80" width="80" alt="Logo" class="menu-logo">
+        <img src="/static/assets/logo.svg" height="80" width="80" alt="Logo Trans_cryption" class="menu-logo">
     </a>
     
     <!-- Bouton menu burger pour mobile -->
@@ -36,26 +37,29 @@
         <span></span>
     </button>
 
+    <!-- Overlay pour le menu mobile -->
+    <div class="menu-overlay"></div>
+
     <!-- Menu principal -->
     <ul class="menu" id="main-menu">
         <li id="menu-tem">
-            <a href="/temoignage" >
-                <span>Témoignages</span>
+            <a href="/temoignage"  tabindex="0">
+                Témoignages
             </a>
         </li>
         <li id="menu-histo">
-            <a href="/historique" class="actif">
-                <span>Historique</span>
+            <a href="/historique" class="actif" tabindex="0">
+                Historique
             </a>
         </li>
         <li id="menu-aide">
-            <a href="/aides" >
-                <span>Aides</span>
+            <a href="/aides"  tabindex="0">
+                Aides
             </a>
         </li>
         <li id="menu-contact">
-            <a href="/contact" >
-                <span>Contact</span>
+            <a href="/contact"  tabindex="0">
+                Contact
             </a>
         </li>
     </ul>
@@ -65,67 +69,169 @@
     <main class="content">
         
 <section id="historique-intro">
-    <h1>Historique</h1>
-    <p>Cette page présente des exemples historiques de personnes et communautés qui pourraient être considérées comme transgenres selon notre compréhension contemporaine. L'histoire des personnes trans s'étend bien au-delà des récits modernes.</p>
+    <div class="content-container">
+        <h1>Historique Trans</h1>
+        <p class="intro-text">Cette page présente des exemples historiques de personnes et communautés qui pourraient être considérées comme transgenres selon notre compréhension contemporaine. L'histoire des personnes trans s'étend bien au-delà des récits modernes.</p>
+    </div>
 </section>
 
-<section id="antiquite" class="historical-period">
-    <h2>Antiquité</h2>
+<div class="timeline-container">
+    <div class="timeline-line"></div>
     
-    <article class="historical-item">
-        <h3>Mésopotamie</h3>
-        <p>
-            En Mésopotamie, des hommes trans (galatur) et femmes transgenres (kurgarra) honoraient Inanna (ou plus connu sous le nom d'Ishtar), déesse sumérienne.
-            <span class="source"><a href="https://www.worldhistory.org/trans/fr/2-1790/lgbtq-dans-le-monde-antique/" target="_blank">Source <i class="fa-solid fa-external-link-alt"></i></a></span>
-        </p>
-    </article>
-    
-    <article class="historical-item">
-        <h3>Rome</h3>
-        <p>
-            Héliogabale (203-222), empereur romain pendant trente mois avant d'être assassiné à 18 ans, choquait ses contemporains par son comportement jugé inapproprié de nombreuses façons. Iel aurait cherché à "s'inciser le bas-ventre" pour obtenir une "double nature sexuelle" et aurait demandé à ce qu'on la genre au féminin plutôt qu'au masculin.
-            <span class="source"><a href="https://www.slate.fr/story/241600/heliogabale-empereur-rome-antique-icone-trans-histoire-bisexualite-fluidite-genre-castration" target="_blank">Source <i class="fa-solid fa-external-link-alt"></i></a></span>
-        </p>
-    </article>
-    
-    <article class="historical-item">
-        <h3>Inde</h3>
-        <p>
-            En Inde, le Kamasutra mentionne un troisième sexe (400 av. JC) ainsi que d'autres textes. Les kinnars sont une communauté de femmes trans reconnue depuis plus de 4 000 ans.
-            <span class="source"><a href="https://www.worldhistory.org/trans/fr/2-1774/dix-choses-a-savoir-sur-les-lgbtq-dans-lantiquite/" target="_blank">Source <i class="fa-solid fa-external-link-alt"></i></a></span>
-        </p>
-    </article>
-</section>
+    <section id="antiquite" class="historical-period">
+        <div class="period-header">
+            <h2>Antiquité</h2>
+            <div class="period-icon">
+                <i class="fa-solid fa-landmark"></i>
+            </div>
+        </div>
+        
+        <div class="historical-items">
+            <article class="historical-item">
+                <h3>Mésopotamie</h3>
+                <div class="item-content">
+                    <p>
+                        En Mésopotamie, des hommes trans (galatur) et femmes transgenres (kurgarra) honoraient Inanna (ou plus connu sous le nom d'Ishtar), déesse sumérienne.
+                    </p>
+                    <span class="source">
+                        <a href="https://www.worldhistory.org/trans/fr/2-1790/lgbtq-dans-le-monde-antique/" target="_blank" rel="noopener">
+                            <i class="fa-solid fa-external-link-alt"></i> Source
+                        </a>
+                    </span>
+                </div>
+            </article>
+            
+            <article class="historical-item">
+                <h3>Rome</h3>
+                <div class="item-content">
+                    <p>
+                        Héliogabale (203-222), empereur romain pendant trente mois avant d'être assassiné à 18 ans, choquait ses contemporains par son comportement jugé inapproprié de nombreuses façons. Iel aurait cherché à "s'inciser le bas-ventre" pour obtenir une "double nature sexuelle" et aurait demandé à ce qu'on la genre au féminin plutôt qu'au masculin.
+                    </p>
+                    <span class="source">
+                        <a href="https://www.slate.fr/story/241600/heliogabale-empereur-rome-antique-icone-trans-histoire-bisexualite-fluidite-genre-castration" target="_blank" rel="noopener">
+                            <i class="fa-solid fa-external-link-alt"></i> Source
+                        </a>
+                    </span>
+                </div>
+            </article>
+            
+            <article class="historical-item">
+                <h3>Inde</h3>
+                <div class="item-content">
+                    <p>
+                        En Inde, le Kamasutra mentionne un troisième sexe (400 av. JC) ainsi que d'autres textes. Les kinnars sont une communauté de femmes trans reconnue depuis plus de 4 000 ans.
+                    </p>
+                    <span class="source">
+                        <a href="https://www.worldhistory.org/trans/fr/2-1774/dix-choses-a-savoir-sur-les-lgbtq-dans-lantiquite/" target="_blank" rel="noopener">
+                            <i class="fa-solid fa-external-link-alt"></i> Source
+                        </a>
+                    </span>
+                </div>
+            </article>
+        </div>
+    </section>
 
-<section id="temps-moderne" class="historical-period">
-    <h2>Temps Modernes</h2>
-    
-    <article class="historical-item">
-        <h3>Panama</h3>
-        <p>
-            Vasco Nunez de Balboa tua 40 femmes trans au Panama.
-            <span class="source"><a href="http://queerasse.u.q.f.unblog.fr/files/2017/11/transgenderwarriori.pdf" target="_blank">Source <i class="fa-solid fa-external-link-alt"></i></a></span>
-        </p>
-    </article>
-    
-    <article class="historical-item">
-        <h3>France</h3>
-        <p>
-            Le chevalier d'Éon, dont le sexe resta pendant longtemps un mystère, était un espion sous les ordres de Louis XV. L'ambiguïté de son apparence jeta l'opprobre sur ce personnage. Destituée, forcée de s'habiller en tant que femme vers la fin de sa vie, le chevalier d'Éon mourut pauvre. Durant son autopsie, tout le monde découvrit qu'elle avait été assignée homme à la naissance.
-            <span class="source"><a href="https://www.nationalgeographic.fr/histoire/le-chevalier-d-eon-un-espion-travesti-au-service-de-la-france-histoire-francaise-louis-xv-espionnage" target="_blank">Source <i class="fa-solid fa-external-link-alt"></i></a></span>
-        </p>
-    </article>
-</section>
-
-<div class="historical-note">
-    <p><i class="fa-solid fa-book"></i> Cette liste n'est pas exhaustive. Des personnes trans ont existé à travers toutes les époques et cultures, bien que les termes et concepts utilisés pour décrire ces identités aient varié selon les contextes historiques.</p>
+    <section id="temps-moderne" class="historical-period">
+        <div class="period-header">
+            <h2>Temps Modernes</h2>
+            <div class="period-icon">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+            </div>
+        </div>
+        
+        <div class="historical-items">
+            <article class="historical-item">
+                <h3>Panama</h3>
+                <div class="item-content">
+                    <p>
+                        Vasco Nunez de Balboa tua 40 femmes trans au Panama.
+                    </p>
+                    <span class="source">
+                        <a href="http://queerasse.u.q.f.unblog.fr/files/2017/11/transgenderwarriori.pdf" target="_blank" rel="noopener">
+                            <i class="fa-solid fa-external-link-alt"></i> Source
+                        </a>
+                    </span>
+                </div>
+            </article>
+            
+            <article class="historical-item">
+                <h3>France</h3>
+                <div class="item-content">
+                    <p>
+                        Le chevalier d'Éon, dont le sexe resta pendant longtemps un mystère, était un espion sous les ordres de Louis XV. L'ambiguïté de son apparence jeta l'opprobre sur ce personnage. Destituée, forcée de s'habiller en tant que femme vers la fin de sa vie, le chevalier d'Éon mourut pauvre. Durant son autopsie, tout le monde découvrit qu'elle avait été assignée homme à la naissance.
+                    </p>
+                    <span class="source">
+                        <a href="https://www.nationalgeographic.fr/histoire/le-chevalier-d-eon-un-espion-travesti-au-service-de-la-france-histoire-francaise-louis-xv-espionnage" target="_blank" rel="noopener">
+                            <i class="fa-solid fa-external-link-alt"></i> Source
+                        </a>
+                    </span>
+                </div>
+            </article>
+        </div>
+    </section>
 </div>
+
+<section id="historical-note-section">
+    <div class="content-container">
+        <div class="historical-note">
+            <div class="note-icon">
+                <i class="fa-solid fa-book"></i>
+            </div>
+            <div class="note-content">
+                <p>Cette liste n'est pas exhaustive. Des personnes trans ont existé à travers toutes les époques et cultures, bien que les termes et concepts utilisés pour décrire ces identités aient varié selon les contextes historiques.</p>
+            </div>
+        </div>
+        
+        <div class="contribute-section">
+            <h3>Contribuer à l'histoire</h3>
+            <p>Tu connais d'autres faits historiques concernant les personnes transgenres ? N'hésite pas à nous en faire part pour enrichir cette page.</p>
+            <a href="/contact" class="cta-button">Partager une référence historique</a>
+        </div>
+    </div>
+</section>
 
     </main>
     
     <footer>
-        <p>© Trans_cryption - 2025</p>
+        <div class="footer-container">
+            <div class="footer-main">
+                <div class="footer-logo">
+                    <img src="/static/assets/logo.svg" alt="Logo Trans_cryption" width="60" height="60">
+                    <p>Trans_cryption</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-nav">
+                        <h3>Navigation</h3>
+                        <ul>
+                            <li><a href="/">Accueil</a></li>
+                            <li><a href="/temoignage">Témoignages</a></li>
+                            <li><a href="/historique">Historique</a></li>
+                            <li><a href="/aides">Ressources</a></li>
+                            <li><a href="/contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-social">
+                        <h3>Nous suivre</h3>
+                        <ul>
+                            <li><a href="https://www.instagram.com/trans_cryption" target="_blank" rel="noopener"><i class="fa-brands fa-instagram"></i> Instagram</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; Trans_cryption - 2025</p>
+                <p>Site généré avec Python et Jinja2.</p>
+            </div>
+        </div>
     </footer>
+    
+    <!-- Bouton de retour en haut -->
+    <a href="#" id="back-to-top" class="back-to-top" aria-label="Retour en haut">
+        <i class="fa-solid fa-chevron-up"></i>
+    </a>
     
     <!-- JavaScript global -->
     <script src="/static/js/global/navigation.js" defer></script>
