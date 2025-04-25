@@ -1,0 +1,135 @@
+/* 
+ * menu.css
+ * Styles pour la navigation principale du site
+ */
+
+/* Menu principal */
+.menu {
+    display: flex;
+    padding: 0;
+    margin: var(--spacing-md) 0;
+    transition: transform var(--transition-speed) ease;
+}
+
+.menu li {
+    transition: all var(--transition-speed) ease;
+    margin: var(--spacing-sm) 2px;
+}
+
+.menu a {
+    display: block;
+    min-width: 130px;
+    padding: 3px 20px;
+    text-align: center;
+    border-left: 2px solid var(--color-light);
+    border-radius: var(--border-radius);
+    transition: all var(--transition-speed) ease;
+    background-color: var(--color-card);
+}
+
+/* Effet de survol */
+.menu li:hover {
+    transform: scale(1.05);
+    z-index: 1;
+}
+
+.menu li:hover a {
+    color: var(--color-secondary);
+    background-color: rgba(255, 193, 236, 0.1);
+}
+
+/* Lien actif */
+.menu a.actif {
+    border-color: rgb(122, 121, 121);
+    background-color: rgba(255, 193, 236, 0.2);
+}
+
+/* Logo du menu */
+.menu-logo {
+    height: 80px;
+    width: 80px;
+    transition: transform var(--transition-speed);
+}
+
+.menu-logo:hover {
+    transform: scale(1.1);
+}
+
+/* Menu burger pour mobile */
+.burger-menu {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--spacing-sm);
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.burger-menu span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--color-primary);
+    margin: 5px 0;
+    transition: all var(--transition-speed) ease;
+}
+
+/* Animation du menu burger */
+.burger-menu.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.burger-menu.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger-menu.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+/* Responsive */
+@media screen and (max-width: 768px) {
+    .burger-menu {
+        display: block;
+    }
+    
+    .menu {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        background-color: transparent;
+        flex-direction: column;
+        width: 250px;
+        padding-top: 60px;
+        transition: right var(--transition-speed) ease;
+    }
+    
+    .menu.active {
+        right: 0;
+    }
+    
+    .menu li {
+        width: 100%;
+        margin: 0;
+    }
+    
+    .menu a {
+        width: 100%;
+        border-left: none;
+        border-bottom: 2px solid var(--color-light);
+        padding: 20px;
+        margin: 0;
+        border-radius: 0;
+        background-color: var(--color-card);
+    }
+    
+    .menu li:hover {
+        transform: none;
+    }
+    
+    .menu a:hover {
+        background-color: rgba(162, 212, 255, 0.1);
+    }
+}
