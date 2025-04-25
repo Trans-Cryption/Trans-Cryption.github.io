@@ -3,43 +3,139 @@
 {% block head %}
 <link rel="stylesheet" href="/static/css/components/testimonial-card.css">
 <link rel="stylesheet" href="/static/css/pages/temoignage.css">
+<link rel="stylesheet" href="/static/css/pages/temoignage-search.css">
 {% endblock %}
 
 {% block content %}
 <section id="testimonials-intro">
-    <h1>Témoignages</h1>
-    <p>Cette page regroupe des témoignages de personnes transgenres qui partagent leurs expériences personnelles. Chaque récit est unique et important.</p>
-    <p class="content-warning">
-        <i class="fa-solid fa-triangle-exclamation"></i> Certains témoignages peuvent évoquer des situations difficiles comme le rejet, la discrimination ou la violence.
-    </p>
+    <div class="content-container">
+        <h1>Témoignages</h1>
+        <p>Cette page regroupe des témoignages de personnes transgenres qui partagent leurs expériences personnelles. Chaque récit est unique et important.</p>
+        
+        <div class="content-warning">
+            <div class="warning-icon">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <div class="warning-text">
+                <p>Certains témoignages peuvent évoquer des situations difficiles comme le rejet, la discrimination ou la violence.</p>
+            </div>
+        </div>
+    </div>
 </section>
 
-<div class="tem-fond">
-    {% if testimonials %}
-        {% for testimonial in testimonials %}
-        <article class="testimonial-card">
-            <h2>{{ testimonial.titre }}</h2>
-            <div class="date">{{ testimonial.date }}</div>
-            
-            {% if testimonial.podcast == "yes" %}
-            <div class="podcast-player">
-                <audio controls>
-                    <source src="/static/assets/podcast/{{ testimonial.url }}" type="audio/mpeg">
-                    Votre navigateur ne supporte pas l'élément audio.
-                </audio>
+<section id="testimonials-controls">
+    <div class="content-container">
+        <div class="controls-panel">
+            <div class="search-container">
+                <button id="search-button" aria-label="Rechercher">
+                    <i class="fa-solid fa-search"></i>
+                </button>
+                <input type="text" id="testimonial-search" placeholder="Rechercher dans les témoignages..." aria-label="Rechercher dans les témoignages">
+                <span class="search-results-count" id="search-count"></span>
             </div>
-            {% endif %}
             
-            <div class="testimonial-content">
-                {{ testimonial.texte }}
+            <div class="controls-divider"></div>
+            
+            <div class="view-options">
+                <button id="toggle-view" class="view-toggle" aria-label="Changer de vue">
+                    <i class="fa-solid fa-list"></i>
+                    <span>Vue compacte</span>
+                </button>
             </div>
-        </article>
-        {% endfor %}
-    {% else %}
-        <div class="no-testimonials">
-            <p>Aucun témoignage n'est disponible pour le moment.</p>
-            <p>Tu souhaites partager ton expérience ? <a href="/contact">Contacte-nous</a>.</p>
         </div>
-    {% endif %}
-</div>
+    </div>
+</section>
+
+<section id="testimonials-container">
+    <div class="content-container">
+        {% if testimonials %}
+            <div class="testimonials-list">
+                {% for testimonial in testimonials %}
+                <article class="testimonial-card" data-testimonial-id="{{ loop.index }}" id="testimonial-{{ loop.index }}">
+                    <div class="testimonial-header">
+                        <h2>{{ testimonial.titre }}</h2>
+                        <div class="date">{{ testimonial.date }}</div>
+                    </div>
+                    
+                    {% if testimonial.podcast == "yes" %}
+                    <div class="podcast-player">
+                        <div class="player-label">
+                            <i class="fa-solid fa-podcast"></i>
+                            <span>Écouter le témoignage</span>
+                        </div>
+                        <audio controls>
+                            <source src="/static/assets/podcast/{{ testimonial.url }}" type="audio/mpeg">
+                            Votre navigateur ne supporte pas l'élément audio.
+                        </audio>
+                    </div>
+                    {% endif %}
+                    
+                    <div class="testimonial-content">
+                        <div class="content-preview">
+                            {{ testimonial.texte|truncate(300) }}
+                            {% if testimonial.texte|length > 300 %}
+                                <button class="read-more" aria-expanded="false" aria-controls="full-content-{{ loop.index }}">
+                                    Lire la suite <i class="fa-solid fa-chevron-down"></i>
+                                </button>
+                            {% endif %}
+                        </div>
+                        
+                        {% if testimonial.texte|length > 300 %}
+                        <div id="full-content-{{ loop.index }}" class="full-content hidden">
+                            {{ testimonial.texte }}
+                            <button class="read-less">
+                                Réduire <i class="fa-solid fa-chevron-up"></i>
+                            </button>
+                        </div>
+                        {% endif %}
+                    </div>
+                    
+                    <div class="testimonial-footer">
+                        <div class="testimonial-actions">
+                            <button class="action-button share-button" aria-label="Partager ce témoignage">
+                                <i class="fa-solid fa-share-nodes"></i>
+                                <span>Partager</span>
+                            </button>
+                            
+                            <div class="action-button support-info" aria-label="Informations de soutien">
+                                <i class="fa-solid fa-heart"></i>
+                                <span>Soutien</span>
+                                <div class="support-tooltip">
+                                    <p>Si ce témoignage t'a touché et que tu cherches du soutien, tu peux consulter notre <a href="/aides">page d'aides</a>.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="no-testimonials">
+                <div class="no-content-icon">
+                    <i class="fa-solid fa-inbox"></i>
+                </div>
+                <p>Aucun témoignage n'est disponible pour le moment.</p>
+                <p>Tu souhaites partager ton expérience ? <a href="/contact" class="cta-button">Contacte-nous</a></p>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<section id="share-testimony">
+    <div class="content-container">
+        <div class="share-container">
+            <div class="share-text">
+                <h2>Ton expérience compte</h2>
+                <p>Chaque témoignage aide à sensibiliser et à éduquer sur les réalités vécues par les personnes transgenres. Ton histoire peut aider d'autres personnes à se sentir moins seules.</p>
+            </div>
+            <div class="share-action">
+                <a href="/contact" class="cta-button">Partager mon témoignage</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="/static/js/pages/temoignage.js" defer></script>
 {% endblock %}
