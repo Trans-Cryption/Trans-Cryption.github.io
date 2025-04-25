@@ -4,9 +4,20 @@ Ce dossier contient les templates Jinja2 utilisés pour générer les pages HTML
 
 ## Structure
 
-- `base.html` : Template de base contenant la structure HTML commune à toutes les pages
-- `pages/` : Templates spécifiques à chaque page du site
-- `components/` : Éléments réutilisables inclus dans les templates de pages
+```
+templates/
+├── base.html              # Template de base avec la structure HTML commune
+├── components/            # Éléments réutilisables pour les templates
+│   ├── menu.html          # Navigation principale du site
+│   └── ...                # Autres composants
+└── pages/                 # Templates spécifiques à chaque page
+    ├── index.html         # Page d'accueil
+    ├── temoignage.html    # Page des témoignages
+    ├── historique.html    # Page d'historique
+    ├── aides.html         # Page de ressources
+    ├── contact.html       # Page de contact
+    └── ...                # Autres pages
+```
 
 ## Principes de conception
 

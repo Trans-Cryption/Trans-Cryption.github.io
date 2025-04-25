@@ -2,9 +2,13 @@
 
 Ce dossier contient les données structurées utilisées pour générer le contenu dynamique du site.
 
-## Fichiers
+## Fichiers et structure
 
-- `temoignages.json` : Collection de témoignages affichés sur la page des témoignages
+```
+content/
+├── temoignages.json   # Collection de témoignages
+└── podcast/           # Fichiers audio des témoignages
+```
 
 ## Format des témoignages
 
@@ -25,10 +29,11 @@ Chaque témoignage dans `temoignages.json` doit suivre cette structure :
 1. Ouvrez le fichier `temoignages.json`
 2. Ajoutez un nouvel objet JSON au début du tableau pour qu'il apparaisse en premier
 3. Respectez le format ci-dessus
-4. Si le témoignage inclut un podcast, placez le fichier audio dans `/static/assets/podcast/`
+4. Si le témoignage inclut un podcast, placez le fichier audio dans `/content/podcast/`
 
 ## Remarques
 
 - Les témoignages sont affichés dans l'ordre où ils apparaissent dans le fichier JSON (du premier au dernier)
 - Le fichier JSON doit être un tableau valide d'objets, veillez à ce que la syntaxe soit correcte
 - Pour les témoignages longs, vous pouvez utiliser des paragraphes séparés par `\n\n` dans la propriété `texte`
+- Les fichiers audio dans `/content/podcast/` seront automatiquement copiés dans le site généré
