@@ -11,13 +11,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Clé RSA publique pour le chiffrement
   const publicKey = `-----BEGIN PUBLIC KEY-----
-MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAoYl7Lmc60QGEYE0p7utc
-l4m/5wCd1kvRfAVRsb9OynMCU/dvedn30H6G0cEkYhYrGw6m1JI+WU5Bvf3vfphj
-u/wwbDPbJa1V0NSSGZN0kR4UWmfjZgxzI8hgBkjZIaRHnXruBMjbUV8o2jRkcM7W
-9IavxKPjKlntfiXlUU76Tg3bfsCul0ftf607liQextyMiDM/UI5Z1z2iv24q5OH2
-GfD1mUCFtrx8hIo3hJ4HaA1VEj//k6tdcY1VYm3olMu/VK06Cuu8UePW+lFW6Ppd
-qCkq1pBFb7oL5BsgUK3PnbpDj0wt0Z4xrzjFMbXfiPLNxME3GIvqAQtw9ObMaZ1+
-aQIDAQAB
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAp1O+S+0lb8IiWl/Fjhn9
+AGWui9nPrgVLWx0jRAfrEU7XsR+BzIWlVm3BkVY0ENKG6bi4ljlBVLMxxFlWdPee
+NIkpEGZi/uuYNrIOJuxDtWegklWyvcRqPv3DHEJGFMSz5cyGw1YHfEJsSKIdkP+e
+Gkh9c+BHCAN8KxFM+rLvGb3/Rt2FcUx5juUBjwyeZWs0OqPZiENrKNg8iCa2uIPP
+/M6V+bCtnYCzfsv6FAFpFtIHZDYg3uGTLkX1RPUDY+ULSr365KvD4opT3eMfPvGw
+iJyGlqjOuBfNmdCplV90pRufY/It8TlVmJg8dDAqXXXcldGCxTZn5Z/jPNsxfDoO
+lQIDAQAB
 -----END PUBLIC KEY-----`;
 
   /**
