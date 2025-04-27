@@ -27,6 +27,7 @@ Le site est accessible à l'adresse : [https://trans-cryption.github.io](https:/
 - **Historique** : Informations historiques sur les personnes transgenres à travers les époques
 - **Ressources** : Associations et liens utiles pour les personnes transgenres
 - **Contact sécurisé** : Formulaire avec chiffrement de bout en bout pour témoigner anonymement
+- **Page d'erreur 404 personnalisée** : Expérience utilisateur améliorée lors de l'accès à des pages inexistantes
 
 ## Principes de conception
 

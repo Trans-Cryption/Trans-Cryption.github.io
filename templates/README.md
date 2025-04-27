@@ -16,6 +16,7 @@ templates/
     ├── historique.html    # Page d'historique
     ├── aides.html         # Page de ressources
     ├── contact.html       # Page de contact
+    ├── 404.html           # Page d'erreur 404 personnalisée
     └── ...                # Autres pages
 ```
 

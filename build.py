@@ -78,6 +78,11 @@ pages = [
         "output": "contact/index.html",
         "title": "Contact",
     },
+    {
+        "template": "pages/404.html",
+        "output": "404.html",
+        "title": "Page non trouvée",
+    },
 ]
 
 # Générer chaque page
