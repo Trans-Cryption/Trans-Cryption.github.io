@@ -46,6 +46,7 @@
   color: rgba(50, 50, 50, 0.9);
 }
 
+/* Style pour l'ancienne liste */
 .tip-list {
   margin: 0;
   padding-left: var(--spacing-lg);
@@ -61,6 +62,48 @@
 
 .tip-list li strong {
   color: rgba(50, 50, 50, 0.9);
+}
+
+/* Liste avec icônes */
+.tip-list-icons {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tip-list-icons li {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-md);
+  gap: var(--spacing-sm);
+}
+
+.tip-list-icons li:last-child {
+  margin-bottom: 0;
+}
+
+.tip-list-icons i {
+  color: var(--color-primary);
+  font-size: 1.2rem;
+  width: 24px;
+  text-align: center;
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.tip-item-content {
+  flex: 1;
+}
+
+.tip-item-content strong {
+  display: block;
+  margin-bottom: var(--spacing-xs);
+  color: rgba(50, 50, 50, 0.9);
+}
+
+.tip-item-content p {
+  margin: 0;
+  font-size: var(--font-size-sm);
 }
 
 /* Structure à deux colonnes */
@@ -389,7 +432,7 @@ button[type="submit"]:hover {
     color: rgba(230, 230, 230, 0.9);
   }
   
-  .tip-list li strong {
+  .tip-list li strong, .tip-item-content strong {
     color: rgba(230, 230, 230, 0.9);
   }
   
@@ -459,6 +502,10 @@ button[type="submit"]:hover {
 
   .tip-list {
     padding-left: var(--spacing-lg);
+  }
+
+  .tip-list-icons li {
+    gap: var(--spacing-xs);
   }
 
   .encryption-info {
