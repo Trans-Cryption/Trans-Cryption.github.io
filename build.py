@@ -2,6 +2,7 @@ import os
 import shutil
 import markdown
 import frontmatter
+import pymdownx.tilde
 from jinja2 import Environment, FileSystemLoader
 from datetime import datetime
 
@@ -81,8 +82,17 @@ def load_testimonials_from_directory(directory):
                 post = frontmatter.load(f)
 
                 # Convertir Markdown en HTML
-                html_content = markdown.markdown(post.content)
-
+                html_content = markdown.markdown(
+                    post.content,
+                    extensions=[
+                        "markdown.extensions.fenced_code",
+                        "markdown.extensions.tables",
+                        "markdown.extensions.sane_lists",
+                        "markdown.extensions.nl2br",
+                        "markdown.extensions.smarty",
+                        "pymdownx.tilde",
+                    ],
+                )
                 # Préparer les métadonnées
                 metadata = post.metadata.copy()
                 metadata["texte"] = html_content
