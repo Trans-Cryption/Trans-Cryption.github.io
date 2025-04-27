@@ -15,6 +15,54 @@
   margin: 0 auto var(--spacing-xl);
 }
 
+/* Info-bulle de collaboration structurée */
+.collab-tip {
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-md);
+  background-color: rgba(255, 193, 7, 0.1);
+  border-radius: var(--border-radius);
+  border-left: 3px solid #ffc107;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+}
+
+.collab-tip i {
+  color: #ffc107;
+  margin-top: 3px;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.tip-content {
+  flex: 1;
+}
+
+.tip-title {
+  font-weight: 600;
+  margin: 0 0 var(--spacing-sm) 0;
+  color: rgba(50, 50, 50, 0.9);
+}
+
+.tip-list {
+  margin: 0;
+  padding-left: var(--spacing-lg);
+}
+
+.tip-list li {
+  margin-bottom: var(--spacing-sm);
+}
+
+.tip-list li:last-child {
+  margin-bottom: 0;
+}
+
+.tip-list li strong {
+  color: rgba(50, 50, 50, 0.9);
+}
+
 /* Structure à deux colonnes */
 .contact-container {
   display: grid;
@@ -124,25 +172,22 @@
   gap: var(--spacing-sm);
 }
 
-.alt-methods i {
+.alt-methods li i {
   color: var(--color-secondary);
 }
 
-.collab-tip {
-  margin-top: var(--spacing-md);
-  padding: var(--spacing-md);
-  background-color: rgba(255, 193, 7, 0.1);
-  border-radius: var(--border-radius);
-  border-left: 3px solid #ffc107;
-  display: flex;
-  align-items: flex-start;
-  gap: var(--spacing-sm);
-  font-size: var(--font-size-sm);
-  line-height: 1.5;
+.alt-methods p {
+  margin-bottom: var(--spacing-md);
 }
 
-.collab-tip i {
-  color: #ffc107;
+/* Préservation du style original pour le collab-tip de alt-methods */
+.alt-methods .collab-tip {
+  margin-top: var(--spacing-md);
+  display: flex;
+  align-items: flex-start;
+}
+
+.alt-methods .collab-tip i {
   margin-top: 3px;
 }
 
@@ -335,6 +380,19 @@ button[type="submit"]:hover {
 
 /* Mode sombre */
 @media (prefers-color-scheme: dark) {
+  .collab-tip {
+    background-color: rgba(255, 193, 7, 0.15);
+    border-color: rgba(255, 193, 7, 0.5);
+  }
+  
+  .tip-title {
+    color: rgba(230, 230, 230, 0.9);
+  }
+  
+  .tip-list li strong {
+    color: rgba(230, 230, 230, 0.9);
+  }
+  
   input, textarea {
     background-color: rgba(30, 30, 30, 0.3);
     border-color: rgba(125, 125, 125, 0.3);
@@ -394,9 +452,20 @@ button[type="submit"]:hover {
   .contact-icon {
     margin-bottom: var(--spacing-sm);
   }
+  
+  .collab-tip {
+    padding: var(--spacing-sm);
+  }
+
+  .tip-list {
+    padding-left: var(--spacing-lg);
+  }
 
   .encryption-info {
     margin: var(--spacing-md);
+  }
+  
+  .encryption-summary {
     padding: var(--spacing-sm) var(--spacing-md);
   }
 }
