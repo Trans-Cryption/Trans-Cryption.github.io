@@ -148,6 +148,24 @@
   font-size: 0.9em;
 }
 
+/* Tag cloud intégré à la recherche */
+.tag-cloud {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-xs);
+  padding: var(--spacing-sm) var(--spacing-md);
+  margin-top: var(--spacing-sm);
+  border-top: 1px dashed rgba(125, 125, 125, 0.1);
+  align-items: center;
+}
+
+.tag-count {
+  font-size: 0.9em;
+  opacity: 0.8;
+  margin-left: 2px;
+}
+
 /* Message pas de résultats */
 .no-results-message {
   text-align: center;
@@ -257,6 +275,10 @@
   #testimonials-controls.scrolled {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   }
+  
+  .tag-cloud {
+    border-top-color: rgba(255, 255, 255, 0.05);
+  }
 }
 
 /* Responsive */
@@ -291,5 +313,16 @@
   
   .view-toggle {
     width: 100%; /* Pour le mobile, prendre toute la largeur */
+  }
+  
+  .tag-cloud {
+    padding: var(--spacing-xs);
+    justify-content: center;
+    gap: var(--spacing-xs);
+  }
+  
+  .tag {
+    font-size: 0.75em;
+    padding: 2px var(--spacing-xs);
   }
 }

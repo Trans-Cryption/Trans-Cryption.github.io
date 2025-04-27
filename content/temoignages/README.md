@@ -21,6 +21,7 @@ titre: "Titre du témoignage"
 date: "JJ/MM/AAAA"
 podcast: true ou false
 url: "nom-fichier.mp3"  # Uniquement si podcast est true
+tags: ["tag1", "tag2", "tag3"]  # Liste de mots-clés associés au témoignage
 ---
 
 Contenu du témoignage...
@@ -34,6 +35,7 @@ Le "front matter" est la section au début du fichier entre les triple tirets `-
 - `date` : La date du témoignage au format JJ/MM/AAAA (obligatoire)
 - `podcast` : Valeur booléenne `true` si le témoignage est disponible en podcast, sinon `false` (obligatoire)
 - `url` : Le nom du fichier audio dans le dossier `podcasts/` (obligatoire si podcast est `true`)
+- `tags` : Liste de mots-clés associés au témoignage, au format `["tag1", "tag2", "tag3"]` (optionnel)
 
 ## Contenu
 
@@ -71,3 +73,15 @@ Par exemple, pour un témoignage `mon-experience-a-paris.md`, le fichier audio s
 ## Ordre d'affichage
 
 Les témoignages sont automatiquement triés par date (du plus récent au plus ancien) lors de la génération du site.
+
+## Tags (mots-clés)
+
+Les tags permettent de catégoriser les témoignages et facilitent leur recherche. Quelques conseils pour les tags :
+
+- Utilisez des tags courts et descriptifs
+- Préférez les tags existants pour maintenir la cohérence
+- Ajoutez 2 à 5 tags par témoignage
+- Évitez les tags trop génériques ou trop spécifiques
+- Utilisez des tags qui décrivent le contenu ou le contexte du témoignage
+
+Exemples de tags pertinents : "famille", "travail", "médical", "discrimination", "coming-out", "violence", "transition", "école", etc.

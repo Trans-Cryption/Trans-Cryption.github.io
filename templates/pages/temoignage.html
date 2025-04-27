@@ -43,6 +43,20 @@
                 </button>
             </div>
         </div>
+        
+        <!-- Nuage de tags intégré sous la barre de recherche -->
+        {% if all_tags and all_tags|length > 0 %}
+        <div class="tag-cloud">
+            <button type="button" class="tag tag-filter active" data-tag="">
+                Tous <span class="tag-count">({{ testimonials|length }})</span>
+            </button>
+            {% for tag in all_tags %}
+                <button type="button" class="tag tag-filter" data-tag="{{ tag }}">
+                    {{ tag }} <span class="tag-count">({{ tag_counts[tag] }})</span>
+                </button>
+            {% endfor %}
+        </div>
+        {% endif %}
     </div>
 </section>
 
@@ -56,6 +70,17 @@
                         <h2>{{ testimonial.titre }}</h2>
                         <div class="date">{{ testimonial.date }}</div>
                     </div>
+                    
+                    <!-- Affichage des tags -->
+                    {% if testimonial.tags and testimonial.tags|length > 0 %}
+                    <div class="tags-container">
+                        {% for tag in testimonial.tags %}
+                        <button type="button" class="tag tag-filter" data-tag="{{ tag }}">
+                            <i class="fa-solid fa-tag"></i>{{ tag }}
+                        </button>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                     
                     {% if testimonial.podcast == "yes" %}
                     <div class="podcast-player">
