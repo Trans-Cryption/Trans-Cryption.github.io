@@ -6,6 +6,9 @@ venv/
 env/
 .env/
 .venv/
+ENV/
+env.bak/
+venv.bak/
 
 # Fichiers Python générés
 __pycache__/
@@ -28,16 +31,38 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
 
 # Logs et données temporaires
 *.log
 *.tmp
 .DS_Store
 Thumbs.db
+.coverage
+htmlcov/
+.pytest_cache/
+coverage.xml
+*.cover
 
 # Fichiers IDE et éditeurs
 .idea/
 .vscode/
 *.swp
+*.swo
+*~
+.project
+.pydevproject
+.settings/
+.classpath
+
+# Dépôts de package
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Fichiers de déploiement et sécurité
+.env
+.secret
+*.pem
+*.keyswp
 *.swo
 *~
