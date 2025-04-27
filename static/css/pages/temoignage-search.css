@@ -129,6 +129,8 @@
   font-size: var(--font-size-sm);
   font-weight: 500;
   transition: all var(--transition-speed);
+  width: 150px; /* Largeur fixe pour éviter le changement de taille */
+  justify-content: center; /* Centrer le contenu */
 }
 
 .view-toggle:hover {
@@ -136,10 +138,10 @@
   transform: translateY(-2px);
 }
 
+/* Pas de changement de couleur quand actif, seulement une ombre et une bordure plus prononcée */
 .view-toggle.active {
-  background-color: var(--color-secondary);
-  color: white;
   border-color: var(--color-secondary);
+  box-shadow: 0 2px 6px rgba(0, 162, 255, 0.2);
 }
 
 .view-toggle i {
@@ -285,5 +287,9 @@
   
   .search-container input {
     font-size: var(--font-size-sm);
+  }
+  
+  .view-toggle {
+    width: 100%; /* Pour le mobile, prendre toute la largeur */
   }
 }
