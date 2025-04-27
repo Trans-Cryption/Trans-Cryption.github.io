@@ -310,6 +310,10 @@
   .testimonials-list.compact-view .expansion-toggle:hover {
     background: rgba(0, 162, 255, 0.25);
   }
+  
+  .tag-cloud {
+    background-color: rgba(0, 162, 255, 0.08);
+  }
 }
 
 /* Responsive */
@@ -332,5 +336,15 @@
   
   .testimonials-list.compact-view .testimonial-actions {
     justify-content: center;
+  }
+  
+  .tag-cloud {
+    padding: var(--spacing-sm);
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .tag-cloud-title {
+    margin-bottom: var(--spacing-xs);
   }
 }

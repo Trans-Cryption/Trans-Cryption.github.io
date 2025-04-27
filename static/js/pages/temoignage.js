@@ -176,42 +176,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    function performSearch() {
-        const searchTerm = searchInput.value.toLowerCase().trim();
-        let resultsCount = 0;
-        
-        // Supprimer les surlignages précédents
-        document.querySelectorAll('.search-highlight').forEach(el => {
-            const parent = el.parentNode;
-            parent.replaceChild(document.createTextNode(el.textContent), el);
-        });
-        
-        testimonialCards.forEach(card => {
-            const title = card.querySelector('h2').textContent.toLowerCase();
-            const content = card.querySelector('.testimonial-content').textContent.toLowerCase();
-            
-            if (searchTerm === '' || title.includes(searchTerm) || content.includes(searchTerm)) {
-                card.style.display = '';
-                resultsCount++;
-                
-                // Mettre en surbrillance le terme recherché si présent
-                if (searchTerm !== '') {
-                    highlightText(card, searchTerm);
-                }
-            } else {
-                card.style.display = 'none';
-            }
-        });
-        
-        // Afficher le compteur de résultats
-        if (searchTerm !== '') {
-            searchCount.textContent = `${resultsCount} résultat${resultsCount > 1 ? 's' : ''}`;
-            searchCount.classList.add('visible');
-        } else {
-            searchCount.classList.remove('visible');
-        }
-        
-        // Afficher un message si aucun résultat
+    // Fonction pour mettre à jour le message "aucun résultat"
+    function updateNoResultsMessage(resultsCount, searchTerm) {
         let noResultsMsg = document.getElementById('no-search-results');
         
         if (resultsCount === 0 && searchTerm !== '') {
@@ -230,6 +196,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Ajouter l'événement pour réinitialiser la recherche
                 document.getElementById('reset-search').addEventListener('click', function() {
                     searchInput.value = '';
+                    resetTagFilters();
                     performSearch();
                     searchInput.focus();
                 });
@@ -237,8 +204,72 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (noResultsMsg) {
             noResultsMsg.remove();
         }
+    }
+    
+    // Fonction pour la recherche
+    function performSearch() {
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        let resultsCount = 0;
         
-        console.log(`Recherche effectuée: "${searchTerm}" - ${resultsCount} résultats trouvés`);
+        // Réinitialiser les filtres de tags si la recherche est active
+        if (searchTerm !== '') {
+            resetTagFilters();
+        }
+        
+        // Supprimer les surlignages précédents
+        document.querySelectorAll('.search-highlight').forEach(el => {
+            const parent = el.parentNode;
+            parent.replaceChild(document.createTextNode(el.textContent), el);
+        });
+        
+        testimonialCards.forEach(card => {
+            const title = card.querySelector('h2').textContent.toLowerCase();
+            const content = card.querySelector('.testimonial-content').textContent.toLowerCase();
+            
+            // Rechercher dans les tags
+            const tags = Array.from(card.querySelectorAll('.tag')).map(tag => 
+                tag.textContent.toLowerCase().trim()
+            );
+            
+            if (searchTerm === '' || 
+                title.includes(searchTerm) || 
+                content.includes(searchTerm) ||
+                tags.some(tag => tag.includes(searchTerm))) {
+                
+                card.style.display = '';
+                resultsCount++;
+                
+                // Mettre en surbrillance le terme recherché si présent
+                if (searchTerm !== '') {
+                    highlightText(card, searchTerm);
+                    
+                    // Mettre en évidence les tags correspondants
+                    card.querySelectorAll('.tag').forEach(tagElement => {
+                        if (tagElement.textContent.toLowerCase().includes(searchTerm)) {
+                            tagElement.style.backgroundColor = 'rgba(255, 0, 212, 0.25)';
+                        }
+                    });
+                } else {
+                    // Réinitialiser les styles des tags
+                    card.querySelectorAll('.tag').forEach(tagElement => {
+                        tagElement.style.backgroundColor = '';
+                    });
+                }
+            } else {
+                card.style.display = 'none';
+            }
+        });
+        
+        // Afficher le compteur de résultats
+        if (searchTerm !== '') {
+            searchCount.textContent = `${resultsCount} résultat${resultsCount > 1 ? 's' : ''}`;
+            searchCount.classList.add('visible');
+        } else {
+            searchCount.classList.remove('visible');
+        }
+        
+        // Afficher un message si aucun résultat
+        updateNoResultsMessage(resultsCount, searchTerm);
     }
     
     // Fonction pour mettre en surbrillance le texte
@@ -306,7 +337,85 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    if (searchButton && searchInput && testimonialCards.length > 0) {
+    // Filtrage par tag
+    const tagFilters = document.querySelectorAll('.tag-filter');
+    
+    // Fonction pour réinitialiser les filtres de tags
+    function resetTagFilters() {
+        tagFilters.forEach(btn => {
+            if (btn.dataset.tag === '') {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+    }
+    
+    // Fonction pour filtrer par tag
+    function filterByTag(tagName) {
+        // Vider le champ de recherche
+        if (searchInput.value !== '') {
+            searchInput.value = '';
+            searchCount.classList.remove('visible');
+        }
+        
+        // Mise à jour des boutons de filtre
+        tagFilters.forEach(btn => {
+            if (btn.dataset.tag === tagName) {
+                btn.classList.add('active');
+            } else {
+                btn.classList.remove('active');
+            }
+        });
+        
+        // Filtrage des témoignages
+        if (tagName === '') {
+            // Afficher tous les témoignages si aucun tag n'est sélectionné
+            testimonialCards.forEach(card => {
+                card.style.display = '';
+            });
+            
+            // Supprimer le fragment d'URL
+            history.pushState("", document.title, window.location.pathname);
+        } else {
+            // Sinon, n'afficher que les témoignages avec le tag spécifié
+            testimonialCards.forEach(card => {
+                const cardTags = Array.from(card.querySelectorAll('.tag'))
+                    .map(tag => tag.dataset.tag || tag.textContent.trim());
+                
+                if (cardTags.includes(tagName)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            // Mettre à jour l'URL avec le tag sélectionné
+            history.pushState("", document.title, `#tag=${encodeURIComponent(tagName)}`);
+        }
+        
+        // Mettre à jour le message si aucun résultat
+        updateNoResultsMessage(
+            Array.from(testimonialCards).filter(card => card.style.display !== 'none').length,
+            `tag: ${tagName}`
+        );
+    }
+    
+    // Attacher les écouteurs d'événements aux boutons de filtrage
+    tagFilters.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const tagName = this.dataset.tag;
+            filterByTag(tagName);
+        });
+    });
+    
+    // Vérifier si un tag est présent dans l'URL au chargement
+    if (window.location.hash.startsWith('#tag=')) {
+        const tagName = decodeURIComponent(window.location.hash.substring(5));
+        filterByTag(tagName);
+    }
+    
+    if (searchButton && searchInput) {
         // Événement sur le clic du bouton
         searchButton.addEventListener('click', performSearch);
         
@@ -371,7 +480,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     // Vérifier si l'URL contient un identifiant de témoignage
-    if (window.location.hash) {
+    if (window.location.hash && !window.location.hash.startsWith('#tag=')) {
         const targetId = window.location.hash.substring(1);
         const targetElement = document.getElementById(targetId);
         

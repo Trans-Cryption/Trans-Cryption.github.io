@@ -127,6 +127,16 @@ def load_testimonials_from_directory(directory):
                             f"⚠️ Fichier podcast introuvable: {metadata['url']} pour le témoignage {metadata.get('titre', filename)}"
                         )
 
+                # Gérer les tags - S'assurer qu'ils sont au format liste
+                if "tags" in metadata:
+                    if not isinstance(metadata["tags"], list):
+                        metadata["tags"] = []
+                        print(
+                            f"⚠️ Format de tags invalide dans {filename} - doit être une liste"
+                        )
+                else:
+                    metadata["tags"] = []
+
                 testimonials.append(metadata)
                 print(f"✅ Témoignage chargé : {metadata.get('titre', filename)}")
         except Exception as e:
@@ -161,6 +171,22 @@ print("📝 Chargement des témoignages...")
 testimonials = load_testimonials_from_directory(TESTIMONY_DIR)
 print(f"✅ {len(testimonials)} témoignages chargés")
 
+# Collecter tous les tags uniques et calculer le nombre de témoignages par tag
+print("🔖 Analyse des tags...")
+all_tags = set()
+for testimonial in testimonials:
+    all_tags.update(testimonial["tags"])
+
+# Trier les tags par ordre alphabétique
+all_tags = sorted(list(all_tags))
+
+# Calculer le nombre de témoignages par tag
+tag_counts = {}
+for tag in all_tags:
+    tag_counts[tag] = sum(1 for t in testimonials if tag in t.get("tags", []))
+
+print(f"✅ {len(all_tags)} tags uniques identifiés")
+
 # Pages à générer
 pages = [
     {"template": "pages/index.html", "output": "index.html", "title": "Accueil"},
@@ -169,6 +195,8 @@ pages = [
         "output": "temoignage/index.html",
         "title": "Témoignages",
         "testimonials": testimonials,
+        "all_tags": all_tags,
+        "tag_counts": tag_counts,
     },
     {
         "template": "pages/historique.html",

@@ -2,6 +2,7 @@
 titre: "Relation qui finit mal"
 date: "22/04/2025"
 podcast: false
+tags: ["relation", "coming-out", "famille", "école", "violence psychologique"]
 ---
 
 J'ai aujourd'hui 22 ans. Depuis mes quatre ans, je sais que je m'identifie en tant que garçon. Après avoir essayé plusieurs fois de dire que je l'étais et avoir reçu des retours négatifs, j'ai intégré que ce fait était un problème. J'ai arrêté d'en parler autour de mes dix ans à mes amis de l'époque.
