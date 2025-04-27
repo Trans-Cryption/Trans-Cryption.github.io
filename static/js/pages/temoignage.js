@@ -112,7 +112,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Vérifier s'il y a une préférence utilisateur sauvegardée
         const preferCompactView = localStorage.getItem('preferCompactView') === 'true';
         
-        // Appliquer la préférence si elle existe
+        // Par défaut, utiliser la vue détaillée sauf si l'utilisateur a explicitement choisi la vue compacte
         if (preferCompactView) {
             testimonialsList.classList.add('compact-view');
             // Mettre à jour le bouton
@@ -120,8 +120,13 @@ document.addEventListener('DOMContentLoaded', function() {
             toggleViewButton.querySelector('span').textContent = 'Passer en vue détaillée';
             console.log('Préférence utilisateur appliquée: vue compacte');
         } else {
+            // Vue détaillée est appliquée par défaut (pas besoin d'ajouter de classe)
             toggleViewButton.querySelector('i').className = 'fa-solid fa-list';
             toggleViewButton.querySelector('span').textContent = 'Passer en vue compacte';
+            console.log('Vue détaillée appliquée (défaut)');
+            
+            // Assurer que la vue compacte est désactivée (au cas où)
+            testimonialsList.classList.remove('compact-view');
         }
         
         // Initialiser l'état des témoignages au chargement
