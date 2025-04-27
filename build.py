@@ -3,6 +3,8 @@ import shutil
 import markdown
 import frontmatter
 import pymdownx.tilde
+import pymdownx.mark
+import pymdownx.emoji
 from jinja2 import Environment, FileSystemLoader
 from datetime import datetime
 
@@ -43,7 +45,7 @@ if os.path.exists(PODCAST_DIR):
             shutil.copy2(src_path, dst_path)
             print(f"✅ Podcast copié: {podcast_file}")
 else:
-    print("ℹ️ Aucun dossier de podcasts trouvé à l'emplacement: {PODCAST_DIR}")
+    print(f"ℹ️ Aucun dossier de podcasts trouvé à l'emplacement: {PODCAST_DIR}")
 
 # Configurer l'environnement Jinja2
 print("⚙️ Configuration de Jinja2...")
@@ -81,7 +83,7 @@ def load_testimonials_from_directory(directory):
             with open(file_path, "r", encoding="utf-8") as f:
                 post = frontmatter.load(f)
 
-                # Convertir Markdown en HTML
+                # Convertir Markdown en HTML avec des extensions améliorées pour les témoignages
                 html_content = markdown.markdown(
                     post.content,
                     extensions=[
@@ -90,9 +92,23 @@ def load_testimonials_from_directory(directory):
                         "markdown.extensions.sane_lists",
                         "markdown.extensions.nl2br",
                         "markdown.extensions.smarty",
-                        "pymdownx.tilde",
+                        "markdown.extensions.attr_list",  # Pour ajouter des classes et attributs
+                        "markdown.extensions.def_list",  # Pour les listes de définition
+                        "pymdownx.tilde",  # Pour le texte barré
+                        "pymdownx.mark",  # Pour le texte surligné
+                        "pymdownx.emoji",  # Pour les emojis
+                        "markdown.extensions.footnotes",  # Pour les notes de bas de page
                     ],
+                    extension_configs={
+                        "pymdownx.emoji": {
+                            "emoji_index": pymdownx.emoji.gemoji,
+                            "emoji_generator": pymdownx.emoji.to_alt,
+                            "alt": "emoji {alt}",
+                            "options": {"attributes": {"class": "emoji"}},
+                        }
+                    },
                 )
+
                 # Préparer les métadonnées
                 metadata = post.metadata.copy()
                 metadata["texte"] = html_content

@@ -13,6 +13,11 @@
     --color-light: rgb(162, 212, 255);       /* Bleu ciel */
     --color-card: rgb(240, 248, 255);        /* Bleu très pâle, presque blanc */
     
+    /* Variables RGB pour faciliter les transparences */
+    --color-primary-rgb: 255, 0, 212;
+    --color-secondary-rgb: 0, 162, 255;
+    --color-text-rgb: 9, 9, 9;
+    
     /* Espacements */
     --spacing-xs: 4px;
     --spacing-sm: 8px;
@@ -47,6 +52,11 @@
         --color-primary: #ee5fe2;
         --color-secondary: #5fa9ee;
         --color-card: #2a2a2c;
+        
+        /* Mise à jour des variables RGB pour le mode sombre */
+        --color-primary-rgb: 238, 95, 226;
+        --color-secondary-rgb: 95, 169, 238;
+        --color-text-rgb: 254, 254, 254;
     }
 }
 
