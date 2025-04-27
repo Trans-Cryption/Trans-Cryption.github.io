@@ -1,17 +1,20 @@
 import os
-import json
 import shutil
+import markdown
+import frontmatter
 from jinja2 import Environment, FileSystemLoader
+from datetime import datetime
 
 """
 Script de génération du site statique
-Ce script génère le site web en utilisant les templates Jinja2 et les données JSON
+Ce script génère le site web en utilisant les templates Jinja2 et les fichiers Markdown
 """
 
 # Configuration
 TEMPLATE_DIR = "templates"
 CONTENT_DIR = "content"
-PODCAST_DIR = "content/podcast"
+TESTIMONY_DIR = os.path.join(CONTENT_DIR, "temoignages")
+PODCAST_DIR = os.path.join(CONTENT_DIR, "temoignages", "podcasts")
 STATIC_DIR = "static"
 OUTPUT_DIR = "site"
 
@@ -24,39 +27,113 @@ os.makedirs(OUTPUT_DIR)
 # Copier les fichiers statiques
 print("📁 Copie des fichiers statiques...")
 shutil.copytree(STATIC_DIR, os.path.join(OUTPUT_DIR, "static"))
-shutil.copytree(PODCAST_DIR, os.path.join(OUTPUT_DIR, "static/assets/podcast"))
+
+# Créer le répertoire pour les podcasts dans le dossier de sortie
+podcast_output_dir = os.path.join(OUTPUT_DIR, "static", "assets", "podcast")
+os.makedirs(podcast_output_dir, exist_ok=True)
+
+# Copier les fichiers podcast s'ils existent
+if os.path.exists(PODCAST_DIR):
+    print("📁 Copie des fichiers podcast...")
+    for podcast_file in os.listdir(PODCAST_DIR):
+        if podcast_file.lower().endswith((".mp3", ".ogg", ".wav")):
+            src_path = os.path.join(PODCAST_DIR, podcast_file)
+            dst_path = os.path.join(podcast_output_dir, podcast_file)
+            shutil.copy2(src_path, dst_path)
+            print(f"✅ Podcast copié: {podcast_file}")
+else:
+    print("ℹ️ Aucun dossier de podcasts trouvé à l'emplacement: {PODCAST_DIR}")
 
 # Configurer l'environnement Jinja2
 print("⚙️ Configuration de Jinja2...")
 env = Environment(loader=FileSystemLoader(TEMPLATE_DIR))
 
 
-# Fonction de chargement des données JSON
-def load_json_content(filename):
+def load_testimonials_from_directory(directory):
     """
-    Charge un fichier JSON depuis le répertoire content/
+    Charge tous les témoignages Markdown depuis un répertoire
 
     Args:
-        filename (str): Nom du fichier JSON à charger
+        directory (str): Chemin vers le répertoire contenant les fichiers Markdown
 
     Returns:
-        dict/list: Contenu du fichier JSON ou un dictionnaire/liste vide en cas d'erreur
+        list: Liste des témoignages avec leurs métadonnées et contenu HTML
     """
-    path = os.path.join(CONTENT_DIR, filename)
-    if os.path.exists(path):
+    testimonials = []
+
+    if not os.path.exists(directory):
+        print(f"⚠️ Répertoire {directory} introuvable")
+        return testimonials
+
+    # Parcourir tous les fichiers .md du répertoire
+    for filename in sorted(os.listdir(directory)):
+        # Ignorer le dossier des podcasts et le README
+        if (
+            os.path.isdir(os.path.join(directory, filename))
+            or filename.startswith("README")
+            or not filename.endswith(".md")
+        ):
+            continue
+
+        file_path = os.path.join(directory, filename)
         try:
-            with open(path, "r", encoding="utf-8") as f:
-                return json.load(f)
-        except json.JSONDecodeError:
-            print(f"⚠️ Erreur de décodage JSON dans {filename}")
-            return {} if filename.endswith(".json") else []
-    print(f"⚠️ Fichier {filename} introuvable")
-    return {} if filename.endswith(".json") else []
+            with open(file_path, "r", encoding="utf-8") as f:
+                post = frontmatter.load(f)
+
+                # Convertir Markdown en HTML
+                html_content = markdown.markdown(post.content)
+
+                # Préparer les métadonnées
+                metadata = post.metadata.copy()
+                metadata["texte"] = html_content
+
+                # Conversion de la valeur du podcast en "yes" ou "no" pour compatibilité
+                metadata["podcast"] = "yes" if metadata.get("podcast", False) else "no"
+
+                # Ajouter un champ pour le nom du fichier (utile pour les liens)
+                metadata["file_id"] = os.path.splitext(filename)[0]
+
+                # Vérifier si le fichier podcast existe lorsque podcast=yes
+                if metadata["podcast"] == "yes" and "url" in metadata:
+                    podcast_path = os.path.join(PODCAST_DIR, metadata["url"])
+                    if not os.path.exists(podcast_path):
+                        print(
+                            f"⚠️ Fichier podcast introuvable: {metadata['url']} pour le témoignage {metadata.get('titre', filename)}"
+                        )
+
+                testimonials.append(metadata)
+                print(f"✅ Témoignage chargé : {metadata.get('titre', filename)}")
+        except Exception as e:
+            print(f"⚠️ Erreur lors du traitement du témoignage {filename}: {str(e)}")
+
+    # Fonction pour convertir une date du format DD/MM/YYYY en objet datetime
+    def parse_date(date_str):
+        try:
+            return datetime.strptime(date_str, "%d/%m/%Y")
+        except (ValueError, TypeError):
+            # Date invalide ou manquante - utiliser une date par défaut (ancienne)
+            return datetime(1900, 1, 1)
+
+    # Trier les témoignages par date (les plus récents d'abord)
+    testimonials.sort(key=lambda x: parse_date(x.get("date", "")), reverse=True)
+
+    return testimonials
 
 
-# Charger les témoignages
+# Vérifier que le dossier des témoignages existe
+if not os.path.exists(TESTIMONY_DIR):
+    os.makedirs(TESTIMONY_DIR)
+    print("📁 Création du dossier des témoignages")
+
+# Vérifier que le dossier des podcasts existe
+if not os.path.exists(PODCAST_DIR):
+    os.makedirs(PODCAST_DIR)
+    print("📁 Création du dossier des podcasts")
+
+# Charger les témoignages directement à partir des fichiers Markdown
 print("📝 Chargement des témoignages...")
-testimonials = load_json_content("temoignages.json")
+testimonials = load_testimonials_from_directory(TESTIMONY_DIR)
+print(f"✅ {len(testimonials)} témoignages chargés")
 
 # Pages à générer
 pages = [

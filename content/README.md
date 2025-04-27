@@ -6,34 +6,36 @@ Ce dossier contient les données structurées utilisées pour générer le conte
 
 ```
 content/
-├── temoignages.json   # Collection de témoignages
-└── podcast/           # Fichiers audio des témoignages
+└── temoignages/          # Fichiers Markdown des témoignages individuels
+    └── podcasts/         # Fichiers audio des témoignages
 ```
 
-## Format des témoignages
+## Structure d'un témoignage
 
-Chaque témoignage dans `temoignages.json` doit suivre cette structure :
+Chaque témoignage est stocké sous forme de fichier Markdown dans le dossier `temoignages/`. 
 
-```json
-{
-  "date": "JJ/MM/AAAA",
-  "titre": "Titre du témoignage",
-  "texte": "Contenu du témoignage...",
-  "podcast": "yes" ou "no",
-  "url": "nom-fichier.mp3"  // Uniquement si podcast est "yes"
-}
+### Structure du fichier Markdown
+
+```markdown
+---
+titre: "Titre du témoignage"
+date: "JJ/MM/AAAA"
+podcast: false
+url: "nom-fichier.mp3"  # Uniquement si podcast est true
+---
+
+Contenu du témoignage au format Markdown...
 ```
 
 ## Comment ajouter un témoignage
 
-1. Ouvrez le fichier `temoignages.json`
-2. Ajoutez un nouvel objet JSON au début du tableau pour qu'il apparaisse en premier
-3. Respectez le format ci-dessus
-4. Si le témoignage inclut un podcast, placez le fichier audio dans `/content/podcast/`
+1. Créez un nouveau fichier Markdown dans le dossier `content/temoignages/`
+2. Suivez la structure ci-dessus pour le contenu du fichier
+3. Si le témoignage inclut un podcast, placez le fichier audio dans `content/temoignages/podcasts/` et référencez-le dans le front matter du Markdown
 
 ## Remarques
 
-- Les témoignages sont affichés dans l'ordre où ils apparaissent dans le fichier JSON (du premier au dernier)
-- Le fichier JSON doit être un tableau valide d'objets, veillez à ce que la syntaxe soit correcte
-- Pour les témoignages longs, vous pouvez utiliser des paragraphes séparés par `\n\n` dans la propriété `texte`
-- Les fichiers audio dans `/content/podcast/` seront automatiquement copiés dans le site généré
+- Les témoignages sont affichés sur le site dans l'ordre chronologique inverse (les plus récents en premier)
+- Les métadonnées (titre, date, podcast, url) doivent être présentes dans le front matter du fichier Markdown
+- Pour les témoignages longs, vous pouvez utiliser la syntaxe Markdown standard pour structurer le contenu (paragraphes, listes, emphase, etc.)
+- Les fichiers audio dans `temoignages/podcasts/` seront automatiquement copiés dans le site généré
