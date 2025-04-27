@@ -39,6 +39,116 @@
   grid-template-columns: 1fr;
   gap: var(--spacing-xl);
   margin-bottom: var(--spacing-xxl);
+  transition: all var(--transition-speed);
+}
+
+/* Styles de la vue compacte */
+.testimonials-list.compact-view {
+  gap: var(--spacing-md);
+}
+
+.testimonials-list.compact-view .testimonial-card {
+  padding: var(--spacing-md);
+  transition: all var(--transition-speed);
+}
+
+.testimonials-list.compact-view .testimonial-card::before {
+  height: 100%;
+  width: 3px;
+}
+
+.testimonials-list.compact-view .testimonial-header {
+  margin-bottom: var(--spacing-sm);
+  padding-bottom: var(--spacing-xs);
+  position: relative; /* Pour positionner l'expansion toggle */
+}
+
+/* Permettre de voir le contenu en vue compacte en affichant un bouton d'expansion */
+.testimonials-list.compact-view .testimonial-content .content-preview {
+  display: none;
+}
+
+.testimonials-list.compact-view .testimonial-content .full-content {
+  display: none;
+}
+
+/* Masquer le bouton de réduction de la vue détaillée en vue compacte */
+.testimonials-list.compact-view .testimonial-card.expanded .full-content .read-less {
+  display: none;
+}
+
+.testimonials-list.compact-view .expansion-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  color: var(--color-secondary);
+  background: rgba(0, 162, 255, 0.1);
+  border: none;
+  padding: var(--spacing-xs) var(--spacing-md);
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all var(--transition-speed);
+  white-space: nowrap;
+  line-height: 1.5;
+  margin-top: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+}
+
+.testimonials-list.compact-view .expansion-toggle:hover {
+  background: rgba(0, 162, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.testimonials-list:not(.compact-view) .expansion-toggle {
+  display: none;
+}
+
+.testimonials-list.compact-view .testimonial-content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Support pour les témoignages qui sont développés même en vue compacte */
+.testimonials-list.compact-view .testimonial-card.expanded .testimonial-content .full-content {
+  display: block;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.testimonials-list.compact-view .testimonial-card.expanded .expansion-toggle .expand-text {
+  display: none;
+}
+
+.testimonials-list.compact-view .testimonial-card.expanded .expansion-toggle .collapse-text {
+  display: inline;
+}
+
+.testimonials-list.compact-view .testimonial-card:not(.expanded) .expansion-toggle .expand-text {
+  display: inline;
+}
+
+.testimonials-list.compact-view .testimonial-card:not(.expanded) .expansion-toggle .collapse-text {
+  display: none;
+}
+
+.testimonials-list.compact-view .podcast-player {
+  margin: var(--spacing-sm) 0;
+  padding: var(--spacing-xs) var(--spacing-sm);
+}
+
+.testimonials-list.compact-view .testimonial-footer {
+  margin-top: var(--spacing-sm);
+  padding-top: var(--spacing-sm);
+  border-top: 1px dashed rgba(125, 125, 125, 0.1);
+}
+
+.testimonials-list.compact-view .action-button {
+  padding: var(--spacing-xs) var(--spacing-sm);
+  font-size: 0.8em;
+}
+
+.testimonials-list.compact-view .testimonial-card:hover {
+  transform: translateY(-2px);
 }
 
 /* Message quand pas de témoignages */
@@ -188,6 +298,18 @@
   .share-container {
     background: linear-gradient(to right, rgba(255, 0, 212, 0.1), rgba(0, 162, 255, 0.1));
   }
+  
+  .testimonials-list.compact-view .testimonial-footer {
+    border-top-color: rgba(255, 255, 255, 0.05);
+  }
+  
+  .testimonials-list.compact-view .expansion-toggle {
+    background: rgba(0, 162, 255, 0.15);
+  }
+  
+  .testimonials-list.compact-view .expansion-toggle:hover {
+    background: rgba(0, 162, 255, 0.25);
+  }
 }
 
 /* Responsive */
@@ -200,5 +322,15 @@
   
   .share-text {
     text-align: center;
+  }
+  
+  .testimonials-list.compact-view .testimonial-footer {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-xs);
+  }
+  
+  .testimonials-list.compact-view .testimonial-actions {
+    justify-content: center;
   }
 }

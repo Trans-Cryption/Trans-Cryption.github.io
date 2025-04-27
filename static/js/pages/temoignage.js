@@ -4,7 +4,9 @@
  */
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Gestion de l'expansion des témoignages
+    console.log('Initialisation du script de témoignages...');
+    
+    // Gestion de l'expansion des témoignages en vue détaillée
     const readMoreButtons = document.querySelectorAll('.read-more');
     const readLessButtons = document.querySelectorAll('.read-less');
     
@@ -20,6 +22,8 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Scroll vers le haut du témoignage
             testimonialCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
+            console.log('Témoignage déplié:', testimonialCard.querySelector('h2').textContent);
         });
     });
     
@@ -36,34 +40,123 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Scroll vers le haut du témoignage
             testimonialCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
+            console.log('Témoignage replié:', testimonialCard.querySelector('h2').textContent);
+        });
+    });
+    
+    // Gestion des témoignages
+    const testimonialCards = document.querySelectorAll('.testimonial-card');
+    const testimonialsList = document.querySelector('.testimonials-list');
+    
+    // Ajouter des boutons d'expansion pour la vue compacte
+    testimonialCards.forEach(card => {
+        // Créer le bouton d'expansion pour la vue compacte
+        const expansionButton = document.createElement('button');
+        expansionButton.className = 'expansion-toggle';
+        expansionButton.innerHTML = `
+            <i class="fa-solid fa-chevron-down"></i>
+            <span class="expand-text">Lire le témoignage</span>
+            <span class="collapse-text">Réduire le témoignage</span>
+        `;
+        
+        // Ajouter le bouton à la fin de la section de contenu
+        const contentSection = card.querySelector('.testimonial-content');
+        contentSection.appendChild(expansionButton);
+        
+        // Gérer le clic sur le bouton d'expansion
+        expansionButton.addEventListener('click', function() {
+            card.classList.toggle('expanded');
+            
+            // Faire défiler jusqu'au témoignage si on le développe
+            if (card.classList.contains('expanded')) {
+                card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                console.log('Témoignage étendu en vue compacte:', card.querySelector('h2').textContent);
+            } else {
+                console.log('Témoignage réduit en vue compacte:', card.querySelector('h2').textContent);
+            }
         });
     });
     
     // Changement de vue (compacte/détaillée)
     const toggleViewButton = document.getElementById('toggle-view');
-    const testimonialsList = document.querySelector('.testimonials-list');
     
     if (toggleViewButton && testimonialsList) {
+        console.log('Bouton de changement de vue trouvé');
+        
+        // Fonction pour réinitialiser tous les témoignages
+        function resetTestimonials() {
+            testimonialCards.forEach(card => {
+                // Réinitialiser la classe expanded
+                card.classList.remove('expanded');
+                
+                // Réinitialiser l'état du contenu en fonction de la vue active
+                const isCompactView = testimonialsList.classList.contains('compact-view');
+                const preview = card.querySelector('.content-preview');
+                const fullContent = card.querySelector('.full-content');
+                const readMoreButton = card.querySelector('.read-more');
+                
+                if (isCompactView) {
+                    // En vue compacte : masquer preview et fullContent
+                    if (preview) preview.style.display = 'none';
+                    if (fullContent) fullContent.classList.add('hidden');
+                } else {
+                    // En vue détaillée : afficher preview, masquer fullContent
+                    if (preview) preview.style.display = 'block';
+                    if (fullContent) fullContent.classList.add('hidden');
+                    if (readMoreButton) readMoreButton.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+        
+        // Vérifier s'il y a une préférence utilisateur sauvegardée
+        const preferCompactView = localStorage.getItem('preferCompactView') === 'true';
+        
+        // Appliquer la préférence si elle existe
+        if (preferCompactView) {
+            testimonialsList.classList.add('compact-view');
+            // Mettre à jour le bouton
+            toggleViewButton.querySelector('i').className = 'fa-solid fa-grip';
+            toggleViewButton.querySelector('span').textContent = 'Passer en vue détaillée';
+            console.log('Préférence utilisateur appliquée: vue compacte');
+        } else {
+            toggleViewButton.querySelector('i').className = 'fa-solid fa-list';
+            toggleViewButton.querySelector('span').textContent = 'Passer en vue compacte';
+        }
+        
+        // Initialiser l'état des témoignages au chargement
+        resetTestimonials();
+        
+        // Configurer l'événement du clic sur le bouton de changement de vue
         toggleViewButton.addEventListener('click', function() {
+            // Basculer la vue
             testimonialsList.classList.toggle('compact-view');
+            const isCompactView = testimonialsList.classList.contains('compact-view');
             
+            // Mettre à jour le bouton
             const icon = this.querySelector('i');
             const text = this.querySelector('span');
             
-            if (testimonialsList.classList.contains('compact-view')) {
+            if (isCompactView) {
                 icon.className = 'fa-solid fa-grip';
-                text.textContent = 'Vue détaillée';
+                text.textContent = 'Passer en vue détaillée';
+                localStorage.setItem('preferCompactView', 'true');
+                console.log('Vue compacte activée');
             } else {
                 icon.className = 'fa-solid fa-list';
-                text.textContent = 'Vue compacte';
+                text.textContent = 'Passer en vue compacte';
+                localStorage.setItem('preferCompactView', 'false');
+                console.log('Vue détaillée activée');
             }
+            
+            // Réinitialiser tous les témoignages après le changement de vue
+            resetTestimonials();
         });
     }
     
     // Recherche dans les témoignages
     const searchInput = document.getElementById('testimonial-search');
     const searchButton = document.getElementById('search-button');
-    const testimonialCards = document.querySelectorAll('.testimonial-card');
     const searchCount = document.getElementById('search-count');
     const controlsSection = document.getElementById('testimonials-controls');
     
@@ -139,6 +232,8 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (noResultsMsg) {
             noResultsMsg.remove();
         }
+        
+        console.log(`Recherche effectuée: "${searchTerm}" - ${resultsCount} résultats trouvés`);
     }
     
     // Fonction pour mettre en surbrillance le texte
@@ -264,6 +359,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     notification.classList.add('fade-out');
                     setTimeout(() => notification.remove(), 500);
                 }, 2500);
+                
+                console.log('Lien copié dans le presse-papier pour le témoignage:', title);
             }
         });
     });
@@ -281,6 +378,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Mettre en évidence brièvement le témoignage cible
                 targetElement.classList.add('highlight-testimony');
                 setTimeout(() => targetElement.classList.remove('highlight-testimony'), 3000);
+                
+                console.log('Témoignage ciblé trouvé:', targetId);
             }, 300);
         }
     }
