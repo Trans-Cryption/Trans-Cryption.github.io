@@ -105,6 +105,14 @@
     background-color: var(--color-primary);
 }
 
+/* Cacher la checkbox */
+.menu-toggle {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
 /* Menu burger pour mobile */
 .burger-menu {
     display: none;
@@ -136,28 +144,6 @@
     margin: 5px auto;
     transition: transform 0.3s ease, opacity 0.3s ease, background-color var(--transition-speed);
     border-radius: 1px;
-}
-
-/* Animation du menu burger */
-.burger-menu.active {
-    background-color: var(--color-card);
-}
-
-.burger-menu.active span {
-    background-color: var(--color-secondary);
-}
-
-.burger-menu.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-}
-
-.burger-menu.active span:nth-child(2) {
-    opacity: 0;
-    transform: translateX(-20px);
-}
-
-.burger-menu.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
 }
 
 /* Mode sombre */
@@ -198,9 +184,44 @@
         overflow-y: auto; /* Permettre le défilement si beaucoup d'éléments */
     }
     
-    /* Menu visible quand actif */
-    .menu.active {
+    /* Animation du menu burger */
+    .menu-toggle:checked ~ .burger-menu span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .menu-toggle:checked ~ .burger-menu span:nth-child(2) {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    .menu-toggle:checked ~ .burger-menu span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -5px);
+    }
+    
+    /* Menu visible quand checkbox cochée */
+    .menu-toggle:checked ~ .menu {
         right: 0;
+    }
+    
+    /* Overlay visible quand checkbox cochée */
+    .menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 899; /* Juste sous le menu mais au-dessus du contenu */
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity var(--transition-speed), visibility var(--transition-speed);
+        pointer-events: none;
+    }
+    
+    .menu-toggle:checked ~ .menu-overlay {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
     }
     
     /* Éléments de liste en pleine largeur */
@@ -229,26 +250,5 @@
         background-color: rgba(255, 193, 236, 0.1);
         border-left: 4px solid var(--color-primary);
         color: var(--color-primary);
-    }
-    
-    /* Overlay semi-transparent quand le menu est ouvert */
-    .menu-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.5);
-        z-index: 899; /* Juste sous le menu mais au-dessus du contenu */
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity var(--transition-speed), visibility var(--transition-speed);
-        pointer-events: none;
-    }
-    
-    .menu-overlay.active {
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
     }
 }
