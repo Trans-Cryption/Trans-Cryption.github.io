@@ -1,72 +1,30 @@
 /**
  * navigation.js
- * Script pour gérer la navigation mobile (menu burger) et le retour en haut de page
+ * Script pour gérer la navigation et le retour en haut de page
 */
 
 document.addEventListener('DOMContentLoaded', () => {
   console.log('DOM chargé, initialisation de la navigation...');
   
-  // Éléments du DOM
-  const burgerMenu = document.querySelector('.burger-menu');
-  const menu = document.querySelector('.menu');
+  // Gestion du menu (avec checkbox HTML)
+  const menuLinks = document.querySelectorAll('.menu a');
+  const menuToggle = document.getElementById('menu-toggle');
+  const menuOverlay = document.querySelector('.menu-overlay');
   
-  // Créer l'overlay du menu s'il n'existe pas déjà
-  let menuOverlay = document.querySelector('.menu-overlay');
-  if (!menuOverlay) {
-    console.log('Création de l\'overlay du menu');
-    menuOverlay = document.createElement('div');
-    menuOverlay.classList.add('menu-overlay');
-    document.body.appendChild(menuOverlay);
-  }
-  
-  // Gestion du menu burger
-  if (burgerMenu && menu) {
-    console.log('Menu burger et menu trouvés, ajout des événements');
-    
-    // Rendre le burger cliquable
-    burgerMenu.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      
-      burgerMenu.classList.toggle('active');
-      menu.classList.toggle('active');
-      menuOverlay.classList.toggle('active');
-      
-      // Log pour déboguer
-      console.log('Menu burger cliqué - Menu actif:', menu.classList.contains('active'));
-    });
-    
-    // Fermer le menu si on clique sur l'overlay
-    menuOverlay.addEventListener('click', () => {
-      console.log('Overlay cliqué, fermeture du menu');
-      burgerMenu.classList.remove('active');
-      menu.classList.remove('active');
-      menuOverlay.classList.remove('active');
-    });
-    
-    // Vérifier que les liens sont cliquables
-    const menuLinks = menu.querySelectorAll('a');
-    console.log(`${menuLinks.length} liens trouvés dans le menu`);
-    
-    menuLinks.forEach((link, index) => {
-      // Ajouter un log pour chaque lien
-      link.addEventListener('mouseenter', () => {
-        console.log(`Survol du lien ${index}: ${link.textContent.trim()}`);
-      });
-      
-      link.addEventListener('click', (e) => {
-        console.log(`Lien ${index} cliqué: ${link.textContent.trim()}`);
-        
-        // Fermer le menu après avoir cliqué sur un lien
-        setTimeout(() => {
-          burgerMenu.classList.remove('active');
-          menu.classList.remove('active');
-          menuOverlay.classList.remove('active');
-        }, 100);
+  // Fermer le menu quand on clique sur un lien
+  if (menuToggle) {
+    menuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.checked = false;
       });
     });
-  } else {
-    console.error('Menu burger ou menu principal non trouvé dans le DOM');
+    
+    // Fermer le menu quand on clique sur l'overlay
+    if (menuOverlay) {
+      menuOverlay.addEventListener('click', () => {
+        menuToggle.checked = false;
+      });
+    }
   }
   
   // Retour en haut de page
