@@ -100,12 +100,22 @@ def load_testimonials_from_directory(directory):
                         "markdown.extensions.footnotes",  # Pour les notes de bas de page
                     ],
                     extension_configs={
+                        "markdown.extensions.smarty": {
+                            "smart_angled_quotes": False,
+                            "smart_quotes": True,
+                            "substitutions": {
+                                "left-single-quote": "'",
+                                "right-single-quote": "'",
+                                "left-double-quote": '"',  # "«\u00a0",
+                                "right-double-quote": '"',  # "\u00a0»",
+                            },
+                        },
                         "pymdownx.emoji": {
                             "emoji_index": pymdownx.emoji.gemoji,
                             "emoji_generator": pymdownx.emoji.to_alt,
                             "alt": "emoji {alt}",
                             "options": {"attributes": {"class": "emoji"}},
-                        }
+                        },
                     },
                 )
 
