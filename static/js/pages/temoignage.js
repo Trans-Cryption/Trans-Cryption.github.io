@@ -66,13 +66,17 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Gérer le clic sur le bouton d'expansion
         expansionButton.addEventListener('click', function() {
-            card.classList.toggle('expanded');
+            const isExpanded = card.classList.toggle('expanded');
             
-            // Faire défiler jusqu'au témoignage si on le développe
-            if (card.classList.contains('expanded')) {
+            // Mettre à jour l'icône et le texte en fonction de l'état
+            const icon = this.querySelector('i');
+            
+            if (isExpanded) {
+                icon.className = 'fa-solid fa-chevron-up';
                 card.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 console.log('Témoignage étendu en vue compacte:', card.querySelector('h2').textContent);
             } else {
+                icon.className = 'fa-solid fa-chevron-down';
                 console.log('Témoignage réduit en vue compacte:', card.querySelector('h2').textContent);
             }
         });
@@ -89,6 +93,15 @@ document.addEventListener('DOMContentLoaded', function() {
             testimonialCards.forEach(card => {
                 // Réinitialiser la classe expanded
                 card.classList.remove('expanded');
+                
+                // Réinitialiser les icônes des boutons d'expansion
+                const expansionButton = card.querySelector('.expansion-toggle');
+                if (expansionButton) {
+                    const icon = expansionButton.querySelector('i');
+                    if (icon) {
+                        icon.className = 'fa-solid fa-chevron-down';
+                    }
+                }
                 
                 // Réinitialiser l'état du contenu en fonction de la vue active
                 const isCompactView = testimonialsList.classList.contains('compact-view');
