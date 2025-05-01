@@ -224,6 +224,48 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
+    // Fonction pour restaurer le contenu original avant toute nouvelle recherche
+    function resetOriginalContent(card) {
+        // Réinitialiser le titre
+        resetNodeContent(card.querySelector('h2'));
+        
+        // Réinitialiser le contenu principal
+        const contentNodes = card.querySelectorAll('.testimonial-content p, .content-preview');
+        contentNodes.forEach(node => {
+            resetNodeContent(node);
+        });
+        
+        // Réinitialiser les éléments imbriqués dans les paragraphes de contenu
+        const contentContainer = card.querySelector('.testimonial-content');
+        if (contentContainer) {
+            const paragraphs = contentContainer.querySelectorAll('p');
+            paragraphs.forEach(p => {
+                resetNodeContent(p);
+            });
+        }
+    }
+
+    // Fonction pour réinitialiser un nœud spécifique en supprimant les surlignages
+    function resetNodeContent(node) {
+        if (!node) return;
+        
+        // Trouver tous les éléments de surbrillance dans ce nœud
+        const highlights = node.querySelectorAll('.search-highlight');
+        
+        if (highlights.length > 0) {
+            // Parcourir tous les éléments de surbrillance et les remplacer par leur contenu texte
+            highlights.forEach(highlight => {
+                const textNode = document.createTextNode(highlight.textContent);
+                highlight.parentNode.replaceChild(textNode, highlight);
+            });
+        }
+        
+        // Normaliser le nœud pour fusionner les nœuds de texte adjacents
+        if (node.normalize) {
+            node.normalize();
+        }
+    }
+    
     // Fonction pour la recherche
     function performSearch() {
         const searchTerm = searchInput.value.toLowerCase().trim();
@@ -235,12 +277,12 @@ document.addEventListener('DOMContentLoaded', function() {
             resetTagFilters();
         }
         
-        // Supprimer les surlignages précédents
-        document.querySelectorAll('.search-highlight').forEach(el => {
-            const parent = el.parentNode;
-            parent.replaceChild(document.createTextNode(el.textContent), el);
+        // Restaurer le contenu original des témoignages avant d'appliquer la nouvelle recherche
+        testimonialCards.forEach(card => {
+            resetOriginalContent(card);
         });
         
+        // Appliquer la nouvelle recherche
         testimonialCards.forEach(card => {
             const titleElement = card.querySelector('h2');
             const contentElement = card.querySelector('.testimonial-content');
@@ -278,6 +320,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         
                         if (normalizedTagText.includes(normalizedSearchTerm)) {
                             tagElement.style.backgroundColor = 'rgba(255, 0, 212, 0.25)';
+                        } else {
+                            tagElement.style.backgroundColor = '';
                         }
                     });
                 } else {
@@ -363,7 +407,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             
             // Ne pas traiter les balises spéciales
-            if (node.nodeType === 1 && node.tagName !== 'BUTTON' && !node.querySelector('.search-highlight')) {
+            if (node.nodeType === 1 && node.tagName !== 'BUTTON' && !node.classList.contains('search-highlight')) {
                 // Parcourir les enfants si c'est un élément
                 if (node.childNodes && node.childNodes.length > 0) {
                     // Faire une copie de la liste pour éviter les problèmes lors de la modification
