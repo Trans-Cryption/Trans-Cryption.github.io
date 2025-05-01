@@ -6,6 +6,11 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Initialisation du script de témoignages...');
     
+    // Fonction pour normaliser les chaînes de caractères en supprimant les accents
+    function normalizeString(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    }
+    
     // Gestion de l'expansion des témoignages en vue détaillée
     const readMoreButtons = document.querySelectorAll('.read-more');
     const readLessButtons = document.querySelectorAll('.read-less');
@@ -222,6 +227,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fonction pour la recherche
     function performSearch() {
         const searchTerm = searchInput.value.toLowerCase().trim();
+        const normalizedSearchTerm = normalizeString(searchTerm);
         let resultsCount = 0;
         
         // Réinitialiser les filtres de tags si la recherche est active
@@ -236,29 +242,41 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         testimonialCards.forEach(card => {
-            const title = card.querySelector('h2').textContent.toLowerCase();
-            const content = card.querySelector('.testimonial-content').textContent.toLowerCase();
+            const titleElement = card.querySelector('h2');
+            const contentElement = card.querySelector('.testimonial-content');
+            
+            // Texte original pour l'affichage
+            const title = titleElement.textContent.toLowerCase();
+            const content = contentElement.textContent.toLowerCase();
+            
+            // Texte normalisé pour la recherche
+            const normalizedTitle = normalizeString(title);
+            const normalizedContent = normalizeString(content);
             
             // Rechercher dans les tags
             const tags = Array.from(card.querySelectorAll('.tag')).map(tag => 
                 tag.textContent.toLowerCase().trim()
             );
+            const normalizedTags = tags.map(tag => normalizeString(tag));
             
             if (searchTerm === '' || 
-                title.includes(searchTerm) || 
-                content.includes(searchTerm) ||
-                tags.some(tag => tag.includes(searchTerm))) {
+                normalizedTitle.includes(normalizedSearchTerm) || 
+                normalizedContent.includes(normalizedSearchTerm) ||
+                normalizedTags.some(tag => tag.includes(normalizedSearchTerm))) {
                 
                 card.style.display = '';
                 resultsCount++;
                 
                 // Mettre en surbrillance le terme recherché si présent
                 if (searchTerm !== '') {
-                    highlightText(card, searchTerm);
+                    highlightText(card, searchTerm, normalizedSearchTerm);
                     
                     // Mettre en évidence les tags correspondants
                     card.querySelectorAll('.tag').forEach(tagElement => {
-                        if (tagElement.textContent.toLowerCase().includes(searchTerm)) {
+                        const tagText = tagElement.textContent.toLowerCase();
+                        const normalizedTagText = normalizeString(tagText);
+                        
+                        if (normalizedTagText.includes(normalizedSearchTerm)) {
                             tagElement.style.backgroundColor = 'rgba(255, 0, 212, 0.25)';
                         }
                     });
@@ -286,67 +304,81 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Fonction pour mettre en surbrillance le texte
-    function highlightText(card, term) {
+    function highlightText(card, term, normalizedTerm) {
         const titleNode = card.querySelector('h2');
         const contentNodes = card.querySelectorAll('.testimonial-content p, .content-preview');
         
-        // Fonction pour remplacer le texte avec surbrillance
-        function replaceText(node, term) {
+        // Fonction pour trouver les occurrences normalisées et mettre en surbrillance le texte original
+        function processNodeContent(node) {
             if (node.nodeType === 3) { // Nœud de type texte
-                const text = node.nodeValue.toLowerCase();
-                const index = text.indexOf(term);
+                const originalText = node.nodeValue;
+                const normalizedText = normalizeString(originalText.toLowerCase());
                 
-                if (index >= 0) {
-                    const beforeText = node.nodeValue.substring(0, index);
-                    const matchedText = node.nodeValue.substring(index, index + term.length);
-                    const afterText = node.nodeValue.substring(index + term.length);
+                let startPos = 0;
+                let fragments = [];
+                let found = false;
+                
+                // Chercher toutes les occurrences du terme normalisé
+                let pos = normalizedText.indexOf(normalizedTerm, startPos);
+                while (pos >= 0) {
+                    found = true;
+                    // Ajouter le texte avant l'occurrence
+                    if (pos > startPos) {
+                        fragments.push(document.createTextNode(originalText.substring(startPos, pos)));
+                    }
                     
-                    const beforeNode = document.createTextNode(beforeText);
+                    // Créer l'élément de surbrillance avec le texte original correspondant
                     const matchNode = document.createElement('span');
                     matchNode.classList.add('search-highlight');
-                    matchNode.textContent = matchedText;
-                    const afterNode = document.createTextNode(afterText);
+                    matchNode.textContent = originalText.substring(pos, pos + term.length);
+                    fragments.push(matchNode);
                     
+                    // Continuer la recherche
+                    startPos = pos + normalizedTerm.length;
+                    pos = normalizedText.indexOf(normalizedTerm, startPos);
+                }
+                
+                // Ajouter le reste du texte
+                if (startPos < originalText.length) {
+                    fragments.push(document.createTextNode(originalText.substring(startPos)));
+                }
+                
+                // Remplacer le nœud original si des correspondances ont été trouvées
+                if (found) {
                     const fragment = document.createDocumentFragment();
-                    fragment.appendChild(beforeNode);
-                    fragment.appendChild(matchNode);
-                    fragment.appendChild(afterNode);
-                    
+                    fragments.forEach(f => fragment.appendChild(f));
                     node.parentNode.replaceChild(fragment, node);
                     return true;
-                }
-            } else if (node.nodeType === 1) { // Nœud de type élément
-                // Ne pas traiter les balises spéciales
-                if (node.tagName === 'BUTTON' || node.querySelector('.search-highlight')) {
-                    return false;
                 }
             }
             return false;
         }
         
         // Fonction récursive pour parcourir tous les nœuds
-        function processNode(node, term) {
+        function processNode(node) {
             if (node.nodeType === 3) { // Nœud de type texte
-                if (replaceText(node, term)) {
+                if (processNodeContent(node)) {
                     return;
                 }
             }
             
-            // Parcourir les enfants si c'est un élément
-            if (node.nodeType === 1 && node.childNodes && node.childNodes.length > 0) {
-                const childNodes = Array.from(node.childNodes);
-                for (let i = 0; i < childNodes.length; i++) {
-                    processNode(childNodes[i], term);
+            // Ne pas traiter les balises spéciales
+            if (node.nodeType === 1 && node.tagName !== 'BUTTON' && !node.querySelector('.search-highlight')) {
+                // Parcourir les enfants si c'est un élément
+                if (node.childNodes && node.childNodes.length > 0) {
+                    // Faire une copie de la liste pour éviter les problèmes lors de la modification
+                    const childNodes = Array.from(node.childNodes);
+                    for (let i = 0; i < childNodes.length; i++) {
+                        processNode(childNodes[i]);
+                    }
                 }
             }
         }
         
-        // Appliquer la surbrillance au titre
-        processNode(titleNode, term);
-        
-        // Appliquer la surbrillance au contenu
+        // Appliquer la surbrillance au titre et au contenu
+        processNode(titleNode);
         contentNodes.forEach(node => {
-            processNode(node, term);
+            processNode(node);
         });
     }
     
