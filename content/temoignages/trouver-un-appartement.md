@@ -2,7 +2,7 @@
 titre: "Trouver un appartement"
 date: "26/03/2026"
 podcast: false
-tags: ["discrimination", "accès difficile"]
+tags: ["accès aux biens et services"]
 ---
 
 Histoire un peu courte et bête, mais on cherchait un appartement à paris depuis 3 mois avec ma copine. On envoie des centaines de messages Leboncoin, une dizaine de visites par semaine, c'est déprimant. 
