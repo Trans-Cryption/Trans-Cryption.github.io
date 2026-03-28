@@ -4,7 +4,7 @@ Ce dépôt contient un site web statique généré avec Python et Jinja2, qui pa
 
 ## Site Web
 
-Le site est accessible à l'adresse : [https://trans-cryption.github.io](https://trans-cryption.github.io)
+Le site est accessible à l'adresse : [transcryption.pride.moe](https://transcryption.pride.moe/)
 
 ## Architecture du projet
 
