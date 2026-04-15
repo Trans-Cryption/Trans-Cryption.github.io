@@ -1,9 +1,5 @@
 name: Build and Deploy Static Site
 
-exclude:
-  - venv/
-  - venvsite/
-
 on:
   push:
     branches: [ main ]
