@@ -56,6 +56,7 @@
                 </button>
             {% endfor %}
         </div>
+
         {% endif %}
     </div>
 </section>
@@ -115,6 +116,18 @@
                         {% endif %}
                         <!-- Le bouton d'expansion sera ajouté par JavaScript -->
                     </div>
+                    <!-- Affichage des liens -->
+                    {% if testimonial.liens and testimonial.liens|length > 0 %}
+                    <div class="tags-container">
+                        {% for lien in testimonial.liens %}
+                        <span class="tag">
+                        <a href="{{ line }}" target="_blank" rel="noopener">
+                            <i class="fa-solid fa-tag"></i> Source
+                        </a>
+                        </span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
                     
                     <div class="testimonial-footer">
                         <div class="testimonial-actions">

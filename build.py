@@ -18,6 +18,8 @@ TEMPLATE_DIR = "templates"
 CONTENT_DIR = "content"
 TESTIMONY_DIR = os.path.join(CONTENT_DIR, "temoignages")
 PODCAST_DIR = os.path.join(CONTENT_DIR, "temoignages", "podcasts")
+IMAGE_DIR = os.path.join(CONTENT_DIR, "temoignages", "images")
+PODCAST_DIR = os.path.join(CONTENT_DIR, "temoignages", "podcasts")
 STATIC_DIR = "static"
 OUTPUT_DIR = "site"
 
@@ -126,6 +128,9 @@ def load_testimonials_from_directory(directory):
                 # Conversion de la valeur du podcast en "yes" ou "no" pour compatibilité
                 metadata["podcast"] = "yes" if metadata.get("podcast", False) else "no"
 
+                # Conversion de la valeur de l'image en "yes" ou "no" pour compatibilité
+                metadata["image"] = "yes" if metadata.get("image", False) else "no"
+
                 # Ajouter un champ pour le nom du fichier (utile pour les liens)
                 metadata["file_id"] = os.path.splitext(filename)[0]
 
@@ -137,6 +142,14 @@ def load_testimonials_from_directory(directory):
                             f"⚠️ Fichier podcast introuvable: {metadata['url']} pour le témoignage {metadata.get('titre', filename)}"
                         )
 
+                # Vérifier si le fichier image existe lorsque image=yes
+                if metadata["image"] == "yes" and "url-image" in metadata:
+                    image_path = os.path.join(IMAGE_DIR, metadata["url-image"])
+                    if not os.path.exists(image_path):
+                        print(
+                            f"⚠️ Fichier image introuvable: {metadata['url-image']} pour le témoignage {metadata.get('titre', filename)}"
+                        )
+
                 # Gérer les tags - S'assurer qu'ils sont au format liste
                 if "tags" in metadata:
                     if not isinstance(metadata["tags"], list):
@@ -146,6 +159,16 @@ def load_testimonials_from_directory(directory):
                         )
                 else:
                     metadata["tags"] = []
+
+                # Gérer les liens - S'assurer qu'ils sont au format liste
+                if "liens" in metadata:
+                    if not isinstance(metadata["liens"], list):
+                        metadata["liens"] = []
+                        print(
+                            f"⚠️ Format de liens invalide dans {filename} - doit être une liste"
+                        )
+                else:
+                    metadata["liens"] = []
 
                 testimonials.append(metadata)
                 print(f"✅ Témoignage chargé : {metadata.get('titre', filename)}")
@@ -175,6 +198,11 @@ if not os.path.exists(TESTIMONY_DIR):
 if not os.path.exists(PODCAST_DIR):
     os.makedirs(PODCAST_DIR)
     print("📁 Création du dossier des podcasts")
+
+# Vérifier que le dossier des images existe
+if not os.path.exists(IMAGE_DIR):
+    os.makedirs(IMAGE_DIR)
+    print("📁 Création du dossier des images")
 
 # Charger les témoignages directement à partir des fichiers Markdown
 print("📝 Chargement des témoignages...")

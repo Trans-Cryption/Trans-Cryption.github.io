@@ -8,6 +8,7 @@ Ce dossier contient les données structurées utilisées pour générer le conte
 content/
 └── temoignages/          # Fichiers Markdown des témoignages individuels
     └── podcasts/         # Fichiers audio des témoignages
+    └── images/         # Fichiers photo des témoignages
 ```
 
 ## Structure d'un témoignage
@@ -23,6 +24,9 @@ date: "JJ/MM/AAAA"
 podcast: false
 url: "nom-fichier.mp3"  # Uniquement si podcast est true
 tags: ["tag1", "tag2", "tag3"]  # Liste de mots-clés associés au témoignage
+image: false
+url-image: "nom-fichier.png" # a faire
+liens: ["lien1", "lien2"] #liste de lien associés au témoignage
 ---
 
 Contenu du témoignage au format Markdown...

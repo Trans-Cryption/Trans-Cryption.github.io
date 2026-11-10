@@ -1,8 +1,9 @@
 ---
 titre: "Collège et famille"
-date: "24/10/2025"
+date: "24/10/2026"
 podcast: false
 tags: ["relation", "coming-out", "famille", "violence psychologique", "scolarité"]
+image: false
 ---
 
 Bonjour,
