@@ -256,7 +256,65 @@
     gap: var(--spacing-xs);
     color: var(--color-secondary);
     background: rgba(0, 162, 255, 0.05);
+    b/* Styles pour les tags */
+.tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    margin: var(--spacing-xs) 0 var(--spacing-md);
+}
+.tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px var(--spacing-sm);
+    background-color: rgba(255, 0, 212, 0.05);
+    color: var(--color-primary);
+    border-radius: 12px;
+    font-size: 0.8em;
+    transition: all var(--transition-speed);
+    cursor: pointer;
     border: none;
+}
+
+.tag:hover {
+    background-color: rgba(255, 0, 212, 0.1);
+    transform: translateY(-2px);
+}
+
+.tag i {
+    font-size: 0.8em;
+    margin-right: 4px;
+}
+
+/* Tag actif (pour l'état filtré) */
+.tag.active {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+/* Section du nuage de tags */
+.tag-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-sm);
+    background-color: rgba(0, 162, 255, 0.03);
+    border-radius: var(--border-radius);
+}
+
+.tag-cloud-title {
+    flex-basis: 100%;
+    margin: 0 0 var(--spacing-xs) 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-secondary);
+}
+
+.tag-count {
+    font-size: 0.9em;
+    opacity: 0.8;
+
+}order: none;
     padding: var(--spacing-xs) var(--spacing-md);
     border-radius: 30px;
     cursor: pointer;
