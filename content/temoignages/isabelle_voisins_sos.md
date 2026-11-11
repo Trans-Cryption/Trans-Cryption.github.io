@@ -2,7 +2,7 @@
 titre: "Témoignage de SOS homophobie : Isabelle"
 date: "2026"
 podcast: false
-tags: ["insultes", "violences physiques"]
+tags: ["insultes", "violence physique"]
 image: false
 ---
 

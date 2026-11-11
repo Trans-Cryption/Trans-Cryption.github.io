@@ -2,7 +2,7 @@
 titre: "Témoignage de SOS homophobie : Paul"
 date: "2026"
 podcast: false
-tags: ["coming out", "famille", "discriminations"]
+tags: ["coming-out", "famille", "discriminations"]
 image: false
 ---
 
